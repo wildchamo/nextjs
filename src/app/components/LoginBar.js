@@ -45,7 +45,7 @@ export default function LoginBar() {
             >
               No de Identificación
             </label>
-            <div class="mt-2">
+            <div className="mt-2">
               <input
                 id="email"
                 type="text"
@@ -67,7 +67,7 @@ export default function LoginBar() {
               >
                 Contraseña
               </label>
-              <div class="mt-2">
+              <div className="mt-2">
                 <input
                   id="password"
                   name="password"
