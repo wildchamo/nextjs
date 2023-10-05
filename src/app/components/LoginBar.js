@@ -4,13 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
 
+import { useRouter } from 'next/navigation';
+
+
 export default function LoginBar() {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
     const handleClick = (e) => {
         e.preventDefault();
         console.log({userId, password})
+        router.push('/home');
     }
 
   return (
