@@ -1,13 +1,11 @@
 "use client";
 import { useState } from "react";
 import Modal from "./Modal";
-import usePicoyPlacaStore from "../stores/picoyPlacaStore";
 import ScrollerPicoyPlaca from "./scrollerPicoyPlaca";
 
 export default function PicoyPlaca({ ciudad, placa }) {
   const [showModal, setShowModal] = useState(false);
   
-  const picoyPlaca = usePicoyPlacaStore((state) => state.ciudades);
 
   return (
     <section className="pt-6">
@@ -27,7 +25,7 @@ export default function PicoyPlaca({ ciudad, placa }) {
           </button>
         </div>
       </div>
-      {showModal && <ModalPico ciudad={ciudad} picoyPlaca={picoyPlaca} placa={placa} onClose={() => setShowModal(false)} />}
+      {showModal && <ModalPico ciudad={ciudad}  placa={placa} onClose={() => setShowModal(false)} />}
     </section>
   );
 }
@@ -36,7 +34,7 @@ function ModalPico({ onClose, ciudad, placa, picoyPlaca }) {
   return (
     <Modal className="">
       <h2 className="text-lg font-bold mb-4">PICO Y PLACA</h2>
-      <ScrollerPicoyPlaca ciudad={ciudad}  picoyPlaca={picoyPlaca} placa={placa}/>
+      <ScrollerPicoyPlaca ciudad={ciudad}  placa={placa}/>
 
       {/* <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
 

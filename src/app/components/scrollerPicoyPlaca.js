@@ -1,11 +1,11 @@
 import { useState } from "react";
 import {getDiaHoy, getPicoyPlaca} from "../utils/todayDay"
 
-export default function ScrollerPicoyPlaca({ picoyPlaca, ciudad, placa }) {
+export default function ScrollerPicoyPlaca({ ciudad, placa }) {
 
   const [ciudadScroller, setCiudadScroller] = useState(ciudad);
 
-  picoyPlaca= getPicoyPlaca()
+  let picoyPlaca= getPicoyPlaca()
 
   console.log(picoyPlaca)
 
