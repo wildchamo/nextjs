@@ -3,13 +3,15 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
-
+import useUserStore from '../stores/userStore'
 import { useRouter } from 'next/navigation';
 
 
 export default function LoginBar() {
   
   const router = useRouter();
+  const { setNameAndCc } = useUserStore();
+
   const userIdRef = useRef(null)
   const passwordRef = useRef(null)
 
@@ -18,7 +20,8 @@ export default function LoginBar() {
       const password = passwordRef.current.value;
         e.preventDefault();
         
-        console.log(userid, password)
+        // console.log(userid, password)
+        setNameAndCc(userid, password)
         router.push('/home');
     }
 
