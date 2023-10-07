@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 const useUserStore = create((set) => ({
-  name: "Jose Luis",
+  name: null,
   cc: 0,
   idVehicle: "AWS-123",
 }))
