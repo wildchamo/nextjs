@@ -24,8 +24,8 @@ export default function Home() {
       />
         </div>
       <PicoyPlaca/>
-      <MisSeguros/>
-      <MisReportes/>
+      {/* <MisSeguros/>
+      <MisReportes/> */}
 
       </main>
     )
