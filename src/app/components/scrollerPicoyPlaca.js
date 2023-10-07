@@ -1,21 +1,17 @@
+import { useState } from "react";
+import {getDiaHoy, getPicoyPlaca} from "../utils/todayDay"
+
 export default function ScrollerPicoyPlaca({ picoyPlaca, ciudad, placa }) {
-  const diasSemana = [
-    "Domingo",
-    "Lunes",
-    "Martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
-  ];
 
-  const diahoy = diasSemana[new Date().getDay()];
+  const [ciudadScroller, setCiudadScroller] = useState(ciudad);
 
-  let picoyplacahoy = picoyPlaca.find((ciudadArray) => ciudadArray.nombre === ciudad);
+  picoyPlaca= getPicoyPlaca()
 
-  console.log(picoyplacahoy);
+  console.log(picoyPlaca)
 
-  console.log(picoyPlaca);
+  let picoyplacahoy = picoyPlaca.find(
+    (ciudadArray) => ciudadArray.nombre === ciudadScroller
+  );
 
   return (
     <div className="flex flex-col text-center">
@@ -24,21 +20,25 @@ export default function ScrollerPicoyPlaca({ picoyPlaca, ciudad, placa }) {
         <option value="taxis">Taxis</option>
       </select>
       Prepara tu semana
-      <select name="" id="">
+      <select name="" id="" onChange={(e) => setCiudadScroller(e.target.value)}>
         {picoyPlaca.map((ciudadArray) => (
-          <option selected={ciudadArray.nombre === ciudad} key={ciudadArray.nombre} value={ciudadArray.nombre}>
-            {ciudadArray.nombre} 
+          <option
+            selected={ciudadArray.nombre === ciudad}
+            key={ciudadArray.nombre}
+            value={ciudadArray.nombre}
+          >
+            {ciudadArray.nombre}
           </option>
         ))}
       </select>
-      {diahoy}
+      {getDiaHoy()}
       <div>
         holaa
         {picoyplacahoy.reglas.map((regla) => (
-          <p> 
+          <p>
             {regla.dia} | {regla.placas}
           </p>
-))}
+        ))}
       </div>
     </div>
   );
