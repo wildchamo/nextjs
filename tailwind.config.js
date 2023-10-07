@@ -11,7 +11,8 @@ module.exports = {
         primary: "#ECFFE2",
         secundary: "#7FBF5F",
         terciary: "#306B12",
-        gradientgreen: "#C1FFA3 "
+        gradientgreen: "#C1FFA3 ",
+        yellowCall:"#EDC949"
       },
     },
   },
