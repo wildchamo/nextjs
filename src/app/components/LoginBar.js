@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginBar() {
   
+  const {name, login } = useUserStore();
   const router = useRouter();
-  const { setNameAndCc } = useUserStore();
 
   const userIdRef = useRef(null)
   const passwordRef = useRef(null)
@@ -21,8 +21,12 @@ export default function LoginBar() {
         e.preventDefault();
         
         // console.log(userid, password)
-        setNameAndCc(userid, password)
-        router.push('/home');
+        login(userid, password)
+        
+        if(name){
+          router.push('/home')
+        }
+
     }
 
   return (
