@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .circulo{
-    width: 150px;
-  height: 150px;
+    width: 100px;
+  height: 100px;
   background: white;
   position: absolute;
   top: 50%;
