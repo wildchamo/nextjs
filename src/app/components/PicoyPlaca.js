@@ -38,7 +38,7 @@ function ModalPico({ onClose, ciudad, placa, picoyPlaca }) {
       <h2 className="text-lg font-bold mb-4">PICO Y PLACA</h2>
       <ScrollerPicoyPlaca ciudad={ciudad}  picoyPlaca={picoyPlaca} placa={placa}/>
 
-      <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
+      {/* <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
 
 
         <p className="text-left">
@@ -52,7 +52,7 @@ function ModalPico({ onClose, ciudad, placa, picoyPlaca }) {
         <p>Sabías que...</p>
         Una multa por infringir la restricción horaria del pico y placa podría
         llegar a costar 20 SMMLV
-      </div>
+      </div> */}
 
       <div className="flex justify-end">
         <button
