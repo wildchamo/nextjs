@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
@@ -8,13 +8,17 @@ import { useRouter } from 'next/navigation';
 
 
 export default function LoginBar() {
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
+  
   const router = useRouter();
+  const userIdRef = useRef(null)
+  const passwordRef = useRef(null)
 
     const handleClick = (e) => {
+      const userid = userIdRef.current.value;
+      const password = passwordRef.current.value;
         e.preventDefault();
-        console.log({userId, password})
+        
+        console.log(userid, password)
         router.push('/home');
     }
 
@@ -51,8 +55,7 @@ export default function LoginBar() {
                 type="text"
                 name="email"
                 autoComplete="email"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
+                ref={userIdRef}
                 required
                 className="block w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -73,8 +76,8 @@ export default function LoginBar() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  ref={passwordRef}
+
                   required
                   className="block w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

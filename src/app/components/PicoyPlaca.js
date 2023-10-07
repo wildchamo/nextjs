@@ -1,6 +1,5 @@
 "use client";
 
-
 export default function PicoyPlaca(){
     return(
         <section className="pt-6">
