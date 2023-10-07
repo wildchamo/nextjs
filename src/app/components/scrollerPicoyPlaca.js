@@ -11,6 +11,10 @@ export default function ScrollerPicoyPlaca({ picoyPlaca, ciudad, placa }) {
 
   const diahoy = diasSemana[new Date().getDay()];
 
+  let picoyplacahoy = picoyPlaca.find((ciudadArray) => ciudadArray.nombre === ciudad);
+
+  console.log(picoyplacahoy);
+
   console.log(picoyPlaca);
 
   return (
@@ -28,7 +32,14 @@ export default function ScrollerPicoyPlaca({ picoyPlaca, ciudad, placa }) {
         ))}
       </select>
       {diahoy}
-      <h1></h1>
+      <div>
+        holaa
+        {picoyplacahoy.reglas.map((regla) => (
+          <p> 
+            {regla.dia} | {regla.placas}
+          </p>
+))}
+      </div>
     </div>
   );
 }

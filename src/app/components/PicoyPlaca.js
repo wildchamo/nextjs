@@ -34,7 +34,7 @@ export default function PicoyPlaca({ ciudad, placa }) {
 
 function ModalPico({ onClose, ciudad, placa, picoyPlaca }) {
   return (
-    <Modal>
+    <Modal className="">
       <h2 className="text-lg font-bold mb-4">PICO Y PLACA</h2>
       <ScrollerPicoyPlaca ciudad={ciudad}  picoyPlaca={picoyPlaca} placa={placa}/>
 
