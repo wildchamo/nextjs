@@ -2,7 +2,6 @@
 import './styles/globals.css'
 import { Josefin_Sans } from 'next/font/google'
 import useUserStore from './stores/userStore'
-import MenuInferior from './components/menuInferior';
 
 
 
@@ -21,9 +20,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={josefin.className}>
         {children}
-        
-        {/* {userName?<MenuInferior/>:""} */}
-        <MenuInferior></MenuInferior>
       </body>
     </html>
   )
