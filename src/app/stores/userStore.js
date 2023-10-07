@@ -5,6 +5,7 @@ const useUserStore = create((set) => ({
   name: null,
   cc: 0,
   idVehicle: "AWS-123",
+  city: "Cali",
   login: (login, cc) => {
     
     // if(login === cc && login === "13011033"){

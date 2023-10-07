@@ -1,8 +1,15 @@
 "use client";
 import { useState } from "react";
+import usePicoyPlacaStore from "../stores/picoyPlacaStore";
+import useUserStore from "../stores/userStore";
 
-export default function PicoyPlaca() {
+export default function PicoyPlaca({ciudad,placa}) {
   const [showModal, setShowModal] = useState(false);
+  const picoyPlaca= usePicoyPlacaStore(state => state.ciudades);
+
+  console.log(ciudad,placa)
+  console.log(picoyPlaca)
+
 
   return (
     <section className="pt-6">
@@ -16,7 +23,8 @@ export default function PicoyPlaca() {
         <div className="flex justify-end">
           <button
             className="bg-secundary text-white w-28 h-8 rounded-2xl"
-            onClick={() => setShowModal(true)}
+            onClick={() => 
+              setShowModal(true)}
           >
             Ver más
           </button>
@@ -35,7 +43,7 @@ function Modal({ onClose }) {
           <h2 className="text-lg font-bold mb-4">PICO Y PLACA</h2>
           <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
             <div>
-              Hoy{" "}
+              Hoy{""}
               <select name="" id="">
                 <option value="">Lunes</option>
                 <option value="">Martes</option>
