@@ -73,6 +73,11 @@ function Modal({ onClose }) {
             </p>
           </div>
 
+          <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
+            <p>Sabías que...</p>
+            Una multa por infringir la restricción horaria del pico y placa podría llegar a costar 20 SMMLV 
+            </div>
+
           <div className="flex justify-end">
             <button
               className="bg-secundary text-white px-4 py-2 rounded-lg"

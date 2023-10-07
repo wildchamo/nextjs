@@ -7,7 +7,7 @@ import soat from "../../../public/soat.png";
 
 export default function MisSeguros(){
     return(
-        <section className="">
+        <section className="pt-6">
             <h2>MIS SEGUROS</h2>
             <div className="flex justify-between bg-primary h-32 p-6 rounded-2xl text-sm">
 
