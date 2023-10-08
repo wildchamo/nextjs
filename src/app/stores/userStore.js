@@ -35,12 +35,16 @@ const useUserStore = create((set) => ({
 
   login: (login, cc) => {
     const user = users.find((user) => login === cc && user.cc === parseInt(cc));
-    set({
-      name: user.name,
-      cc: user.cc,
-      idVehicle: user.idVehicle,
-      city: user.city,
-    });
+    if (!user) return false;
+    else {
+      set({
+        name: user.name,
+        cc: user.cc,
+        idVehicle: user.idVehicle,
+        city: user.city,
+      });
+      return user;
+    }
   },
   logout: () => set({ name: null, cc: 0, idVehicle: null, city: null }),
   setNameAndCc: (name, cc) => set({ name, cc }),

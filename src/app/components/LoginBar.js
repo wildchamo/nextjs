@@ -3,29 +3,24 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
-import useUserStore from '../stores/userStore'
-import { useRouter } from 'next/navigation';
-
+import useUserStore from "../stores/userStore";
+import { useRouter } from "next/navigation";
 
 export default function LoginBar() {
-  
-  const {name, login } = useUserStore();
+  const { name, login } = useUserStore();
   const router = useRouter();
 
-  const userIdRef = useRef(null)
-  const passwordRef = useRef(null)
+  const userIdRef = useRef(null);
+  const passwordRef = useRef(null);
 
-    const handleClick = (e) => {
-      const userid = userIdRef.current.value;
-      const password = passwordRef.current.value;
-        e.preventDefault();
-        
-        // console.log(userid, password)
-        login(userid, password)
-        
-          router.push('/home')
-
+  const handleClick = (e) => {
+    const userid = userIdRef.current.value;
+    const password = passwordRef.current.value;
+    e.preventDefault();
+    if (login(userid, password)) {
+      router.push("/home");
     }
+  };
 
   return (
     <main className="">
@@ -82,7 +77,6 @@ export default function LoginBar() {
                   type="password"
                   autoComplete="current-password"
                   ref={passwordRef}
-
                   required
                   className="block w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -92,7 +86,6 @@ export default function LoginBar() {
 
           <Link href="/home" onClick={handleClick}>
             <button
-            
               type="submit"
               className="flex w-80 justify-center rounded-2xl bg-secundary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >

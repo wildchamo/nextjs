@@ -17,7 +17,7 @@ export default function MenuInferior() {
           href="tel:3142758675"
           className="bg-yellowCall w-20 h-20 rounded-full flex items-center justify-center"
         >
-          <Image src={call} width={40} height={40}></Image>
+          <Image alt="Llamada emergencia" src={call} width={40} height={40}></Image>
         </a>
       </div>
     </footer>
