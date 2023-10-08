@@ -28,7 +28,8 @@ const users = [
 ];
 
 const useUserStore = create((set) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedUser = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : null;
+
   return {
     name: storedUser ? storedUser.name : null,
     cc: storedUser ? storedUser.cc : 0,
