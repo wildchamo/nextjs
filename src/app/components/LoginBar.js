@@ -23,9 +23,7 @@ export default function LoginBar() {
         // console.log(userid, password)
         login(userid, password)
         
-        if(name){
           router.push('/home')
-        }
 
     }
 
