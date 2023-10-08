@@ -51,7 +51,10 @@ const useUserStore = create((set) => {
         return user;
       }
     },
-    logout: () => set({ name: null, cc: 0, idVehicle: null, city: null }),
+    logout: () => {
+      set({ name: null, cc: 0, idVehicle: null, city: null });
+      localStorage.removeItem("user");
+    },
   };
 });
 
