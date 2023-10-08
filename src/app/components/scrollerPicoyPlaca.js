@@ -1,13 +1,13 @@
 import { useState } from "react";
-import {getDiaHoy, getPicoyPlaca} from "../utils/todayDay"
+import { getDiaHoy, getPicoyPlaca } from "../utils/todayDay";
 
 export default function ScrollerPicoyPlaca({ ciudad, placa }) {
-
   const [ciudadScroller, setCiudadScroller] = useState(ciudad);
 
-  let picoyPlaca= getPicoyPlaca()
+  let picoyPlaca = getPicoyPlaca();
+  let diaHoy = getDiaHoy();
 
-  console.log(picoyPlaca)
+  console.log(picoyPlaca);
 
   let picoyplacahoy = picoyPlaca.find(
     (ciudadArray) => ciudadArray.nombre === ciudadScroller
@@ -31,13 +31,21 @@ export default function ScrollerPicoyPlaca({ ciudad, placa }) {
           </option>
         ))}
       </select>
-      {getDiaHoy()}
+      {diaHoy}
       <div>
-        holaa
         {picoyplacahoy.reglas.map((regla) => (
-          <p>
-            {regla.dia} | {regla.placas}
-          </p>
+          <div
+            className={`flex justify-between ${
+              regla.dia === diaHoy ? "font-bold" : ""
+            }`}
+          >
+            <span>{regla.dia}</span>
+            <span>
+              {Array.isArray(regla.placas)
+                ? regla.placas.join("-")
+                : regla.placas}
+            </span>
+          </div>
         ))}
       </div>
     </div>

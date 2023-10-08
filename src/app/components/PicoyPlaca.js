@@ -34,7 +34,7 @@ function ModalPico({ onClose, ciudad, placa, picoyPlaca }) {
   return (
     <Modal className="">
       <h2 className="text-lg font-bold mb-4">PICO Y PLACA</h2>
-      <ScrollerPicoyPlaca ciudad={ciudad}  placa={placa}/>
+      <ScrollerPicoyPlaca ciudad={ciudad} placa={placa}/>
 
       {/* <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
 

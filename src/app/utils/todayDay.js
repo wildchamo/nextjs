@@ -12,7 +12,7 @@ export function getDiaHoy() {
 }
 
 export function getPicoyPlaca() {
- const ciudades= [
+  const ciudades = [
     {
       nombre: "Bogotá",
       reglas: [
@@ -36,6 +36,14 @@ export function getPicoyPlaca() {
           dia: "Viernes",
           placas: ["6", "7", "8", "9", "0"],
         },
+        {
+            dia: "Sábado",
+            placas: "No aplica",
+          },
+          {
+            dia: "Domingo",
+            placas: "No aplica",
+          },
       ],
     },
     {
@@ -60,6 +68,14 @@ export function getPicoyPlaca() {
         {
           dia: "Viernes",
           placas: ["8", "2"],
+        },
+        {
+          dia: "Sábado",
+          placas: "No aplica",
+        },
+        {
+          dia: "Domingo",
+          placas: "No aplica",
         },
       ],
     },
@@ -86,6 +102,14 @@ export function getPicoyPlaca() {
           dia: "Viernes",
           placas: ["9", "0"],
         },
+        {
+            dia: "Sábado",
+            placas: "No aplica",
+          },
+          {
+            dia: "Domingo",
+            placas: "No aplica",
+          },
       ],
     },
   ];
