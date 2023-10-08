@@ -27,27 +27,32 @@ const users = [
   },
 ];
 
-const useUserStore = create((set) => ({
-  name: null,
-  cc: 0,
-  idVehicle: null,
-  city: null,
+const useUserStore = create((set) => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  return {
+    name: storedUser ? storedUser.name : null,
+    cc: storedUser ? storedUser.cc : 0,
+    idVehicle: storedUser ? storedUser.idVehicle : null,
+    city: storedUser ? storedUser.city : null,
 
-  login: (login, cc) => {
-    const user = users.find((user) => login === cc && user.cc === parseInt(cc));
-    if (!user) return false;
-    else {
-      set({
-        name: user.name,
-        cc: user.cc,
-        idVehicle: user.idVehicle,
-        city: user.city,
-      });
-      return user;
-    }
-  },
-  logout: () => set({ name: null, cc: 0, idVehicle: null, city: null }),
-  setNameAndCc: (name, cc) => set({ name, cc }),
-}));
+    login: (login, cc) => {
+      const user = users.find(
+        (user) => login === cc && user.cc === parseInt(cc)
+      );
+      if (!user) return false;
+      else {
+        set({
+          name: user.name,
+          cc: user.cc,
+          idVehicle: user.idVehicle,
+          city: user.city,
+        });
+        localStorage.setItem("user", JSON.stringify(user));
+        return user;
+      }
+    },
+    logout: () => set({ name: null, cc: 0, idVehicle: null, city: null }),
+  };
+});
 
 export default useUserStore;

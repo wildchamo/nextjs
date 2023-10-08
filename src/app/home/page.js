@@ -12,6 +12,7 @@ export default function Home() {
     idVehicle: state.idVehicle,
     city: state.city,
   }));
+    console.log(idVehicle)
   return (
     <main className="mr-8 ml-8 mt-8">
       <div className="flex justify-between">

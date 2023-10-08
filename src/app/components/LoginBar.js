@@ -7,7 +7,7 @@ import useUserStore from "../stores/userStore";
 import { useRouter } from "next/navigation";
 
 export default function LoginBar() {
-  const { name, login } = useUserStore();
+  const { login } = useUserStore();
   const router = useRouter();
 
   const userIdRef = useRef(null);
