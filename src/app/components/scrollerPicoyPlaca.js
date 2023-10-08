@@ -34,7 +34,7 @@ export default function ScrollerPicoyPlaca({ ciudad, placa }) {
       {diaHoy}
       <div>
         {picoyplacahoy.reglas.map((regla) => (
-          <div
+          <div key={regla.dia}
             className={`flex justify-between ${
               regla.dia === diaHoy ? "font-bold" : ""
             }`}

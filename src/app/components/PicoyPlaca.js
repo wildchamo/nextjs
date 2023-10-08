@@ -2,10 +2,10 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import ScrollerPicoyPlaca from "./scrollerPicoyPlaca";
+import { aplicaONo } from "../utils/todayDay";
 
 export default function PicoyPlaca({ ciudad, placa }) {
   const [showModal, setShowModal] = useState(false);
-  
 
   return (
     <section className="pt-6">
@@ -13,8 +13,16 @@ export default function PicoyPlaca({ ciudad, placa }) {
       <div className="flex flex-col justify-between bg-primary h-32 p-6 rounded-2xl text-sm">
         <p>
           {" "}
-          Hoy en <b className="underline">Cali</b> para{" "}
-          <b className="underline">particulares</b> es <b className="">0 y 9</b>
+          El pico y placa hoy en <b className="underline">{ciudad}</b> para{" "}
+          <b className="underline">particulares</b>
+          {aplicaONo(ciudad) === "No aplica" ? (
+            <span> no aplica</span>
+          ) : (
+            <span>
+              {" "}
+              es <b className="">{aplicaONo(ciudad)}</b>
+            </span>
+          )}
         </p>
         <div className="flex justify-end">
           <button
@@ -25,16 +33,22 @@ export default function PicoyPlaca({ ciudad, placa }) {
           </button>
         </div>
       </div>
-      {showModal && <ModalPico ciudad={ciudad}  placa={placa} onClose={() => setShowModal(false)} />}
+      {showModal && (
+        <ModalPico
+          ciudad={ciudad}
+          placa={placa}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </section>
   );
 }
 
-function ModalPico({ onClose, ciudad, placa, picoyPlaca }) {
+function ModalPico({ onClose, ciudad, placa }) {
   return (
     <Modal className="">
       <h2 className="text-lg font-bold mb-4">PICO Y PLACA</h2>
-      <ScrollerPicoyPlaca ciudad={ciudad} placa={placa}/>
+      <ScrollerPicoyPlaca ciudad={ciudad} placa={placa} />
 
       {/* <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
 
