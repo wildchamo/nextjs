@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { create } from "zustand";
 
 const users = [
@@ -28,8 +29,8 @@ const users = [
 ];
 
 const useUserStore = create((set) => {
-  const storedUser = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : null;
-
+  const storedUser = JSON.parse(Cookies.get("user"));
+  
   return {
     name: storedUser ? storedUser.name : null,
     cc: storedUser ? storedUser.cc : 0,
@@ -48,13 +49,14 @@ const useUserStore = create((set) => {
           idVehicle: user.idVehicle,
           city: user.city,
         });
-        localStorage.setItem("user", JSON.stringify(user));
+        console.log(user);
+        Cookies.set("user", JSON.stringify(user));
         return user;
       }
     },
     logout: () => {
       set({ name: null, cc: 0, idVehicle: null, city: null });
-      localStorage.removeItem("user");
+      Cookies.remove("user");
     },
   };
 });
