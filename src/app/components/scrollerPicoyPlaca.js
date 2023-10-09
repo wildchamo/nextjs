@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { getDiaHoy, getPicoyPlaca } from "../utils/todayDay";
 
-export default function ScrollerPicoyPlaca({ ciudad, placa }) {
+export default function ScrollerPicoyPlaca({ ciudad }) {
   const [ciudadScroller, setCiudadScroller] = useState(ciudad);
 
   let picoyPlaca = getPicoyPlaca();
   let diaHoy = getDiaHoy();
 
-  console.log(picoyPlaca);
 
   let picoyplacahoy = picoyPlaca.find(
     (ciudadArray) => ciudadArray.nombre === ciudadScroller
@@ -20,13 +19,14 @@ export default function ScrollerPicoyPlaca({ ciudad, placa }) {
         <option value="taxis">Taxis</option>
       </select>
       Prepara tu semana
-      <select name="" id="" onChange={(e) => setCiudadScroller(e.target.value)}>
+      <select
+        value={ciudadScroller}
+        onChange={(e) => {
+          setCiudadScroller(e.target.value);
+        }}
+      >
         {picoyPlaca.map((ciudadArray) => (
-          <option
-            defaultValue={ciudadArray.nombre === ciudad}
-            key={ciudadArray.nombre}
-            value={ciudadArray.nombre}
-          >
+          <option key={ciudadArray.nombre} value={ciudadArray.nombre}>
             {ciudadArray.nombre}
           </option>
         ))}
@@ -34,7 +34,8 @@ export default function ScrollerPicoyPlaca({ ciudad, placa }) {
       {diaHoy}
       <div>
         {picoyplacahoy.reglas.map((regla) => (
-          <div key={regla.dia}
+          <div
+            key={regla.dia}
             className={`flex justify-between ${
               regla.dia === diaHoy ? "font-bold" : ""
             }`}
