@@ -125,6 +125,6 @@ export function aplicaONo(city) {
     .find((ciudadArray) => ciudadArray.nombre === city)
     ?.reglas.find((regla) => regla.dia === diaHoy);
 
-  return aplica.placas;
+  return aplica?.placas;
 }
 
