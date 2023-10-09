@@ -1,6 +1,5 @@
 "use client";
 import useUserStore from "../stores/userStore";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
@@ -16,12 +15,6 @@ export default function Home() {
     idVehicle: state.idVehicle,
     city: state.city,
   }));
-
-  useEffect(() => {
-    if (!name) {
-      router.push("/");
-    }
-  }, []);
 
   return (
     <main className="mr-8 ml-8 mt-8">

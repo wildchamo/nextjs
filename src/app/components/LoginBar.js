@@ -1,5 +1,6 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
@@ -8,10 +9,19 @@ import { useRouter } from "next/navigation";
 
 export default function LoginBar() {
   const { login } = useUserStore();
+  const { name } = useUserStore((state) => ({
+    name: state.name,
+  }));
   const router = useRouter();
 
   const userIdRef = useRef(null);
   const passwordRef = useRef(null);
+
+  useEffect(() => {
+    if (name) {
+      router.push("/home");
+    }
+  }, []);
 
   const handleClick = (e) => {
     const userid = userIdRef.current.value;
