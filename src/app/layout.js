@@ -1,12 +1,7 @@
-"use client";
-import './styles/globals.css'
-import { Josefin_Sans } from 'next/font/google'
-import useUserStore from './stores/userStore'
+import "./styles/globals.css";
+import { Josefin_Sans } from "next/font/google";
 
-
-
-const josefin = Josefin_Sans({ subsets: ['latin'] })
-
+const josefin = Josefin_Sans({ subsets: ["latin"] });
 
 // export const metadata = {
 //   title: 'Mayaluna',
@@ -14,13 +9,9 @@ const josefin = Josefin_Sans({ subsets: ['latin'] })
 // }
 
 export default function RootLayout({ children }) {
-  const userName= useUserStore(state => state.name);
-
   return (
     <html lang="en">
-      <body className={josefin.className}>
-        {children}
-      </body>
+      <body className={josefin.className}>{children}</body>
     </html>
-  )
+  );
 }

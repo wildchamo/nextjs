@@ -6,9 +6,15 @@ import logo from "../../../public/logomayaluna.jpg";
 import PicoyPlaca from "../components/PicoyPlaca.js";
 import MisSeguros from "../components/MisSeguros";
 import MisReportes from "../components/MisReportes";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [userData, setUserData] = useState({
+    name: "",
+    idVehicle: "",
+    city: "",
+  });
 
   const { name, idVehicle, city } = useUserStore((state) => ({
     name: state.name,
@@ -16,10 +22,15 @@ export default function Home() {
     city: state.city,
   }));
 
+  useEffect(() => {
+    
+    setUserData({ name, idVehicle, city });
+  }, []);
+
   return (
     <main className="mr-8 ml-8 mt-8">
       <div className="flex justify-between">
-        <h3>¡Bienvenido {name} !</h3>
+        <h3>¡Bienvenido {userData.name} !</h3>
         <Image
           className=""
           src={logo}
@@ -28,7 +39,7 @@ export default function Home() {
           alt="logoMayaluna"
         />
       </div>
-      <PicoyPlaca ciudad={city} placa={idVehicle} />
+      <PicoyPlaca ciudad={userData.city} placa={userData.idVehicle} />
       <MisSeguros />
       <MisReportes />
     </main>
