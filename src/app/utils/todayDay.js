@@ -119,8 +119,6 @@ export function aplicaONo(city) {
   let picoyPlaca = getPicoyPlaca();
   let diaHoy = getDiaHoy();
 
-  console.log(picoyPlaca);
-
   let aplica = picoyPlaca
     .find((ciudadArray) => ciudadArray.nombre === city)
     ?.reglas.find((regla) => regla.dia === diaHoy);

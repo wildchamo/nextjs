@@ -28,12 +28,8 @@ const users = [
   },
 ];
 
-console.log( Cookies.get("user"))
-
 const useUserStore = create((set) => {
   const userCookie = Cookies.get("user");
-  console.log(userCookie)
-
   const storedUser = userCookie ? JSON.parse(userCookie) : null;
   
   return {
