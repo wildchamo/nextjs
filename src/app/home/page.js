@@ -23,8 +23,8 @@ export default function Home() {
   }));
 
   useEffect(() => {
-    
     setUserData({ name, idVehicle, city });
+    if(userData.name === null) router.push("/");
   }, []);
 
   return (

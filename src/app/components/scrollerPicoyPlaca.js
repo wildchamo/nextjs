@@ -23,7 +23,7 @@ export default function ScrollerPicoyPlaca({ ciudad, placa }) {
       <select name="" id="" onChange={(e) => setCiudadScroller(e.target.value)}>
         {picoyPlaca.map((ciudadArray) => (
           <option
-            selected={ciudadArray.nombre === ciudad}
+            defaultValue={ciudadArray.nombre === ciudad}
             key={ciudadArray.nombre}
             value={ciudadArray.nombre}
           >
