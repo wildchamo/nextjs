@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   nombre: {
     type: String,
     required: true,
@@ -11,18 +11,19 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   identificacion: {
-    type: Number,
-    unique: true,
+    type: String,
     required: true,
   },
-  // direccion: {
-  //   type: String,
-  //   required: true,
-  // },
   ciudad: {
     type: String,
     required: true,
   },
+
+
+  // direccion: {
+  //   type: String,
+  //   required: true,
+  // },
 
   // rol: {
   //   type: String,
