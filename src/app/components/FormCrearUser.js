@@ -4,7 +4,7 @@ import axios from "axios";
 
 function FormCrearUser() {
   const formRef = useRef();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
@@ -15,6 +15,22 @@ function FormCrearUser() {
     const ciudad = formData.get("ciudad");
     const rol = formData.get("rol");
     const isActive = formData.get("isActive") === "true";
+
+    console.log(nombre, identificacion, password, ciudad, rol, isActive);
+
+
+    try {
+      const res = await axios.post("/api/auth/signup", {
+        nombre:nombre,
+        identificacion:identificacion,
+        password: password,
+        ciudad: ciudad,
+        rol: rol,
+        isActive: isActive,
+      });
+
+      console.log(res)
+    } catch (error) {}
   };
 
   return (
@@ -69,7 +85,7 @@ function FormCrearUser() {
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Rol:
           </label>
-          <div class="relative">
+          <div className="relative">
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="rol"

@@ -6,7 +6,8 @@ import bcrypt from "bcryptjs";
 export async function POST(request) {
   try {
     await connectDB();
-    const { nombre, password, identificacion, ciudad } = await request.json();
+    const { nombre, password, identificacion, ciudad, rol, isActive } =
+      await request.json();
 
     const userfound = await User.findOne({ identificacion });
 
@@ -15,7 +16,7 @@ export async function POST(request) {
         {
           message: "Ya existe un usuario con este número de identificación",
         },
-        { 
+        {
           status: 400,
         }
       );
@@ -27,6 +28,8 @@ export async function POST(request) {
       identificacion,
       password: hashedPassword,
       ciudad,
+      rol,
+      isActive,
     });
 
     const savedUser = await user.save();
