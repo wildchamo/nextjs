@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import axios from "axios";
 
 function FormCrearUser() {
   const formRef = useRef();
@@ -14,50 +15,92 @@ function FormCrearUser() {
     const ciudad = formData.get("ciudad");
     const rol = formData.get("rol");
     const isActive = formData.get("isActive") === "true";
-
-    // Muestra la información en la consola
-    console.log("Nombre:", nombre);
-    console.log("Identificación:", identificacion);
-    console.log("Password:", password);
-    console.log("Ciudad:", ciudad);
-    console.log("Rol:", rol);
-    console.log("isActive:", isActive);
   };
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div>
-        <label>Nombre:</label>
-        <input type="text" name="nombre" />
+        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Nombre:
+        </label>
+        <input
+          type="text"
+          name="nombre"
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="Jose Luis "
+        />
       </div>
       <div>
         <label>Identificación:</label>
-        <input type="text" name="identificacion" />
+        <input
+          type="text"
+          name="identificacion"
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="123456789 "
+        />
       </div>
       <div>
         <label>Contraseña:</label>
-        <input type="text" name="password" placeholder="Igual al número de identificación si no se especifica" />
+
+        <input
+          type="password"
+          name="password"
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="123456789 "
+        />
       </div>
-      <div>
-        <label>Ciudad:</label>
-        <select name="ciudad">
-          <option value="Bogota">Bogota</option>
-          <option value="Medellin">Medellin</option>
-          <option value="Cali">Cali</option>
-        </select>
+
+      <div className="flex flex-wrap gap-2">
+        <div>
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Ciudad:
+          </label>
+          <select
+            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            name="ciudad"
+          >
+            <option value="Bogota">Bogota</option>
+            <option value="Medellin">Medellin</option>
+            <option value="Cali">Cali</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Rol:
+          </label>
+          <div class="relative">
+            <select
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              name="rol"
+            >
+              <option value="Usuario">Usuario</option>
+              <option value="Colectivo">Colectivo</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Está activo?
+          </label>
+          <div className="relative">
+            <select
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              name="isActive"
+            >
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div>
-        <label>Rol:</label>
-        <input type="text" name="rol" />
-      </div>
-      <div>
-        <label>isActive:</label>
-        <select name="isActive">
-          <option value="true">Sí</option>
-          <option value="false">No</option>
-        </select>
-      </div>
-      <button type="submit">Enviar</button>
+      <button
+        className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+        type="submit"
+      >
+        Crear usuario
+      </button>
     </form>
   );
 }
