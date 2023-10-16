@@ -15,12 +15,12 @@ export async function POST(request) {
         {
           message: "Ya existe un usuario con este número de identificación",
         },
-        {
+        { 
           status: 400,
         }
       );
 
-    const hashedPassword = await bcrypt.hash(identificacion, 12);
+    const hashedPassword = await bcrypt.hash(password || identificacion, 12);
 
     const user = new User({
       nombre,
