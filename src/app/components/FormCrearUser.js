@@ -16,9 +16,6 @@ function FormCrearUser() {
     const rol = formData.get("rol");
     const isActive = formData.get("isActive") === "true";
 
-    console.log(nombre, identificacion, password, ciudad, rol, isActive);
-
-
     try {
       const res = await axios.post("/api/auth/signup", {
         nombre:nombre,
@@ -75,8 +72,8 @@ function FormCrearUser() {
             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             name="ciudad"
           >
-            <option value="Bogota">Bogota</option>
-            <option value="Medellin">Medellin</option>
+            <option value="Bogotá">Bogotá</option>
+            <option value="Medellín">Medellín</option>
             <option value="Cali">Cali</option>
           </select>
         </div>
