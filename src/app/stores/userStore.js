@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { create } from "zustand";
+import axios from "axios";
 
 const users = [
   {
@@ -38,27 +39,15 @@ const useUserStore = create((set) => {
     idVehicle: storedUser ? storedUser.idVehicle : null,
     city: storedUser ? storedUser.city : null,
 
-    login: (login, cc) => {
-
-
-
-      const user = users.find(
-        (user) => login === cc && user.cc === parseInt(cc)
-      );
-      if (!user) return false;
-      
-      
-      
-      else {
-        set({
-          name: user.name,
-          cc: user.cc,
-          idVehicle: user.idVehicle,
-          city: user.city,
+    login: async (userid, password) => {
+      try {
+        const res = await axios.post("/api/auth/login", {
+          identificacion: userid,
+          password: password,
         });
-        console.log(user);
-        Cookies.set("user", JSON.stringify(user));
-        return user;
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
       }
     },
     logout: () => {

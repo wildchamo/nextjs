@@ -19,7 +19,7 @@ export default function LoginBar() {
 
   useEffect(() => {
     if (name) {
-      router.push("/home");
+      // router.push("/home");
     }
   }, []);
 
@@ -27,9 +27,18 @@ export default function LoginBar() {
     const userid = userIdRef.current.value;
     const password = passwordRef.current.value;
     e.preventDefault();
-    if (login(userid, password)) {
-      router.push("/home");
-    }
+
+    login(userid, password)
+      .then((res) => {
+        console.log(res);
+        if (res != undefined) {
+          router.push("/home");
+        }
+      })
+      .catch((error) => {
+        //TODO HANDLE ERROR
+        console.log(error);
+      });
   };
 
   return (
