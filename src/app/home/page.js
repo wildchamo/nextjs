@@ -1,37 +1,34 @@
 "use client";
 import useUserStore from "../stores/userStore";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
 import PicoyPlaca from "../components/PicoyPlaca.js";
 import MisSeguros from "../components/MisSeguros";
 import MisReportes from "../components/MisReportes";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 export default function Home() {
-  const router = useRouter();
-
-  const [userData, setUserData] = useState({
-    name: "",
-    idVehicle: "",
-    city: "",
-  });
-
-  const { name, idVehicle, city } = useUserStore((state) => ({
-    name: state.name,
-    idVehicle: state.idVehicle,
-    city: state.city,
+  const { nombre, identificacion, ciudad, rol } = useUserStore((state) => ({
+    nombre: state.nombre,
+    identificacion: state.identificacion,
+    ciudad: state.ciudad,
+    rol: state.rol,
   }));
 
+  const [userData, setUserData] = useState({
+    nombre: "",
+    identificacion: "",
+    ciudad: "",
+  });
+
   useEffect(() => {
-    setUserData({ name, idVehicle, city });
-    if(userData.name === null) router.push("/");
+    setUserData({ nombre, identificacion, ciudad });
   }, []);
 
   return (
     <main className="mr-8 ml-8 mt-8">
       <div className="flex justify-between">
-        <h3>¡Bienvenido {userData.name} !</h3>
+        <h3>¡Bienvenido {userData.nombre} !</h3>
         <Image
           className=""
           src={logo}
@@ -40,7 +37,7 @@ export default function Home() {
           alt="logoMayaluna"
         />
       </div>
-      <PicoyPlaca ciudad={userData.city} placa={userData.idVehicle} />
+      <PicoyPlaca ciudad={userData.ciudad} />
       <MisSeguros />
       <MisReportes />
     </main>

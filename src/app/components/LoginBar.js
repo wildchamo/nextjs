@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 
 export default function LoginBar() {
   const { login } = useUserStore();
-  const { name } = useUserStore((state) => ({
-    name: state.name,
+  const { nombre } = useUserStore((state) => ({
+    nombre: state.nombre,
   }));
   const router = useRouter();
 
@@ -18,8 +18,8 @@ export default function LoginBar() {
   const passwordRef = useRef(null);
 
   useEffect(() => {
-    if (name) {
-      // router.push("/home");
+    if (nombre) {
+      router.push("/home");
     }
   }, []);
 
