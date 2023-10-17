@@ -1,16 +1,16 @@
 import { connectDB } from "@/app/utils/mongoose";
 import User from "@/models/users";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export async function POST(request) {
   try {
     await connectDB();
     const { identificacion, password } = await request.json();
 
-    const userfound = await User.findOne({ identificacion });
+    const user = await User.findOne({ identificacion });
 
-    if (!userfound)
+    if (!user)
       return NextResponse.json(
         {
           message: "No existe un usuario con este número de identificación",
@@ -20,8 +20,11 @@ export async function GET(request) {
         }
       );
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
+    console.log(user, password);
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
       return NextResponse.json(
         {
           message: "Contraseña incorrecta",
@@ -32,7 +35,7 @@ export async function GET(request) {
       );
     }
 
-    return NextResponse.json(userfound);
+    return NextResponse.json(user);
   } catch (error) {
     console.log(error);
     return NextResponse.error();
