@@ -31,7 +31,7 @@ const users = [
 const useUserStore = create((set) => {
   const userCookie = Cookies.get("user");
   const storedUser = userCookie ? JSON.parse(userCookie) : null;
-  
+
   return {
     name: storedUser ? storedUser.name : null,
     cc: storedUser ? storedUser.cc : 0,
@@ -39,10 +39,16 @@ const useUserStore = create((set) => {
     city: storedUser ? storedUser.city : null,
 
     login: (login, cc) => {
+
+
+
       const user = users.find(
         (user) => login === cc && user.cc === parseInt(cc)
       );
       if (!user) return false;
+      
+      
+      
       else {
         set({
           name: user.name,
