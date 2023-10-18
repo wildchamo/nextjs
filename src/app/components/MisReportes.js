@@ -30,14 +30,23 @@ export default function MisReportes() {
 function ModalTipo({ onClose }) {
   return (
     <Modal className="">
-      <h2 className="text-lg font-bold mb-4">Hay lesionados implicados?</h2>
-
       <div className="flex justify-end">
-        <button
-          className="bg-secundary text-white px-4 py-2 rounded-lg"
+        <p
           onClick={onClose}
         >
-          Regresar
+          X
+        </p>
+      </div>
+      <h2 className="text-lg text-center font-bold mb-4">
+        Hay lesionados implicados?
+      </h2>
+
+      <div className="flex justify-around">
+        <button className="bg-secundary text-white px-4 py-2 rounded-lg">
+          Si
+        </button>
+        <button className="bg-secundary text-white px-4 py-2 rounded-lg">
+          No
         </button>
       </div>
     </Modal>
