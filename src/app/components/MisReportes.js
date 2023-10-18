@@ -9,7 +9,6 @@ export default function MisReportes() {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalClick = () => {
-    console.log("hola");
     setShowModal(true);
   };
   return (
@@ -31,6 +30,15 @@ export default function MisReportes() {
 function ModalTipo({ onClose }) {
   const router = useRouter();
 
+  const handleClick = () => {
+    router.push("/home/reportar?tipo=Simple");
+  };
+
+  const handleClick2 = () => {
+    router.push("/home/reportar?tipo=Agravado");
+  };
+
+
   return (
     <Modal>
       <div className="flex justify-end">
@@ -42,14 +50,14 @@ function ModalTipo({ onClose }) {
 
       <div className="flex justify-around">
         <button
-          onClick={() => router.push("/home/reportar")}
           className="bg-secundary w-24 text-white px-4 py-2 rounded-lg"
+        onClick={handleClick2}
         >
           Si
         </button>
         <button
           className="bg-secundary w-24 text-white px-4 py-2 rounded-lg"
-          onClick={() => router.push("/home/reportar")}
+          onClick={handleClick}
         >
           No
         </button>
