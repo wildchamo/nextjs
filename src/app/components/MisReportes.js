@@ -2,6 +2,7 @@
 import ActionSection from "./ActionSection";
 import { useState } from "react";
 import Modal from "./Modal";
+import { useRouter } from "next/navigation";
 import generarReporte from "../../../public/generarReporte.png";
 
 export default function MisReportes() {
@@ -28,24 +29,28 @@ export default function MisReportes() {
 }
 
 function ModalTipo({ onClose }) {
+  const router = useRouter();
+
   return (
-    <Modal className="">
+    <Modal>
       <div className="flex justify-end">
-        <p
-          onClick={onClose}
-        >
-          X
-        </p>
+        <p onClick={onClose}>X</p>
       </div>
       <h2 className="text-lg text-center font-bold mb-4">
         Hay lesionados implicados?
       </h2>
 
       <div className="flex justify-around">
-        <button className="bg-secundary text-white px-4 py-2 rounded-lg">
+        <button
+          onClick={() => router.push("/home/reportar")}
+          className="bg-secundary w-24 text-white px-4 py-2 rounded-lg"
+        >
           Si
         </button>
-        <button className="bg-secundary text-white px-4 py-2 rounded-lg">
+        <button
+          className="bg-secundary w-24 text-white px-4 py-2 rounded-lg"
+          onClick={() => router.push("/home/reportar")}
+        >
           No
         </button>
       </div>

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import axios from "axios";
 import useUserStore from "../stores/userStore";
 
-function FormCrearUser() {
+function FormMandarEmail() {
   const { nombre, identificacion, ciudad } = useUserStore((state) => ({
     nombre: state.nombre,
     identificacion: state.identificacion,
@@ -50,4 +50,4 @@ function FormCrearUser() {
   );
 }
 
-export default FormCrearUser;
+export default FormMandarEmail;

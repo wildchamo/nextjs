@@ -12,7 +12,7 @@ export default function MenuInferior() {
   const router = useRouter();
   const { logout } = useUserStore();
 
-  const handleClick = (e) => {
+  const cerrarSesion = (e) => {
     e.preventDefault();
     logout();
     router.push("/");
@@ -20,9 +20,13 @@ export default function MenuInferior() {
 
   return (
     <footer className="bg-secundary flex gap-4 mr-12 items-center pl-4 ml-8 h-20 rounded-2xl fixed inset-x-0 bottom-2">
-      <NavAction src={homePage} isActive={true} />
-      <NavAction src={doorbell} isActive={false} />
-      <NavAction src={user} onButtonClick={handleClick} isActive={false} />
+      <NavAction
+        src={homePage}
+        isActive={true}
+        onButtonClick={() => router.push("/home")}
+      />
+      <NavAction src={user} isActive={false} />
+      <NavAction src={doorbell} onButtonClick={cerrarSesion} isActive={false} />
 
       <div className="circulo rounded-full flex flex-col items-center justify-center">
         <a
