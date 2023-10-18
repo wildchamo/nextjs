@@ -5,7 +5,7 @@ import logo from "../../../public/logomayaluna.jpg";
 import PicoyPlaca from "../components/PicoyPlaca.js";
 import MisSeguros from "../components/MisSeguros";
 import MisReportes from "../components/MisReportes";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const { nombre, identificacion, ciudad, rol } = useUserStore((state) => ({
