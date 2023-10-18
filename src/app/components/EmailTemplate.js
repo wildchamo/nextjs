@@ -3,7 +3,8 @@ export default function EmailTemplate({
   identificacion,
   ciudad,
   comoOcurrio,
-  tipo
+  tipo,
+  geo
 }) {
   return (
     <div>
@@ -12,6 +13,7 @@ export default function EmailTemplate({
       <h2> Identificacion: {identificacion}</h2>
       <h2> Ciudad: {ciudad}</h2>
       <h2> Cómo ocurrió: {comoOcurrio}</h2>
+    <h2>geo {geo}</h2>
     </div>
   );
 }

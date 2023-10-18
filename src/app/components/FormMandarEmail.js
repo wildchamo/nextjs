@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
 import axios from "axios";
@@ -10,13 +10,21 @@ import Link from "next/link";
 function FormMandarEmail() {
   const searchParams = useSearchParams();
   const tipo = searchParams.get("tipo");
-
   const router = useRouter();
+
+  const [geo, setGeo] = useState({});
 
   useEffect(() => {
     if (!tipo) {
       router.push("/home");
     }
+
+    const successCallback = (position) => {
+      const { latitude, longitude } = position.coords;
+      setGeo({ latitude, longitude });
+    };
+
+    navigator.geolocation.getCurrentPosition(successCallback);
   }),
     [];
 
@@ -30,10 +38,12 @@ function FormMandarEmail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let geoString = `${geo.latitude},${geo.longitude}`;
     const formData = new FormData(formRef.current);
     const comoOcurrio = formData.get("comoOcurrio");
 
-    console.log(nombre, identificacion, ciudad, comoOcurrio);
+    console.log(nombre, identificacion, ciudad, comoOcurrio, geo);
 
     try {
       const res = await axios.post("/api/email", {
@@ -42,6 +52,7 @@ function FormMandarEmail() {
         ciudad,
         comoOcurrio,
         tipo,
+        geo: geoString,
       });
 
       console.log(res);
@@ -75,7 +86,11 @@ function FormMandarEmail() {
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Jose Luis "
         />
+
       </div>
+
+      <input id="myFileInput" type="file" accept="image/*;capture=camera"/>
+
 
       <button
         className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"

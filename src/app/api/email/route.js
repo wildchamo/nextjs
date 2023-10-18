@@ -5,13 +5,21 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_URI);
 
 export async function POST(request) {
-  const { nombre, identificacion, ciudad, comoOcurrio,tipo } = await request.json();
+  const { nombre, identificacion, ciudad, comoOcurrio, tipo, geo } =
+    await request.json();
   try {
     const data = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
       to: ["wildchamo@gmail.com", "gabriela.peralta@uao.edu.co"],
       subject: "Hola Gaby",
-      react: EmailTemplate({ nombre, identificacion, ciudad, comoOcurrio, tipo }),
+      react: EmailTemplate({
+        nombre,
+        identificacion,
+        ciudad,
+        comoOcurrio,
+        tipo,
+        geo
+      }),
     });
 
     return NextResponse.json(data);
