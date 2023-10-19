@@ -6,11 +6,20 @@ const useUserStore = create((set) => {
   const userCookie = Cookies.get("user");
   const storedUser = userCookie ? JSON.parse(userCookie) : null;
 
+  console.log(storedUser)
+
   return {
     nombre: storedUser ? storedUser.nombre : null,
     identificacion: storedUser ? storedUser.identificacion : 0,
     rol: storedUser ? storedUser.rol : null,
     ciudad: storedUser ? storedUser.ciudad : null,
+    direccion: storedUser ? storedUser.direccion : null,
+    celular: storedUser ? storedUser.celular : null,
+    fechaNacimiento: storedUser ? storedUser.fechaNacimiento : null,
+    fechaVencimientoLicencia: storedUser
+      ? storedUser.fechaVencimientoLicencia
+      : null,
+    isActive: storedUser ? storedUser.isActive : null,
 
     login: async (userid, password) => {
       try {
@@ -24,6 +33,11 @@ const useUserStore = create((set) => {
           identificacion: res.data.identificacion,
           rol: res.data.rol,
           ciudad: res.data.ciudad,
+          direccion: res.data.direccion,
+          celular: res.data.celular,
+          fechaNacimiento: res.data.fechaNacimiento,
+          fechaVencimientoLicencia: res.data.fechaVencimientoLicencia,
+          isActive: res.data.isActive,
         });
         Cookies.set("user", JSON.stringify(res.data));
         return res.data;
