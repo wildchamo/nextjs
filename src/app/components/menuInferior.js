@@ -34,6 +34,7 @@ export default function MenuInferior() {
         src={user}
         onButtonClick={() => {
           setIsActiveArray([false, true, false]);
+          router.push("/home/user");
         }}
         isActive={isActiveArray[1]}
       />
