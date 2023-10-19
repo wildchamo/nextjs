@@ -158,7 +158,7 @@ function FormCrearUser() {
           />
         </div>
         <div>
-          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          <label>
             Rol:
           </label>
           <div className="relative">

@@ -6,8 +6,6 @@ const useUserStore = create((set) => {
   const userCookie = Cookies.get("user");
   const storedUser = userCookie ? JSON.parse(userCookie) : null;
 
-  console.log(storedUser)
-
   return {
     nombre: storedUser ? storedUser.nombre : null,
     identificacion: storedUser ? storedUser.identificacion : 0,
