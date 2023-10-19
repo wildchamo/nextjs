@@ -18,15 +18,15 @@ function FormCrearUser() {
 
     try {
       const res = await axios.post("/api/auth/signup", {
-        nombre:nombre,
-        identificacion:identificacion,
+        nombre: nombre,
+        identificacion: identificacion,
         password: password,
         ciudad: ciudad,
         rol: rol,
         isActive: isActive,
       });
 
-      console.log(res)
+      console.log(res);
     } catch (error) {}
   };
 
@@ -34,7 +34,7 @@ function FormCrearUser() {
     <form ref={formRef} onSubmit={handleSubmit}>
       <div>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Nombre:
+          Nombre Completo:
         </label>
         <input
           type="text"
@@ -43,33 +43,22 @@ function FormCrearUser() {
           placeholder="Jose Luis "
         />
       </div>
-      <div>
-        <label>Identificación:</label>
-        <input
-          type="text"
-          name="identificacion"
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-          placeholder="123456789 "
-        />
-      </div>
-      <div>
-        <label>Contraseña:</label>
 
-        <input
-          type="password"
-          name="password"
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-          placeholder="123456789 "
-        />
-      </div>
-
-      <div className="flex flex-wrap gap-2">
+      <div className="flex w-full ">
         <div>
-          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Ciudad:
-          </label>
+          <label>Número de Identificación:</label>
+          <input
+            type="text"
+            name="identificacion"
+            className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="123456789"
+          />
+        </div>
+
+        <div>
+          <label>Ciudad:</label>
           <select
-            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             name="ciudad"
           >
             <option value="Bogotá">Bogotá</option>
@@ -77,7 +66,82 @@ function FormCrearUser() {
             <option value="Cali">Cali</option>
           </select>
         </div>
+      </div>
+      <div className="flex w-full">
+        <div>
+          <label>Número de Celular:</label>
+          <input
+            type="text"
+            name="identificacion"
+            className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="123456789"
+          />
+        </div>
 
+        <div>
+          <label>Está activo?</label>
+          <div className="relative">
+            <select
+              className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              name="isActive"
+            >
+              <option>Seleccione</option>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="flex">
+          <div>
+            <label>Vencimiento Licencia:</label>
+            <input
+              type="date"
+              name="identificacion"
+              className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+              placeholder="123456789"
+            />
+          </div>
+          <div>
+            <label>Fecha Nacimiento:</label>
+            <input
+              type="date"
+              name="identificacion"
+              className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+              placeholder="123456789"
+            />
+          </div>
+        </div>
+        <label>Dirección de Residencia:</label>
+        <input
+          type="email"
+          name="direccion"
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="Calle 5 N° 38 - 25 "
+        />
+      </div>
+      <div>
+        <label>Correo Electrónico:</label>
+        <input
+          type="email"
+          name="email"
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="emaya@mayalunaseguros.com"
+        />
+      </div>
+
+      <div className="flex gap-10">
+        <div>
+          <label>Contraseña:</label>
+
+          <input
+            type="password"
+            name="password"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="********"
+          />
+        </div>
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Rol:
@@ -92,28 +156,16 @@ function FormCrearUser() {
             </select>
           </div>
         </div>
-
-        <div>
-          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Está activo?
-          </label>
-          <div className="relative">
-            <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              name="isActive"
-            >
-              <option value="true">Sí</option>
-              <option value="false">No</option>
-            </select>
-          </div>
-        </div>
       </div>
-      <button
-        className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-        type="submit"
-      >
-        Crear usuario
-      </button>
+
+      <div className="flex justify-end mt-4">
+        <button
+          className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Crear usuario
+        </button>
+      </div>
     </form>
   );
 }

@@ -19,27 +19,23 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    // required: true,
+    required: true,
   },
   direccion: {
     type: String,
-    // required: true
+    required: true,
   },
   celular: {
     type: String,
-    // required: true
-  },
-  ocupacion: {
-    type: String,
-    // required: true
+    required: true,
   },
   fechaNacimiento: {
     type: Date,
-    // required: true
+    required: true,
   },
   fechaVencimientoLicencia: {
     type: Date,
-    // required: true
+    required: true,
   },
   rol: {
     type: String,
