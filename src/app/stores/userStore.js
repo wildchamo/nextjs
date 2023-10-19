@@ -11,6 +11,7 @@ const useUserStore = create((set) => {
     identificacion: storedUser ? storedUser.identificacion : 0,
     rol: storedUser ? storedUser.rol : null,
     ciudad: storedUser ? storedUser.ciudad : null,
+    email: storedUser ? storedUser.email : null,
     direccion: storedUser ? storedUser.direccion : null,
     celular: storedUser ? storedUser.celular : null,
     fechaNacimiento: storedUser ? storedUser.fechaNacimiento : null,
