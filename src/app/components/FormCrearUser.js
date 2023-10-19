@@ -9,25 +9,38 @@ function FormCrearUser() {
 
     const formData = new FormData(formRef.current);
 
+
     const nombre = formData.get("nombre");
     const identificacion = formData.get("identificacion");
-    const password = formData.get("password");
     const ciudad = formData.get("ciudad");
-    const rol = formData.get("rol");
+    const celular = formData.get("celular");
     const isActive = formData.get("isActive") === "true";
+    const vencimientoLicencia = formData.get("vencimientoLicencia");
+    const fechaNacimiento = formData.get("fechaNacimiento");
+    const direccion = formData.get("direccion");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const rol = formData.get("rol");
 
     try {
       const res = await axios.post("/api/auth/signup", {
-        nombre: nombre,
-        identificacion: identificacion,
-        password: password,
-        ciudad: ciudad,
-        rol: rol,
-        isActive: isActive,
+        nombre,
+        identificacion,
+        ciudad,
+        celular,
+        isActive,
+        vencimientoLicencia,
+        fechaNacimiento,
+        direccion,
+        email,
+        password,
+        rol,
       });
 
       console.log(res);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -72,7 +85,7 @@ function FormCrearUser() {
           <label>Número de Celular:</label>
           <input
             type="text"
-            name="identificacion"
+            name="celular"
             className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
           />
@@ -82,6 +95,7 @@ function FormCrearUser() {
           <label>Está activo?</label>
           <div className="relative">
             <select
+            required
               className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="isActive"
             >
@@ -93,12 +107,13 @@ function FormCrearUser() {
         </div>
       </div>
       <div>
+
         <div className="flex">
           <div>
             <label>Vencimiento Licencia:</label>
             <input
               type="date"
-              name="identificacion"
+              name="vencimientoLicencia"
               className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
@@ -107,7 +122,7 @@ function FormCrearUser() {
             <label>Fecha Nacimiento:</label>
             <input
               type="date"
-              name="identificacion"
+              name="fechaNacimiento"
               className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
@@ -115,7 +130,7 @@ function FormCrearUser() {
         </div>
         <label>Dirección de Residencia:</label>
         <input
-          type="email"
+          type="text"
           name="direccion"
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Calle 5 N° 38 - 25 "

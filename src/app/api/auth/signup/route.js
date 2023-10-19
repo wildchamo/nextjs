@@ -6,8 +6,19 @@ import bcrypt from "bcryptjs";
 export async function POST(request) {
   try {
     await connectDB();
-    const { nombre, password, identificacion, ciudad, rol, isActive } =
-      await request.json();
+    const {
+      nombre,
+      identificacion,
+      ciudad,
+      celular,
+      isActive,
+      vencimientoLicencia,
+      fechaNacimiento,
+      direccion,
+      email,
+      password,
+      rol,
+    } = await request.json();
 
     const userfound = await User.findOne({ identificacion });
 
@@ -26,15 +37,18 @@ export async function POST(request) {
     const user = new User({
       nombre,
       identificacion,
-      password: hashedPassword,
       ciudad,
-      rol,
+      celular,
       isActive,
+      fechaVencimientoLicencia: vencimientoLicencia,
+      fechaNacimiento,
+      direccion,
+      email,
+      password: hashedPassword,
+      rol,
     });
 
     const savedUser = await user.save();
-
-    console.log(savedUser);
 
     return NextResponse.json(savedUser);
   } catch (error) {
