@@ -79,7 +79,7 @@ function FormMandarEmail() {
 
         <h2>Información del accidente</h2>
 
-        <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
+        <div className="flex flex-col justify-between bg-primary p-6 rounded-2xl text-sm">
           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
             ¿Cómo sucedió el accidente? *
           </label>
@@ -93,7 +93,7 @@ function FormMandarEmail() {
       </div>
       <h2>Información de los testigos</h2>
 
-      <div className="justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
+      <div className="justify-between bg-primary p-6 rounded-2xl text-sm">
         <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
           Nombre (opcional)
         </label>
@@ -113,8 +113,12 @@ function FormMandarEmail() {
           className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Descipción detallada "
         />
-
       </div>
+
+      <h2>Evidencias fotográficas:</h2>
+
+      <h3>Adjunte 4 fotografías en cada sección.</h3>
+
       <div>
         <div>+</div>
         <input id="myFileInput" type="file" accept="image/*;capture=camera" />
