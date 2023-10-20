@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import imageLoader from "../../../public/imageLoader.png";
 import logo from "../../../public/logomayaluna.jpg";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -67,6 +68,10 @@ function FormMandarEmail() {
     inputRef.current.click();
   };
 
+  const handleImageChange = () => {
+    inputRef.current.click();
+  };
+
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="flex justify-between">
@@ -99,7 +104,7 @@ function FormMandarEmail() {
       </div>
       <h2>Información de los testigos</h2>
 
-      <div className="justify-between bg-primary p-6 rounded-2xl text-sm">
+      <div className="bg-primary p-6 rounded-2xl text-sm">
         <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
           Nombre (opcional)
         </label>
@@ -125,9 +130,24 @@ function FormMandarEmail() {
 
       <h3>Adjunte 4 fotografías en cada sección.</h3>
 
-      <div onClick={handleLoadImage}>
-        <div>+</div>
-        <input type="file" ref={inputRef} accept="image/*;capture=camera" className="hidden" />
+      <div className="bg-primary p-6 rounded-2xl">
+        <h4>Ángulos en donde se aprecie el accidente: *</h4>
+        <div onClick={handleLoadImage}>
+          <Image
+            className="cursor-pointer"
+            src={imageLoader}
+            width={60}
+            height={54}
+            alt="logoMayaluna"
+          />
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={handleImageChange}
+            accept="image/*;capture=camera"
+            className="hidden"
+          />
+        </div>
       </div>
 
       <button
