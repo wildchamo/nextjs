@@ -89,7 +89,7 @@ function FormModificarUser() {
           <input
             type="text"
             name="identificacion"
-            className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none bg-gray-200 text-gray-700 border  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
           />
         </div>
@@ -111,7 +111,7 @@ function FormModificarUser() {
         <input
           type="text"
           name="celular"
-          className="appearance-none w-full bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+          className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="123456789"
         />
       </div>
@@ -122,7 +122,7 @@ function FormModificarUser() {
             <input
               type="date"
               name="vencimientoLicencia"
-              className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
           </div>
@@ -131,7 +131,7 @@ function FormModificarUser() {
             <input
               type="date"
               name="fechaNacimiento"
-              className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
           </div>

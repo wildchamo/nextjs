@@ -75,22 +75,50 @@ function FormMandarEmail() {
       </div>
 
       <div>
-        <h1 className="text-center">Reporte {tipo}</h1>
+        <h1 className="text-center uppercase">Reporte {tipo}</h1>
 
-        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Cómo ocurrió el accidente?
+        <h2>Información del accidente</h2>
+
+        <div className="flex flex-col justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
+          <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+            ¿Cómo sucedió el accidente? *
+          </label>
+          <textarea
+            type="text"
+            name="comoOcurrio"
+            className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="Descipción detallada "
+          />
+        </div>
+      </div>
+      <h2>Información de los testigos</h2>
+
+      <div className="justify-between bg-primary h-40 p-6 rounded-2xl text-sm">
+        <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Nombre (opcional)
         </label>
-        <textarea
+        <input
           type="text"
           name="comoOcurrio"
-          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-          placeholder="Jose Luis "
+          className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="Descipción detallada "
+        />
+
+        <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Número de contacto (opcional)
+        </label>
+        <input
+          type="text"
+          name="comoOcurrio"
+          className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          placeholder="Descipción detallada "
         />
 
       </div>
-
-      <input id="myFileInput" type="file" accept="image/*;capture=camera"/>
-
+      <div>
+        <div>+</div>
+        <input id="myFileInput" type="file" accept="image/*;capture=camera" />
+      </div>
 
       <button
         className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
