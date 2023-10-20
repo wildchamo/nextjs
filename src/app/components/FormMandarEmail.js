@@ -61,6 +61,12 @@ function FormMandarEmail() {
     }
   };
 
+  const inputRef = useRef(null);
+
+  const handleLoadImage = () => {
+    inputRef.current.click();
+  };
+
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="flex justify-between">
@@ -119,9 +125,9 @@ function FormMandarEmail() {
 
       <h3>Adjunte 4 fotografías en cada sección.</h3>
 
-      <div>
+      <div onClick={handleLoadImage}>
         <div>+</div>
-        <input id="myFileInput" type="file" accept="image/*;capture=camera" />
+        <input type="file" ref={inputRef} accept="image/*;capture=camera" className="hidden" />
       </div>
 
       <button
