@@ -64,12 +64,19 @@ function FormMandarEmail() {
 
   const inputRef = useRef(null);
 
+  const [images, setImages] = useState([null, null, null, null]);
+
   const handleLoadImage = () => {
     inputRef.current.click();
   };
 
-  const handleImageChange = () => {
-    inputRef.current.click();
+  const handleImageChange = (e) => {
+    const newImages = [...images];
+    const file = e.target.files[0];
+    console.log(file);
+
+    newImages[0] = file;
+    setImages(newImages);
   };
 
   return (
@@ -133,13 +140,24 @@ function FormMandarEmail() {
       <div className="bg-primary p-6 rounded-2xl">
         <h4>Ángulos en donde se aprecie el accidente: *</h4>
         <div onClick={handleLoadImage}>
-          <Image
-            className="cursor-pointer"
-            src={imageLoader}
-            width={60}
-            height={54}
-            alt="logoMayaluna"
-          />
+          {images[0] ? (
+            <Image
+              className="cursor-pointer"
+              src={URL.createObjectURL(images[0])}
+              width={60}
+              height={54}
+              alt="logoMayaluna"
+            />
+          ) : (
+            <Image
+              className="cursor-pointer"
+              src={imageLoader}
+              width={60}
+              height={54}
+              alt="logoMayaluna"
+            />
+          )}
+
           <input
             type="file"
             ref={inputRef}
