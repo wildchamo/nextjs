@@ -59,16 +59,16 @@ function FormMandarEmail() {
     try {
       const res = await axios.post(
         "/api/email",
-        formData
-        // {
-        //   nombre,
-        //   identificacion,
-        //   ciudad,
-        //   comoOcurrio,
-        //   tipo,
-        //   geo: geoString,
-        //   images,
-        // }
+        // formData
+        {
+          nombre,
+          identificacion,
+          ciudad,
+          comoOcurrio : formData.get("comoOcurrio"),
+          tipo,
+          geo: formData.get("geo"),
+          images,
+        }
       );
 
       console.log(res);

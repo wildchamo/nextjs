@@ -5,15 +5,11 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_URI);
 
 export async function POST(request) {
-  const data = await request.formData();
+  
+  const { nombre, identificacion, ciudad, comoOcurrio, tipo, geo } =
+    await request.json(); 
 
-  console.log(data);
 
-  return NextResponse.json({ data });
-  const { nombre, identificacion, ciudad, comoOcurrio, tipo, geo, image1 } =
-    await request.json();
-
-  console.log(image1);
   try {
     const data = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
@@ -25,7 +21,7 @@ export async function POST(request) {
         ciudad,
         comoOcurrio,
         tipo,
-        geo,
+        geo
       }),
     });
 
