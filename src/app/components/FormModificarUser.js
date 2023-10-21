@@ -4,7 +4,6 @@ import useUserStore from "../stores/userStore";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
 function FormModificarUser() {
   const {
     nombre,
@@ -79,6 +78,10 @@ function FormModificarUser() {
         <input
           type="text"
           name="nombre"
+          value={userData.nombre}
+          onChange={(e) => {
+            setUserData({ ...userData, nombre: e.target.value });
+          }}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Jose Luis "
         />
@@ -90,6 +93,10 @@ function FormModificarUser() {
           <input
             type="text"
             name="identificacion"
+            value={userData.identificacion}
+            onChange={(e) => {
+              setUserData({ ...userData, identificacion: e.target.value });
+            }}
             className="appearance-none bg-gray-200 text-gray-700 border  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
           />
@@ -100,6 +107,10 @@ function FormModificarUser() {
           <select
             className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             name="ciudad"
+            value={userData.ciudad}
+            onChange={(e) => {
+              setUserData({ ...userData, ciudad: e.target.value });
+            }}
           >
             <option value="Bogotá">Bogotá</option>
             <option value="Medellín">Medellín</option>
@@ -112,6 +123,10 @@ function FormModificarUser() {
         <input
           type="text"
           name="celular"
+          value={userData.celular}
+          onChange={(e) => {
+            setUserData({ ...userData, celular: e.target.value });
+          }}
           className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="123456789"
         />
@@ -123,6 +138,13 @@ function FormModificarUser() {
             <input
               type="date"
               name="vencimientoLicencia"
+              value={userData.vencimientoLicencia}
+              onChange={(e) => {
+                setUserData({
+                  ...userData,
+                  vencimientoLicencia: e.target.value,
+                });
+              }}
               className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
@@ -132,6 +154,10 @@ function FormModificarUser() {
             <input
               type="date"
               name="fechaNacimiento"
+              value={userData.fechaNacimiento}
+              onChange={(e) => {
+                setUserData({ ...userData, fechaNacimiento: e.target.value });
+              }}
               className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
@@ -141,6 +167,10 @@ function FormModificarUser() {
         <input
           type="text"
           name="direccion"
+          value={userData.direccion}
+          onChange={(e) => {
+            setUserData({ ...userData, direccion: e.target.value });
+          }}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Calle 5 N° 38 - 25 "
         />
@@ -150,6 +180,10 @@ function FormModificarUser() {
         <input
           type="email"
           name="email"
+          value={userData.email}
+          onChange={(e) => {
+            setUserData({ ...userData, email: e.target.value });
+          }}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="emaya@mayalunaseguros.com"
         />
