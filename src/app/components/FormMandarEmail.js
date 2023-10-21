@@ -35,26 +35,38 @@ function FormMandarEmail() {
     ciudad: state.ciudad,
   }));
 
+  const [images, setImages] = useState([null, null, null, null]);
+
   const formRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    let geoString = `${geo.latitude},${geo.longitude}`;
     const formData = new FormData(formRef.current);
-    const comoOcurrio = formData.get("comoOcurrio");
 
-    console.log(nombre, identificacion, ciudad, comoOcurrio, geo);
+    formData.append("nombre", tipo);
+    formData.append("identificacion", identificacion);
+    formData.append("ciudad", ciudad);
+    formData.append("geo", `${geo.latitude},${geo.longitude}`);
+
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
 
     try {
-      const res = await axios.post("/api/email", {
-        nombre,
-        identificacion,
-        ciudad,
-        comoOcurrio,
-        tipo,
-        geo: geoString,
-      });
+      const res = await axios.post(
+        "/api/email",
+        formData
+        // {
+        //   nombre,
+        //   identificacion,
+        //   ciudad,
+        //   comoOcurrio,
+        //   tipo,
+        //   geo: geoString,
+        //   images,
+        // }
+      );
 
       console.log(res);
     } catch (error) {
@@ -63,8 +75,6 @@ function FormMandarEmail() {
   };
 
   const inputRef = useRef(null);
-
-  const [images, setImages] = useState([null, null, null, null]);
 
   const handleLoadImage = () => {
     inputRef.current.click();
@@ -117,7 +127,7 @@ function FormMandarEmail() {
         </label>
         <input
           type="text"
-          name="comoOcurrio"
+          name=""
           className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Descipción detallada "
         />
@@ -127,7 +137,7 @@ function FormMandarEmail() {
         </label>
         <input
           type="text"
-          name="comoOcurrio"
+          name=""
           className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Descipción detallada "
         />
