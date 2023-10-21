@@ -18,14 +18,11 @@ export async function POST(request) {
   async function imageToBuffer(image) {
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    
-    return buffer;
+
+    return buffer.toString("base64");
   }
-  
+
   const buffer1 = await imageToBuffer(image1);
-
-
-  console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo);
 
   try {
     const data = await resend.emails.send({
@@ -43,7 +40,7 @@ export async function POST(request) {
       attachments: [
         {
           filename: "soyjose.jpg",
-          content: buffer1.toString("base64"),
+          content: buffer1,
         },
       ],
     });
