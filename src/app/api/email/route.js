@@ -5,6 +5,14 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_URI);
 
 export async function POST(request) {
+  const reporte = await request.formData();
+
+  console.log(reporte)
+  
+  return NextResponse.json(reporte);
+
+
+
   const { nombre, identificacion, ciudad, comoOcurrio, tipo, geo } =
     await request.json();
 

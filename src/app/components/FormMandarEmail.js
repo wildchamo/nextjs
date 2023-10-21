@@ -15,11 +15,20 @@ function FormMandarEmail() {
 
   const [geo, setGeo] = useState({});
 
+  const [images, setImages] = useState([null, null, null, null]);
+
+  const { nombre, identificacion, ciudad } = useUserStore((state) => ({
+    nombre: state.nombre,
+    identificacion: state.identificacion,
+    ciudad: state.ciudad,
+  }));
+
+
+
   useEffect(() => {
     if (!tipo) {
       router.push("/home");
     }
-
     const successCallback = (position) => {
       const { latitude, longitude } = position.coords;
       setGeo({ latitude, longitude });
@@ -28,42 +37,34 @@ function FormMandarEmail() {
     navigator.geolocation.getCurrentPosition(successCallback);
   }),
     [];
-
-  const { nombre, identificacion, ciudad } = useUserStore((state) => ({
-    nombre: state.nombre,
-    identificacion: state.identificacion,
-    ciudad: state.ciudad,
-  }));
-
-  const [images, setImages] = useState([null, null, null, null]);
-
-  const formRef = useRef();
+    const formRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
     const formData = new FormData(formRef.current);
 
-    formData.append("nombre", tipo);
+    formData.append("nombre", nombre);
+    formData.append("tipo", tipo);
     formData.append("identificacion", identificacion);
     formData.append("ciudad", ciudad);
     formData.append("geo", `${geo.latitude},${geo.longitude}`);
 
-    images.forEach((image, index) => {
-      formData.append(`image${index + 1}`, image);
-    });
-
-    // formData
-
     try {
-      const res = await axios.post("/api/email", {
-        nombre,
-        identificacion,
-        ciudad,
-        comoOcurrio: formData.get("comoOcurrio"),
-        tipo,
-        geo: formData.get("geo"),
-        images,
-      });
+      const res = await axios.post(
+        "/api/email",
+        formData
+        // {
+        //   nombre,
+        //   identificacion,
+        //   ciudad,
+        //   comoOcurrio: formData.get("comoOcurrio"),
+        //   tipo,
+        //   geo: formData.get("geo"),
+        //   images,
+        // }
+      );
 
       console.log(res);
     } catch (error) {
