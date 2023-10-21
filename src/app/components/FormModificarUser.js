@@ -57,6 +57,8 @@ function FormModificarUser() {
     });
   }, []);
 
+  console.log(userData);
+
   const formRef = useRef();
 
   const handleSubmit = async (e) => {
@@ -74,7 +76,8 @@ function FormModificarUser() {
     const email = formData.get("email");
 
     try {
-      const res = await axios.post("/api/auth/signup", {
+      const res = await axios.post("/api/auth/modifyUserF", {
+        _id,
         nombre,
         identificacion,
         ciudad,
@@ -160,7 +163,7 @@ function FormModificarUser() {
             <input
               type="date"
               name="vencimientoLicencia"
-              value={userData.fechaVencimientoLicencia.split("T")[0]}
+              value={userData.fechaVencimientoLicencia?.split("T")[0] || ""}
               onChange={(e) => {
                 setUserData({
                   ...userData,
@@ -176,7 +179,7 @@ function FormModificarUser() {
             <input
               type="date"
               name="fechaNacimiento"
-              value={userData.fechaNacimiento.split("T")[0]}
+              value={userData.fechaNacimiento?.split("T")[0] || ""}
               onChange={(e) => {
                 setUserData({ ...userData, fechaNacimiento: e.target.value });
               }}
