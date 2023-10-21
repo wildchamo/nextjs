@@ -19,6 +19,7 @@ const useUserStore = create((set) => {
       ? storedUser.fechaVencimientoLicencia
       : null,
     isActive: storedUser ? storedUser.isActive : null,
+    _id: storedUser ? storedUser._id : null,
 
     login: async (userid, password) => {
       try {
@@ -37,6 +38,7 @@ const useUserStore = create((set) => {
           fechaNacimiento: res.data.fechaNacimiento,
           fechaVencimientoLicencia: res.data.fechaVencimientoLicencia,
           isActive: res.data.isActive,
+          _id: res.data._id,
         });
         Cookies.set("user", JSON.stringify(res.data));
         return res.data;

@@ -15,21 +15,46 @@ function FormModificarUser() {
     direccion,
     email,
     rol,
+    _id,
   } = useUserStore((state) => ({
     nombre: state.nombre,
     identificacion: state.identificacion,
     ciudad: state.ciudad,
+    celular: state.celular,
+    fechaVencimientoLicencia: state.fechaVencimientoLicencia,
+    fechaNacimiento: state.fechaNacimiento,
+    direccion: state.direccion,
+    email: state.email,
     rol: state.rol,
+    _id: state._id,
   }));
 
   const [userData, setUserData] = useState({
     nombre: "",
     identificacion: "",
     ciudad: "",
+    celular: "",
+    fechaVencimientoLicencia: "",
+    fechaNacimiento: "",
+    direccion: "",
+    email: "",
+    rol: "",
+    _id: "",
   });
 
   useEffect(() => {
-    setUserData({ nombre, identificacion, ciudad });
+    setUserData({
+      nombre,
+      identificacion,
+      ciudad,
+      celular,
+      fechaVencimientoLicencia,
+      fechaNacimiento,
+      direccion,
+      email,
+      rol,
+      _id,
+    });
   }, []);
 
   const formRef = useRef();
@@ -54,13 +79,10 @@ function FormModificarUser() {
         identificacion,
         ciudad,
         celular,
-        isActive,
         vencimientoLicencia,
         fechaNacimiento,
         direccion,
         email,
-        password,
-        rol,
       });
 
       console.log(res);
