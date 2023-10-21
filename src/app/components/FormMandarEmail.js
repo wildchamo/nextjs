@@ -24,8 +24,11 @@ function FormMandarEmail() {
   }));
 
   useEffect(() => {
-    if (!tipo) {
+    if (!tipo ) {
       router.push("/home");
+    }
+    if(!nombre) {
+      router.push("/");
     }
   }),
     [];
@@ -51,19 +54,7 @@ function FormMandarEmail() {
     formData.append("geo", `${geo.latitude},${geo.longitude}`);
 
     try {
-      const res = await axios.post(
-        "/api/email",
-        formData
-        // {
-        //   nombre,
-        //   identificacion,
-        //   ciudad,
-        //   comoOcurrio: formData.get("comoOcurrio"),
-        //   tipo,
-        //   geo: formData.get("geo"),
-        //   images,
-        // }
-      );
+      const res = await axios.post("/api/email", formData);
 
       console.log(res);
     } catch (error) {
