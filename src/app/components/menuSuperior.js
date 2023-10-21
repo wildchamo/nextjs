@@ -4,11 +4,11 @@ import logo from "../../../public/logomayaluna.jpg";
 import Image from "next/image";
 import useUserStore from "../stores/userStore";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const MenuSuperior = () => {
-  const { nombre, rol } = useUserStore((state) => ({
+  const { nombre } = useUserStore((state) => ({
     nombre: state.nombre,
-    rol: state.rol,
   }));
 
   const [nombreUser, setNombre] = useState("Jose Luis");
@@ -19,7 +19,7 @@ const MenuSuperior = () => {
 
   return (
     <div className="flex justify-between mr-8 ml-8 mt-8">
-      {nombreUser ? (
+      {usePathname() === "/home" ? (
         <h3>¡Bienvenido {nombreUser} !</h3>
       ) : (
         <Link href="/home">Regresar</Link>
