@@ -160,11 +160,11 @@ function FormModificarUser() {
             <input
               type="date"
               name="vencimientoLicencia"
-              value={userData.vencimientoLicencia}
+              value={userData.fechaVencimientoLicencia.split("T")[0]}
               onChange={(e) => {
                 setUserData({
                   ...userData,
-                  vencimientoLicencia: e.target.value,
+                  fechaVencimientoLicencia: e.target.value,
                 });
               }}
               className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -176,7 +176,7 @@ function FormModificarUser() {
             <input
               type="date"
               name="fechaNacimiento"
-              value={userData.fechaNacimiento}
+              value={userData.fechaNacimiento.split("T")[0]}
               onChange={(e) => {
                 setUserData({ ...userData, fechaNacimiento: e.target.value });
               }}
