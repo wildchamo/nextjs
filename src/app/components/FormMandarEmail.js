@@ -50,26 +50,20 @@ function FormMandarEmail() {
 
     images.forEach((image, index) => {
       formData.append(`image${index + 1}`, image);
-    })
+    });
 
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+    // formData
 
     try {
-      const res = await axios.post(
-        "/api/email",
-        // formData
-        {
-          nombre,
-          identificacion,
-          ciudad,
-          comoOcurrio : formData.get("comoOcurrio"),
-          tipo,
-          geo: formData.get("geo"),
-          images,
-        }
-      );
+      const res = await axios.post("/api/email", {
+        nombre,
+        identificacion,
+        ciudad,
+        comoOcurrio: formData.get("comoOcurrio"),
+        tipo,
+        geo: formData.get("geo"),
+        images,
+      });
 
       console.log(res);
     } catch (error) {
