@@ -23,25 +23,24 @@ function FormMandarEmail() {
     ciudad: state.ciudad,
   }));
 
-
-
   useEffect(() => {
     if (!tipo) {
       router.push("/home");
     }
+  }),
+    [];
+
+  const formRef = useRef();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const successCallback = (position) => {
       const { latitude, longitude } = position.coords;
       setGeo({ latitude, longitude });
     };
 
     navigator.geolocation.getCurrentPosition(successCallback);
-  }),
-    [];
-    const formRef = useRef();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
 
     const formData = new FormData(formRef.current);
 
@@ -154,7 +153,7 @@ function FormMandarEmail() {
               src={URL.createObjectURL(images[0])}
               width={60}
               height={54}
-              alt="logoMayaluna"
+              alt="imagen accidente"
             />
           ) : (
             <Image

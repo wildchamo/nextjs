@@ -7,14 +7,12 @@ const resend = new Resend(process.env.RESEND_URI);
 export async function POST(request) {
   const reporte = await request.formData();
 
-  console.log(reporte)
-  
-  return NextResponse.json(reporte);
-
-
-
-  const { nombre, identificacion, ciudad, comoOcurrio, tipo, geo } =
-    await request.json();
+  const nombre = reporte.get("nombre");
+  const identificacion = reporte.get("identificacion");
+  const ciudad = reporte.get("ciudad");
+  const comoOcurrio = reporte.get("comoOcurrio");
+  const tipo = reporte.get("tipo");
+  const geo = reporte.get("geo");
 
   console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo);
 
@@ -31,12 +29,12 @@ export async function POST(request) {
         tipo,
         geo,
       }),
-      attachments: [
-        {
-          filename: "soyjose.jpg",
-          path: "https://nesin.io/_next/image?url=%2Fstatic%2Fimages%2FAshikNesin.jpg&w=384&q=75",
-        },
-      ],
+      // attachments: [
+      //   {
+      //     filename: "soyjose.jpg",
+      //     path: "https://nesin.io/_next/image?url=%2Fstatic%2Fimages%2FAshikNesin.jpg&w=384&q=75",
+      //   },
+      // ],
     });
 
     return NextResponse.json(data);

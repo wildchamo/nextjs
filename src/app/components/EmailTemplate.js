@@ -6,9 +6,9 @@ export default function EmailTemplate({
   tipo,
   geo,
 }) {
-  console.log(logomayaluna);
   return (
     <div>
+      <h2>tipo: {tipo}</h2>
       <h2> Nombre implicado: {nombre}</h2>
       <h2> Identificacion: {identificacion}</h2>
       <h2> Ciudad: {ciudad}</h2>
