@@ -2,11 +2,9 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import imageLoader from "../../../public/imageLoader.png";
-import logo from "../../../public/logomayaluna.jpg";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
 import useUserStore from "../stores/userStore";
-import Link from "next/link";
 
 function FormMandarEmail() {
   const searchParams = useSearchParams();
@@ -77,17 +75,6 @@ function FormMandarEmail() {
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
-      <div className="flex justify-between">
-        <Link href="/home">Regresar</Link>
-        <Image
-          className=""
-          src={logo}
-          width={80}
-          height={80}
-          alt="logoMayaluna"
-        />
-      </div>
-
       <div>
         <h1 className="text-center uppercase">Reporte {tipo}</h1>
 

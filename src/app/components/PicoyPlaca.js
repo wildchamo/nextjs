@@ -4,8 +4,9 @@ import Modal from "./Modal";
 import ScrollerPicoyPlaca from "./scrollerPicoyPlaca";
 import { aplicaONo } from "../utils/todayDay";
 
-export default function PicoyPlaca({ ciudad }) {
+export default function PicoyPlaca() {
   const [showModal, setShowModal] = useState(false);
+  let ciudad = "Bogotá";
 
   return (
     <section className="pt-6">
@@ -34,10 +35,7 @@ export default function PicoyPlaca({ ciudad }) {
         </div>
       </div>
       {showModal && (
-        <ModalPico
-          ciudad={ciudad}
-          onClose={() => setShowModal(false)}
-        />
+        <ModalPico ciudad={ciudad} onClose={() => setShowModal(false)} />
       )}
     </section>
   );
