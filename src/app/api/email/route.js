@@ -15,8 +15,15 @@ export async function POST(request) {
   const geo = reporte.get("geo");
   const image1 = reporte.get("image1");
 
-  const bytes1 = await image1.arrayBuffer();
-  const buffer1 = Buffer.from(bytes1);
+  async function imageToBuffer(image) {
+    const bytes = await image.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    
+    return buffer;
+  }
+  
+  const buffer1 = await imageToBuffer(image1);
+
 
   console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo);
 
