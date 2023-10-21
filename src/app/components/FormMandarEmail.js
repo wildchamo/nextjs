@@ -48,10 +48,13 @@ function FormMandarEmail() {
     formData.append("ciudad", ciudad);
     formData.append("geo", `${geo.latitude},${geo.longitude}`);
 
+    images.forEach((image, index) => {
+      formData.append(`image${index + 1}`, image);
+    })
+
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
-
 
     try {
       const res = await axios.post(
