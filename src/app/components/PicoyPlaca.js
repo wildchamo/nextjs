@@ -1,12 +1,24 @@
 "use client";
-import { useState } from "react";
 import Modal from "./Modal";
 import ScrollerPicoyPlaca from "./scrollerPicoyPlaca";
 import { aplicaONo } from "../utils/todayDay";
+import useUserStore from "../stores/userStore";
+import { useEffect, useState } from "react";
+
 
 export default function PicoyPlaca() {
   const [showModal, setShowModal] = useState(false);
-  let ciudad = "Bogotá";
+
+  const { ciudad } = useUserStore((state) => ({
+    ciudad: state.ciudad,
+  }));
+
+  const [ciudadUser, setCiudad] = useState("");
+
+  useEffect(() => {
+    setCiudad(ciudad);
+  }, []);
+
 
   return (
     <section className="pt-6">
@@ -14,14 +26,14 @@ export default function PicoyPlaca() {
       <div className="flex flex-col justify-between bg-primary h-32 p-6 rounded-2xl text-sm">
         <p>
           {" "}
-          El pico y placa hoy en <b className="underline">{ciudad}</b> para{" "}
+          El pico y placa hoy en <b className="underline">{ciudadUser}</b> para{" "}
           <b className="underline">particulares</b>
-          {aplicaONo(ciudad) === "No aplica" ? (
+          {aplicaONo(ciudadUser) === "No aplica" ? (
             <span> no aplica</span>
           ) : (
             <span>
               {" "}
-              es <b className="">{aplicaONo(ciudad)}</b>
+              es <b className="">{aplicaONo(ciudadUser)}</b>
             </span>
           )}
         </p>
@@ -35,7 +47,7 @@ export default function PicoyPlaca() {
         </div>
       </div>
       {showModal && (
-        <ModalPico ciudad={ciudad} onClose={() => setShowModal(false)} />
+        <ModalPico ciudad={ciudadUser} onClose={() => setShowModal(false)} />
       )}
     </section>
   );
