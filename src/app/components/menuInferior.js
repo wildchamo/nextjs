@@ -6,7 +6,7 @@ import doorbell from "../../../public/doorbell.png";
 import user from "../../../public/user.png";
 import call from "../../../public/call.png";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useUserStore from "../stores/userStore";
 
 export default function MenuInferior() {
@@ -14,11 +14,21 @@ export default function MenuInferior() {
   const { logout } = useUserStore();
   const [isActiveArray, setIsActiveArray] = useState([true, false, false]);
 
+  const { nombre } = useUserStore((state) => ({
+    nombre: state.nombre,
+  }));
+
   const cerrarSesion = (e) => {
     e.preventDefault();
     logout();
     router.push("/");
   };
+
+  useEffect(() => {
+    if (!nombre) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <footer className="bg-secundary flex gap-4 mr-12 items-center pl-4 ml-8 h-20 rounded-2xl fixed inset-x-0 bottom-2">

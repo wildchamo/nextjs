@@ -13,8 +13,9 @@ export async function POST(request) {
   const comoOcurrio = reporte.get("comoOcurrio");
   const tipo = reporte.get("tipo");
   const geo = reporte.get("geo");
+  const image1 = reporte.get("image1");
 
-  console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo);
+  console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo, image1);
 
   try {
     const data = await resend.emails.send({

@@ -27,9 +27,6 @@ function FormMandarEmail() {
     if (!tipo ) {
       router.push("/home");
     }
-    if(!nombre) {
-      router.push("/");
-    }
   }),
     [];
 
@@ -52,6 +49,7 @@ function FormMandarEmail() {
     formData.append("identificacion", identificacion);
     formData.append("ciudad", ciudad);
     formData.append("geo", `${geo.latitude},${geo.longitude}`);
+    formData.append("image1", images[0]);
 
     try {
       const res = await axios.post("/api/email", formData);
