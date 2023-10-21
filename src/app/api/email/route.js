@@ -15,12 +15,15 @@ export async function POST(request) {
   const geo = reporte.get("geo");
   const image1 = reporte.get("image1");
 
-  console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo, image1);
+  const bytes1 = await image1.arrayBuffer();
+  const buffer1 = Buffer.from(bytes1);
+
+  console.log(nombre, identificacion, ciudad, comoOcurrio, tipo, geo);
 
   try {
     const data = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
-      to: ["wildchamo@gmail.com", "gabriela.peralta@uao.edu.co"],
+      to: ["wildchamo@gmail.com", "ochixoxo@gmail.com"],
       subject: "Hola JOSE",
       react: EmailTemplate({
         nombre,
@@ -30,12 +33,12 @@ export async function POST(request) {
         tipo,
         geo,
       }),
-      // attachments: [
-      //   {
-      //     filename: "soyjose.jpg",
-      //     path: "https://nesin.io/_next/image?url=%2Fstatic%2Fimages%2FAshikNesin.jpg&w=384&q=75",
-      //   },
-      // ],
+      attachments: [
+        {
+          filename: "soyjose.jpg",
+          content: buffer1.toString("base64"),
+        },
+      ],
     });
 
     return NextResponse.json(data);
