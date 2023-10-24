@@ -60,12 +60,14 @@ function FormMandarEmail() {
 
   const inputRef = useRef(null);
 
+
+
   const handleLoadImage = () => {
     inputRef.current.click();
   };
 
+
   const handleImageChange = (e) => {
-    console.log(e.target.files);
     const newImages = [...images];
     const file = e.target.files[0];
     console.log(file);
@@ -76,18 +78,53 @@ function FormMandarEmail() {
 
   const inputRef1 = useRef(null);
 
+
   const handleLoadImage1 = () => {
     inputRef1.current.click();
   };
 
   const handleImageChange1 = (e) => {
     const newImages = [...images];
-    const file = e.target.files[1];
+    const file = e.target.files[0];
     console.log(file);
 
     newImages[1] = file;
     setImages(newImages);
   };
+
+
+  const inputRef2 = useRef(null);
+
+
+  const handleLoadImage2 = () => {
+    inputRef2.current.click();
+  };
+
+  const handleImageChange2 = (e) => {
+    const newImages = [...images];
+    const file = e.target.files[0];
+    console.log(file);
+
+    newImages[2] = file;
+    setImages(newImages);
+  };
+
+
+
+  const inputRef3 = useRef(null);
+
+const handleLoadImage3 = () => {
+  inputRef3.current.click();
+};
+
+const handleImageChange3 = (e) => {
+  const newImages = [...images];
+  const file = e.target.files[0];
+  console.log(file);
+
+  newImages[3] = file;
+  setImages(newImages);
+};
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -198,6 +235,71 @@ function FormMandarEmail() {
             />
           </div>
         </div>
+
+
+        <div>
+          <h4>input3 *</h4>
+          <div onClick={handleLoadImage2}>
+            {images[2] ? (
+              <Image
+                className="cursor-pointer"
+                src={URL.createObjectURL(images[2])}
+                width={60}
+                height={54}
+                alt="imagen accidente"
+              />
+            ) : (
+              <Image
+                className="cursor-pointer"
+                src={imageLoader}
+                width={60}
+                height={54}
+                alt="logoMayaluna"
+              />
+            )}
+
+            <input
+              type="file"
+              ref={inputRef2}
+              onChange={handleImageChange2}
+              accept="image/*;capture=camera"
+              className="hidden"
+            />
+          </div>
+        </div>
+
+        <div>
+  <h4>input4 *</h4>
+  <div onClick={handleLoadImage3}>
+    {images[3] ? (
+      <Image
+        className="cursor-pointer"
+        src={URL.createObjectURL(images[3])}
+        width={60}
+        height={54}
+        alt="imagen accidente"
+      />
+    ) : (
+      <Image
+        className="cursor-pointer"
+        src={imageLoader}
+        width={60}
+        height={54}
+        alt="logoMayaluna"
+      />
+    )}
+
+    <input
+      type="file"
+      ref={inputRef3}
+      onChange={handleImageChange3}
+      accept="image/*;capture=camera"
+      className="hidden"
+    />
+  </div>
+</div>
+
+
       </div>
 
       <button
