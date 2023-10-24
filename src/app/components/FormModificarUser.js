@@ -57,8 +57,6 @@ function FormModificarUser() {
     });
   }, []);
 
-  console.log(userData);
-
   const formRef = useRef();
 
   const handleSubmit = async (e) => {
