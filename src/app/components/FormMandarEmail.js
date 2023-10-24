@@ -22,7 +22,7 @@ function FormMandarEmail() {
   }));
 
   useEffect(() => {
-    if (!tipo ) {
+    if (!tipo) {
       router.push("/home");
     }
   }),
@@ -65,11 +65,27 @@ function FormMandarEmail() {
   };
 
   const handleImageChange = (e) => {
+    console.log(e.target.files);
     const newImages = [...images];
     const file = e.target.files[0];
     console.log(file);
 
     newImages[0] = file;
+    setImages(newImages);
+  };
+
+  const inputRef1 = useRef(null);
+
+  const handleLoadImage1 = () => {
+    inputRef1.current.click();
+  };
+
+  const handleImageChange1 = (e) => {
+    const newImages = [...images];
+    const file = e.target.files[1];
+    console.log(file);
+
+    newImages[1] = file;
     setImages(newImages);
   };
 
@@ -121,33 +137,66 @@ function FormMandarEmail() {
       <h3>Adjunte 4 fotografías en cada sección.</h3>
 
       <div className="bg-primary p-6 rounded-2xl">
-        <h4>Ángulos en donde se aprecie el accidente: *</h4>
-        <div onClick={handleLoadImage}>
-          {images[0] ? (
-            <Image
-              className="cursor-pointer"
-              src={URL.createObjectURL(images[0])}
-              width={60}
-              height={54}
-              alt="imagen accidente"
-            />
-          ) : (
-            <Image
-              className="cursor-pointer"
-              src={imageLoader}
-              width={60}
-              height={54}
-              alt="logoMayaluna"
-            />
-          )}
+        <div>
+          <h4>Ángulos en donde se aprecie el accidente: *</h4>
+          <div onClick={handleLoadImage}>
+            {images[0] ? (
+              <Image
+                className="cursor-pointer"
+                src={URL.createObjectURL(images[0])}
+                width={60}
+                height={54}
+                alt="imagen accidente"
+              />
+            ) : (
+              <Image
+                className="cursor-pointer"
+                src={imageLoader}
+                width={60}
+                height={54}
+                alt="logoMayaluna"
+              />
+            )}
 
-          <input
-            type="file"
-            ref={inputRef}
-            onChange={handleImageChange}
-            accept="image/*;capture=camera"
-            className="hidden"
-          />
+            <input
+              type="file"
+              ref={inputRef}
+              onChange={handleImageChange}
+              accept="image/*;capture=camera"
+              className="hidden"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h4>input2 *</h4>
+          <div onClick={handleLoadImage1}>
+            {images[1] ? (
+              <Image
+                className="cursor-pointer"
+                src={URL.createObjectURL(images[1])}
+                width={60}
+                height={54}
+                alt="imagen accidente"
+              />
+            ) : (
+              <Image
+                className="cursor-pointer"
+                src={imageLoader}
+                width={60}
+                height={54}
+                alt="logoMayaluna"
+              />
+            )}
+
+            <input
+              type="file"
+              ref={inputRef1}
+              onChange={handleImageChange1}
+              accept="image/*;capture=camera"
+              className="hidden"
+            />
+          </div>
         </div>
       </div>
 
