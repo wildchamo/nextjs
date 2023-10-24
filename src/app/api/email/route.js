@@ -14,8 +14,18 @@ export async function POST(request) {
   const comoOcurrio = reporte.get("comoOcurrio");
   const tipo = reporte.get("tipo");
   const geo = reporte.get("geo");
+
   const image1 = reporte.get("image1");
   const buffer1 = await imageToBuffer(image1);
+
+  const image2 = reporte.get("image2");
+  const buffer2 = await imageToBuffer(image2);
+
+  const image3 = reporte.get("image3");
+  const buffer3 = await imageToBuffer(image3);
+
+  const image4 = reporte.get("image4");
+  const buffer4 = await imageToBuffer(image4);
 
   try {
     const data = await resend.emails.send({
@@ -34,6 +44,18 @@ export async function POST(request) {
         {
           filename: "soyjose.jpg",
           content: buffer1,
+        },
+        {
+          filename: "soyjose.jpg",
+          content: buffer2,
+        },
+        {
+          filename: "soyjose.jpg",
+          content: buffer3,
+        },
+        {
+          filename: "soyjose.jpg",
+          content: buffer4,
         },
       ],
     });

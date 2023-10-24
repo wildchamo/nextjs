@@ -48,7 +48,9 @@ function FormMandarEmail() {
     formData.append("ciudad", ciudad);
     formData.append("geo", `${geo.latitude},${geo.longitude}`);
     formData.append("image1", images[0]);
-
+    formData.append("image2", images[1]);
+    formData.append("image3", images[2]);
+    formData.append("image4", images[3]);
     try {
       const res = await axios.post("/api/email", formData);
 
@@ -60,12 +62,9 @@ function FormMandarEmail() {
 
   const inputRef = useRef(null);
 
-
-
   const handleLoadImage = () => {
     inputRef.current.click();
   };
-
 
   const handleImageChange = (e) => {
     const newImages = [...images];
@@ -77,7 +76,6 @@ function FormMandarEmail() {
   };
 
   const inputRef1 = useRef(null);
-
 
   const handleLoadImage1 = () => {
     inputRef1.current.click();
@@ -92,9 +90,7 @@ function FormMandarEmail() {
     setImages(newImages);
   };
 
-
   const inputRef2 = useRef(null);
-
 
   const handleLoadImage2 = () => {
     inputRef2.current.click();
@@ -109,22 +105,20 @@ function FormMandarEmail() {
     setImages(newImages);
   };
 
-
-
   const inputRef3 = useRef(null);
 
-const handleLoadImage3 = () => {
-  inputRef3.current.click();
-};
+  const handleLoadImage3 = () => {
+    inputRef3.current.click();
+  };
 
-const handleImageChange3 = (e) => {
-  const newImages = [...images];
-  const file = e.target.files[0];
-  console.log(file);
+  const handleImageChange3 = (e) => {
+    const newImages = [...images];
+    const file = e.target.files[0];
+    console.log(file);
 
-  newImages[3] = file;
-  setImages(newImages);
-};
+    newImages[3] = file;
+    setImages(newImages);
+  };
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -236,7 +230,6 @@ const handleImageChange3 = (e) => {
           </div>
         </div>
 
-
         <div>
           <h4>input3 *</h4>
           <div onClick={handleLoadImage2}>
@@ -269,37 +262,35 @@ const handleImageChange3 = (e) => {
         </div>
 
         <div>
-  <h4>input4 *</h4>
-  <div onClick={handleLoadImage3}>
-    {images[3] ? (
-      <Image
-        className="cursor-pointer"
-        src={URL.createObjectURL(images[3])}
-        width={60}
-        height={54}
-        alt="imagen accidente"
-      />
-    ) : (
-      <Image
-        className="cursor-pointer"
-        src={imageLoader}
-        width={60}
-        height={54}
-        alt="logoMayaluna"
-      />
-    )}
+          <h4>input4 *</h4>
+          <div onClick={handleLoadImage3}>
+            {images[3] ? (
+              <Image
+                className="cursor-pointer"
+                src={URL.createObjectURL(images[3])}
+                width={60}
+                height={54}
+                alt="imagen accidente"
+              />
+            ) : (
+              <Image
+                className="cursor-pointer"
+                src={imageLoader}
+                width={60}
+                height={54}
+                alt="logoMayaluna"
+              />
+            )}
 
-    <input
-      type="file"
-      ref={inputRef3}
-      onChange={handleImageChange3}
-      accept="image/*;capture=camera"
-      className="hidden"
-    />
-  </div>
-</div>
-
-
+            <input
+              type="file"
+              ref={inputRef3}
+              onChange={handleImageChange3}
+              accept="image/*;capture=camera"
+              className="hidden"
+            />
+          </div>
+        </div>
       </div>
 
       <button
