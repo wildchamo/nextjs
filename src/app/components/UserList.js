@@ -39,20 +39,28 @@ const UserList = () => {
         Crear un nuevo usuario
       </button>
       <h1 className="text-center">Lista de usuarios</h1>
-      <ul>
+      <table className="table-auto w-full">
+        <thead>
+          <tr className="text-left">
+            <th>
+              Nombre Usuario
+            </th>
+            <th>
+              Documento
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
         {filteredUsers.map((user) => (
-          <li key={user._id}>
-            <span>{user.nombre}</span>
-            <span>{user.identificacion}</span>
-            <span>{user.ciudad}</span>
-            <span>{user.celular}</span>
-            <span>{user.fechaVencimientoLicencia}</span>
-            <span>{user.fechaNacimiento}</span>
-            <span>{user.direccion}</span>
-            <span>{user.email}</span>
-          </li>
+          <tr key={user._id}>
+            <td>{user.nombre}</td>
+            <td>{user.identificacion}</td>
+            <td>{user.ciudad}</td>
+          </tr>
         ))}
-      </ul>
+        </tbody>
+        </table>
     </div>
   );
 };
