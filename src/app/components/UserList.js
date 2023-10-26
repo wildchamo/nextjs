@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import {  useRouter } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const router = useRouter();
 
@@ -16,16 +18,28 @@ const UserList = () => {
       });
   }, []);
 
+  const filteredUsers = users.filter((user) =>
+    user.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
+      <input
+        type="text"
+        placeholder="Ingresa el nombre o documento del usuario que quieres buscar"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
 
-    <input type="text" placeholder="Ingresa el nombre o documento del usuario que quieres buscar" />
-
-    <button className="bg-secundary text-white" onClick={()=>router.push("/admin/crearUser")}>Crear un nuevo usuario</button>
+      <button
+        className="bg-secundary text-white"
+        onClick={() => router.push("/admin/crearUser")}
+      >
+        Crear un nuevo usuario
+      </button>
       <h1>User List</h1>
       <ul>
-        {users.map((user) => (
+        {filteredUsers.map((user) => (
           <li key={user._id}>
             <span>{user.nombre}</span>
             <span>{user.identificacion}</span>
