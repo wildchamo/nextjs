@@ -1,10 +1,13 @@
 import FormCrearUser from "../components/FormCrearUser";
-
+import UserList from "../components/UserList";
 export default function Admin() {
   return (
     <main>
 
-      <FormCrearUser />
+
+      <UserList />
+      {/* <FormCrearUser /> */}
+
     </main>
   );
 }
