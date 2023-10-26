@@ -26,18 +26,19 @@ const UserList = () => {
     <div>
       <input
         type="text"
-        placeholder="Ingresa el nombre o documento del usuario que quieres buscar"
+        class="block m-0 block w-full min-w-0 flex-auto rounded border py-2 px-4 rounded"
+        placeholder="Busque por nombre o documento..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
       <button
-        className="bg-secundary text-white"
+        className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
         onClick={() => router.push("/admin/crearUser")}
       >
         Crear un nuevo usuario
       </button>
-      <h1>User List</h1>
+      <h1 className="text-center">Lista de usuarios</h1>
       <ul>
         {filteredUsers.map((user) => (
           <li key={user._id}>
