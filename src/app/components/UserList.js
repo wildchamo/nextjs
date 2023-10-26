@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import { useRouter } from "next/navigation";
+import useAdminStore from "../stores/adminStore";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -9,11 +9,12 @@ const UserList = () => {
 
   const router = useRouter();
 
+  const setAdminUser = useAdminStore((state) => state.setAdminUser);
+
   useEffect(() => {
     fetch("/api/getusers")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUsers(data);
       });
   }, []);
@@ -26,7 +27,7 @@ const UserList = () => {
     <div>
       <input
         type="text"
-        class="block m-0 block w-full min-w-0 flex-auto rounded border py-2 px-4 rounded"
+        className="block m-0 block w-full min-w-0 flex-auto rounded border py-2 px-4 rounded"
         placeholder="Busque por nombre o documento..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -42,25 +43,31 @@ const UserList = () => {
       <table className="table-auto w-full">
         <thead>
           <tr className="text-left">
-            <th>
-              Nombre Usuario
-            </th>
-            <th>
-              Documento
-            </th>
+            <th>Nombre Usuario</th>
+            <th>Documento</th>
+            <th>Más información</th>
           </tr>
         </thead>
         <tbody>
-
-        {filteredUsers.map((user) => (
-          <tr key={user._id}>
-            <td>{user.nombre}</td>
-            <td>{user.identificacion}</td>
-            <td>{user.ciudad}</td>
-          </tr>
-        ))}
+          {filteredUsers.map((user) => (
+            <tr key={user._id}>
+              <td>{user.nombre}</td>
+              <td>{user.identificacion}</td>
+              <td>
+                <button
+                  className="shadow bg-secundary px-1 py-1 focus:shadow-outline focus:outline-none text-white rounded"
+                  onClick={() => {
+                    setAdminUser(user);
+                    router.push("/admin/User");
+                  }}
+                >
+                  ????
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
-        </table>
+      </table>
     </div>
   );
 };

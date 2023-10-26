@@ -1,15 +1,31 @@
 "use client";
 import { useRef } from "react";
 import axios from "axios";
+import useAdminStore from "../../stores/adminStore";
 
 function FormCrearUser() {
-  
   const formRef = useRef();
+
+  const {
+    nombre,
+    identificacion,
+    rol,
+    ciudad,
+    email,
+    direccion,
+    celular,
+    fechaNacimiento,
+    fechaVencimientoLicencia,
+    isActive,
+    _id,
+  } = useAdminStore();
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
-
 
     const nombre = formData.get("nombre");
     const identificacion = formData.get("identificacion");
@@ -40,7 +56,7 @@ function FormCrearUser() {
 
       console.log(res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -53,6 +69,7 @@ function FormCrearUser() {
         <input
           type="text"
           name="nombre"
+          value={nombre}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Jose Luis "
         />
@@ -64,6 +81,7 @@ function FormCrearUser() {
           <input
             type="text"
             name="identificacion"
+            value={identificacion}
             className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
           />
@@ -74,6 +92,7 @@ function FormCrearUser() {
           <select
             className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             name="ciudad"
+            value={ciudad}
           >
             <option value="Bogotá">Bogotá</option>
             <option value="Medellín">Medellín</option>
@@ -87,6 +106,7 @@ function FormCrearUser() {
           <input
             type="text"
             name="celular"
+            value={celular}
             className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
           />
@@ -96,9 +116,10 @@ function FormCrearUser() {
           <label>Está activo?</label>
           <div className="relative">
             <select
-            required
+              required
               className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="isActive"
+              value={isActive}
             >
               <option>Seleccione</option>
               <option value="true">Sí</option>
@@ -108,13 +129,13 @@ function FormCrearUser() {
         </div>
       </div>
       <div>
-
         <div className="flex">
           <div>
             <label>Vencimiento Licencia:</label>
             <input
               type="date"
               name="vencimientoLicencia"
+              value={fechaVencimientoLicencia}
               className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
@@ -124,6 +145,7 @@ function FormCrearUser() {
             <input
               type="date"
               name="fechaNacimiento"
+              value={fechaNacimiento}
               className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
             />
@@ -133,6 +155,7 @@ function FormCrearUser() {
         <input
           type="text"
           name="direccion"
+          value={direccion}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="Calle 5 N° 38 - 25 "
         />
@@ -142,6 +165,7 @@ function FormCrearUser() {
         <input
           type="email"
           name="email"
+          value={email}
           className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
           placeholder="emaya@mayalunaseguros.com"
         />
@@ -149,23 +173,12 @@ function FormCrearUser() {
 
       <div className="flex gap-10">
         <div>
-          <label>Contraseña:</label>
-
-          <input
-            type="password"
-            name="password"
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
-            placeholder="********"
-          />
-        </div>
-        <div>
-          <label>
-            Rol:
-          </label>
+          <label>Rol:</label>
           <div className="relative">
             <select
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="rol"
+              value={rol}
             >
               <option value="Usuario">Usuario</option>
               <option value="Colectivo">Colectivo</option>
