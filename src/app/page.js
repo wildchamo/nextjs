@@ -1,9 +1,28 @@
-import LoginBar from "./components/LoginBar";
+import Navbar from "./components/LandingPage/Navbar";
+import Hero from "./components/LandingPage/Hero";
+import AboutCard from "./components/LandingPage/AboutCard";
+import Services from "./components/LandingPage/Services";
+import QuoteCalculator from "./components/LandingPage/QuoteCalculator";
+import FormSection from "./components/LandingPage/FormSection";
+import CarouselSection from "./components/LandingPage/CarouselSection";
+import Footer from "./components/LandingPage/Footer";
 
-export default function Login() {
+
+export default function LandingPage() {
   return (
-    <main className="w-screen h-screen bg-gradient-to-t from-gradientgreen to-white">
-      <LoginBar />
+    <main className="relative z-0 bg-background">
+      <div className="bg-hero-background bg-cover bg-no-repeat bg-center">
+        <Navbar />
+        <Hero />
+      </div>
+      <AboutCard />
+      <Services />
+      <div className="bg-primary">
+        <QuoteCalculator />
+      </div>
+      <FormSection />
+      <CarouselSection />
+      <Footer />
     </main>
   );
 }

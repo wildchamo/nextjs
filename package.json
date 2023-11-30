@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
+    "hamburger-react": "^2.5.0",
     "js-cookie": "^3.0.5",
     "mongoose": "^7.6.1",
     "next": "13.5.4",
