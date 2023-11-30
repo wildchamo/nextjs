@@ -1,13 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    font-family: "Josefin Sans", sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --primary: "#ECFFE2";
+    --secondary: "#7FBF5F";
+    --tertiary: "#306B12";
+    --background: "#ffffff";
+    --button: "#248e46";
+    --header: "#154734";
+    --foreground: "#000000";
+    --mutedForeground: "#7a7a7a";
+    --gradientGreen: "#C1FFA3";
+    --yellowCall: "#EDC949";
+  }
+}
+
 .circulo{
-    width: 100px;
+  width: 100px;
   height: 100px;
   background: white;
   position: absolute;
   top: 50%;
   left: 90%;
   transform: translate(-50%, -50%);
+}
+
+.hash-span {
+  margin-top: -100px;
+  padding-bottom: 100px;
+  display: block;
+}
+
+.nav-link, .nav-link-active {
+  text-decoration: none;
+  padding: 20px 0px;
+  margin: 0px 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.nav-link::before {
+  transition: 250ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: #154734;
+}
+
+.nav-link-active::before {
+  transition: 250ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: #7FBF5F;
+}
+
+.nav-link-ltr::before {
+  width: 0%;
+  bottom: 10px;
+}
+
+.nav-link-ltr:hover::before {
+  width: 100%;
 }

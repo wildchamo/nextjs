@@ -106,7 +106,7 @@ export default function LoginBar() {
           <Link href="/home" onClick={handleClick}>
             <button
               type="submit"
-              className="flex w-80 justify-center rounded-2xl bg-secundary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="flex w-80 justify-center rounded-2xl bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               Iniciar sesión
             </button>
@@ -114,7 +114,7 @@ export default function LoginBar() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             ¿Olvidaste tu contraseña?{" "}
-            <a href="#" className="font-semibold leading-6 text-secundary">
+            <a href="#" className="font-semibold leading-6 text-secondary">
               Reestablecela aquí
             </a>
           </p>

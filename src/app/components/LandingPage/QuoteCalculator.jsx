@@ -1,7 +1,7 @@
 import React from "react";
 import SectionWrapper from "./hoc/SectionWrapper";
 import { soatTableInfo } from "./constants";
-import AccordionTable from "../AccordionTable";
+import AccordionTable from "../ui/AccordionTable";
 
 const QuoteCalculator = () => {
   return (

@@ -39,7 +39,7 @@ export default function PicoyPlaca() {
         </p>
         <div className="flex justify-end">
           <button
-            className="bg-secundary text-white w-28 h-8 rounded-2xl"
+            className="bg-secondary text-white w-28 h-8 rounded-2xl"
             onClick={() => setShowModal(true)}
           >
             Ver más
@@ -77,7 +77,7 @@ function ModalPico({ onClose, ciudad }) {
 
       <div className="flex justify-end">
         <button
-          className="bg-secundary text-white px-4 py-2 rounded-lg"
+          className="bg-secondary text-white px-4 py-2 rounded-lg"
           onClick={onClose}
         >
           Regresar

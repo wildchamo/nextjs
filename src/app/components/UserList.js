@@ -34,7 +34,7 @@ const UserList = () => {
       />
 
       <button
-        className="shadow bg-secundary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+        className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
         onClick={() => router.push("/admin/crearUser")}
       >
         Crear un nuevo usuario
@@ -55,7 +55,7 @@ const UserList = () => {
               <td>{user.identificacion}</td>
               <td>
                 <button
-                  className="shadow bg-secundary px-1 py-1 focus:shadow-outline focus:outline-none text-white rounded"
+                  className="shadow bg-secondary px-1 py-1 focus:shadow-outline focus:outline-none text-white rounded"
                   onClick={() => {
                     setAdminUser(user);
                     router.push("/admin/User");

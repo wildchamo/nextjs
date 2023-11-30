@@ -31,7 +31,7 @@ export default function MenuInferior() {
   }, []);
 
   return (
-    <footer className="bg-secundary flex gap-4 mr-12 items-center pl-4 ml-8 h-20 rounded-2xl fixed inset-x-0 bottom-2">
+    <footer className="bg-secondary flex gap-4 mr-12 items-center pl-4 ml-8 h-20 rounded-2xl fixed inset-x-0 bottom-2">
       <NavAction
         src={homePage}
         isActive={isActiveArray[0]}

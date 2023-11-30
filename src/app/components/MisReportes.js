@@ -50,13 +50,13 @@ function ModalTipo({ onClose }) {
 
       <div className="flex justify-around">
         <button
-          className="bg-secundary w-24 text-white px-4 py-2 rounded-lg"
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
         onClick={handleClick2}
         >
           Si
         </button>
         <button
-          className="bg-secundary w-24 text-white px-4 py-2 rounded-lg"
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
           onClick={handleClick}
         >
           No
