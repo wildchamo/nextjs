@@ -12,8 +12,8 @@ export const navLinks = [
     ref: "#calculator",
   },
   {
-    title: "Blog",
-    ref: "https://mayalunaseguros.com/category/blog/",
+    title: "Iniciar Sesión",
+    ref: "/login",
   },
 ];
 
