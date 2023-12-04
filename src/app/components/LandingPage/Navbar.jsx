@@ -68,14 +68,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="sm:hidden flex flex-1 justify-end items-center">
-            <Hamburger
-              duration={0.25}
-              toggled={toggle}
-              toggle={setToggle}
-              size={28}
-              alt="Menu"
-              className="object-contain cursor-pointer"
-            />
+            <a href="/login">Iniciar sesión</a>
 
             <div
               className={`${!toggle ? "hidden" : "flex"} ${

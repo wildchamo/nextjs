@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -17,6 +17,9 @@ export default function LoginBar() {
   const userIdRef = useRef(null);
   const passwordRef = useRef(null);
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     if (nombre) {
       router.push("/home");
@@ -24,6 +27,8 @@ export default function LoginBar() {
   }, []);
 
   const handleClick = (e) => {
+    setLoading(true);
+
     const userid = userIdRef.current.value;
     const password = passwordRef.current.value;
     e.preventDefault();
@@ -37,7 +42,10 @@ export default function LoginBar() {
       })
       .catch((error) => {
         //TODO HANDLE ERROR
-        console.log(error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -108,11 +116,33 @@ export default function LoginBar() {
               type="submit"
               className="flex w-80 justify-center rounded-2xl bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
-              Iniciar sesión
+              {loading ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  className="animate-spin"
+                >
+                  <path
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 3a9 9 0 1 0 9 9"
+                  />
+                </svg>
+              ) : (
+                "Iniciar Sesión"
+              )}
             </button>
           </Link>
 
+
           <p className="mt-10 text-center text-sm text-gray-500">
+          {error && <span className=" text-sm text-red-500"> {error}</span>}
+          <br />
             ¿Olvidaste tu contraseña?{" "}
             <a href="#" className="font-semibold leading-6 text-secondary">
               Reestablecela aquí
