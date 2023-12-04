@@ -5,6 +5,7 @@ import imageLoader from "../../../public/imageLoader.png";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
 import useUserStore from "../stores/userStore";
+import { imageToBuffer } from "../utils/buffer";
 
 function FormMandarEmail() {
   const searchParams = useSearchParams();
@@ -47,10 +48,14 @@ function FormMandarEmail() {
     formData.append("identificacion", identificacion);
     formData.append("ciudad", ciudad);
     formData.append("geo", `${geo.latitude},${geo.longitude}`);
-    formData.append("image1", images[0]);
-    formData.append("image2", images[1]);
-    formData.append("image3", images[2]);
-    formData.append("image4", images[3]);
+
+    console.log(await imageToBuffer(images[0]));
+
+    formData.append("image1", await imageToBuffer(images[0]));
+
+    // formData.append("image2", images[1]);
+    // formData.append("image3", images[2]);
+    // formData.append("image4", images[3]);
     try {
       const res = await axios.post("/api/email", formData);
 
