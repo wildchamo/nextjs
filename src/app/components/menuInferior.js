@@ -1,9 +1,6 @@
 "use client";
 import Image from "next/image";
 import NavAction from "./navAction";
-import homePage from "../../../public/homepage.png";
-import doorbell from "../../../public/doorbell.png";
-import user from "../../../public/user.png";
 import call from "../../../public/call.png";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -21,7 +18,7 @@ export default function MenuInferior() {
   const cerrarSesion = (e) => {
     e.preventDefault();
     logout();
-    router.push("/");
+    router.push("/login");
   };
 
   useEffect(() => {
@@ -33,7 +30,7 @@ export default function MenuInferior() {
   return (
     <footer className="bg-secondary flex gap-4 mr-12 items-center pl-4 ml-8 h-20 rounded-2xl fixed inset-x-0 bottom-2">
       <NavAction
-        src={homePage}
+        type="home"
         isActive={isActiveArray[0]}
         onButtonClick={() => {
           router.push("/home");
@@ -41,14 +38,14 @@ export default function MenuInferior() {
         }}
       />
       <NavAction
-        src={user}
+        type="user"
         onButtonClick={() => {
           setIsActiveArray([false, true, false]);
           router.push("/home/user");
         }}
         isActive={isActiveArray[1]}
       />
-      <NavAction src={doorbell} onButtonClick={cerrarSesion} isActive={false} />
+      <NavAction type="logout" onButtonClick={cerrarSesion} isActive={false} />
 
       <div className="circulo rounded-full flex flex-col items-center justify-center">
         <a
