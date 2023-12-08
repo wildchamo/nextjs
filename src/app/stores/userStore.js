@@ -20,6 +20,7 @@ const useUserStore = create((set) => {
       : null,
     isActive: storedUser ? storedUser.isActive : null,
     _id: storedUser ? storedUser._id : null,
+    geo:null,
 
     login: async (userid, password) => {
       try {
@@ -44,6 +45,20 @@ const useUserStore = create((set) => {
         return res.data;
       } catch (error) {
         throw new Error(error.response.data.message);
+      }
+    },
+    updateGeo: () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          set({
+            geo: {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            },
+          });
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
       }
     },
     logout: () => {

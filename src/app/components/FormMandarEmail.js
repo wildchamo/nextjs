@@ -8,22 +8,25 @@ import useUserStore from "../stores/userStore";
 import { imageToBuffer } from "../utils/buffer";
 import Modal from "./Modal";
 
+import { jsPDF } from "jspdf";
+
 function FormMandarEmail() {
+  const doc = new jsPDF();
+
   const searchParams = useSearchParams();
   const tipo = searchParams.get("tipo");
   const router = useRouter();
-  const [id, setId] = useState(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [geo, setGeo] = useState({});
   const [images, setImages] = useState([null, null, null, null]);
 
-  const { nombre, identificacion, ciudad } = useUserStore((state) => ({
+  const { nombre, identificacion, ciudad, geo } = useUserStore((state) => ({
     nombre: state.nombre,
     identificacion: state.identificacion,
     ciudad: state.ciudad,
+    geo: state.geo,
   }));
 
   useEffect(() => {
@@ -38,37 +41,69 @@ function FormMandarEmail() {
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
-    const successCallback = (position) => {
-      const { latitude, longitude } = position.coords;
-      setGeo({ latitude, longitude });
-    };
+    async function generatePDF() {
+      const doc = new jsPDF();
 
-    navigator.geolocation.getCurrentPosition(successCallback);
+      // Itera sobre las imágenes y las agrega al PDF
+      for (let i = 0; i < 2; i++) {
+        await addImageToPDF(doc, images[i], i);
+      }
 
-    const formData = new FormData(formRef.current);
+      doc.text("Nombre: " + nombre, 10, 10);
+      doc.text("Tipo: " + tipo, 10, 20);
+      doc.text("Identificación: " + identificacion, 10, 30);
+      doc.text("Ciudad: " + ciudad, 10, 40);
+      doc.text("Geo: " + `${geo.latitude},${geo.longitude}`, 10, 50);
+      doc.save("reporte.pdf");
 
-    formData.append("nombre", nombre);
-    formData.append("tipo", tipo);
-    formData.append("identificacion", identificacion);
-    formData.append("ciudad", ciudad);
-    formData.append("geo", `${geo.latitude},${geo.longitude}`);
+      const blob = new Blob([doc.output("blob")], { type: "application/pdf" });
 
-    console.log(await imageToBuffer(images[0]));
+      const formData = new FormData();
+      formData.append("pdf", blob);
 
-    formData.append("image1", await imageToBuffer(images[0]));
-
-    // formData.append("image2", images[1]);
-    // formData.append("image3", images[2]);
-    // formData.append("image4", images[3]);
-    try {
-      const res = await axios.post("/api/email", formData);
-      setId(res.data.id);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-      setIsOpen(true);
+      // Envía el FormData al backend
+      try {
+        // const res = await axios.post("/api/email", formData);
+        const res = await axios.post("/api/email2", formData);
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+        setIsOpen(true);
+      }
     }
+
+    generatePDF().catch((error) => console.error(error));
+
+    async function addImageToPDF(doc, file, index) {
+      const base64String = await convertImageToBase64(file);
+      doc.addImage(base64String, "JPEG", 10, 60 + index * 50, 100, 100);
+    }
+
+    function convertImageToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = function () {
+          const base64String = reader.result
+            .replace("data:", "")
+            .replace(/^.+,/, "");
+          resolve(base64String);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+    // try {
+    //   // const res = await axios.post("/api/email", formData);
+    //   const res = await axios.post("/api/email2", formData2);
+    //   setId(res.data.id);
+    // } catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   setIsLoading(false);
+    //   setIsOpen(true);
+    // }
   };
 
   const inputRef = useRef(null);
@@ -314,7 +349,7 @@ function FormMandarEmail() {
         </button>
       </form>
 
-      {isOpen && <ModalTipo id={id} onClose={() => setIsOpen(false)} />}
+      {/* {isOpen && <ModalTipo id={123123123} onClose={() => setIsOpen(false)} />} */}
       {isLoading && <ModalLoading />}
     </>
   );

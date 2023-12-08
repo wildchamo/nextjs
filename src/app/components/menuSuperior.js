@@ -7,15 +7,20 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const MenuSuperior = () => {
-  const { nombre } = useUserStore((state) => ({
+  const { nombre, geo, updateGeo } = useUserStore((state) => ({
     nombre: state.nombre,
+    geo: state.geo,
+    updateGeo: state.updateGeo,
   }));
 
-  const [nombreUser, setNombre] = useState("Jose Luis");
+  const [nombreUser, setNombre] = useState("");
 
   useEffect(() => {
     setNombre(nombre);
+    updateGeo();
   }, []);
+
+  console.log(geo);
 
   return (
     <div className="flex justify-between mr-8 ml-8 mt-8">
