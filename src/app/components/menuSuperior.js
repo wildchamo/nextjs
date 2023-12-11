@@ -26,13 +26,16 @@ const MenuSuperior = () => {
       ) : (
         <Link href="/home">Regresar</Link>
       )}
-      <Image
-        className=""
-        src={logo}
-        width={80}
-        height={80}
-        alt="logoMayaluna"
-      />
+
+      <Link href="/home">
+        <Image
+          className=""
+          src={logo}
+          width={80}
+          height={80}
+          alt="logoMayaluna"
+        />
+      </Link>
     </div>
   );
 };

@@ -2,12 +2,14 @@
 import Image from "next/image";
 import NavAction from "./navAction";
 import call from "../../../public/call.png";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import useUserStore from "../stores/userStore";
 
 export default function MenuInferior() {
   const router = useRouter();
+  const pathname = usePathname();
+
   const { logout } = useUserStore();
   const [isActiveArray, setIsActiveArray] = useState([true, false, false]);
 
@@ -26,6 +28,24 @@ export default function MenuInferior() {
       router.push("/");
     }
   }, []);
+
+  useEffect(() => {
+    console.log(pathname);
+    switch (pathname) {
+      case "/home":
+        setIsActiveArray([true, false, false]);
+        break;
+      case "/home/user":
+        setIsActiveArray([false, true, false]);
+        break;
+      // case "/ruta3":
+      //   setIsActiveArray([false, false, true]);
+      //   break;
+      default:
+        setIsActiveArray([true, false, false]);
+        break;
+    }
+  }, [pathname]);
 
   return (
     <footer className="bg-secondary flex gap-4 mr-12 items-center pl-4 ml-8 h-20 rounded-2xl fixed inset-x-0 bottom-2">
