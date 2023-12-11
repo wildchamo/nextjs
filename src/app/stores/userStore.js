@@ -20,8 +20,16 @@ const useUserStore = create((set) => {
       : null,
     isActive: storedUser ? storedUser.isActive : null,
     _id: storedUser ? storedUser._id : null,
-    geo:null,
+    geo: null,
 
+
+    
+    updateUser: (userData) =>
+      set((state) => ({
+        ...state,
+        ...userData,
+      })),
+      
     login: async (userid, password) => {
       try {
         const res = await axios.post("/api/auth/login", {
@@ -47,6 +55,7 @@ const useUserStore = create((set) => {
         throw new Error(error.response.data.message);
       }
     },
+
     updateGeo: () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {

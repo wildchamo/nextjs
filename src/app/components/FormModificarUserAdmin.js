@@ -18,7 +18,6 @@ function FormModificarUser() {
     email,
     rol,
     _id,
-    updateUser,
   } = useUserStore((state) => ({
     nombre: state.nombre,
     identificacion: state.identificacion,
@@ -30,7 +29,6 @@ function FormModificarUser() {
     email: state.email,
     rol: state.rol,
     _id: state._id,
-    updateUser: state.updateUser,
   }));
 
   const [userData, setUserData] = useState({
@@ -49,6 +47,7 @@ function FormModificarUser() {
   const [loading, setLoading] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   useEffect(() => {
     setUserData({
@@ -95,16 +94,6 @@ function FormModificarUser() {
         email,
       });
       console.log(res);
-      updateUser({
-        nombre,
-        identificacion,
-        ciudad,
-        celular,
-        vencimientoLicencia,
-        fechaNacimiento,
-        direccion,
-        email,
-      });
     } catch (error) {
       console.log(error);
     } finally {

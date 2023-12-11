@@ -5,7 +5,6 @@ import imageLoader from "../../../public/imageLoader.png";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
 import useUserStore from "../stores/userStore";
-import { imageToBuffer } from "../utils/buffer";
 import Modal from "./Modal";
 
 import { jsPDF } from "jspdf";
@@ -350,7 +349,7 @@ function FormMandarEmail() {
       </form>
 
       {/* {isOpen && <ModalTipo id={123123123} onClose={() => setIsOpen(false)} />} */}
-      {isLoading && <ModalLoading />}
+      {/* {isLoading && <ModalLoading />} */}
     </>
   );
 }
