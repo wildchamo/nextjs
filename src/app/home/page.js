@@ -4,7 +4,7 @@ import MisReportes from "../components/MisReportes";
 
 export default function Home() {
   return (
-    <main className="mr-8 ml-8 pb-20">
+    <main className="mx-8 pb-20">
       <PicoyPlaca/>
       <MisSeguros />
       <MisReportes />
