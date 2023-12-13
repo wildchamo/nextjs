@@ -4,9 +4,11 @@ import logo from "../../../public/logomayaluna.jpg";
 import Image from "next/image";
 import useUserStore from "../stores/userStore";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const MenuSuperior = () => {
+  const router = useRouter();
+
   const { nombre, updateGeo } = useUserStore((state) => ({
     nombre: state.nombre,
     updateGeo: state.updateGeo,
@@ -19,12 +21,18 @@ const MenuSuperior = () => {
     updateGeo();
   }, []);
 
+  const goBack = () => {
+    router.back();
+  };
+
   return (
     <div className="flex justify-between mr-8 ml-8 mt-8">
       {usePathname() === "/home" ? (
         <h3>¡Bienvenido {nombreUser} !</h3>
       ) : (
-        <Link href="/home">Regresar</Link>
+        <div onClick={goBack} className="uppercase">
+          Regresar
+        </div>
       )}
 
       <Link href="/home">
