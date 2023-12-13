@@ -187,7 +187,7 @@ function FormMandarEmail() {
             />
           </div>
         </div>
-        <h2 className="py-2 font-semibold">Información de los testigos</h2>
+        <h2 className="pb-2 pt-4 font-semibold">Información de los testigos</h2>
 
         <div className="bg-primary p-6 rounded-2xl text-sm">
           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -211,7 +211,7 @@ function FormMandarEmail() {
           />
         </div>
 
-        <h2 className="py-2 font-semibold		">Evidencias fotográficas:</h2>
+        <h2 className="pb-2 pt-4 font-semibold		">Evidencias fotográficas:</h2>
 
         <h3 className="pb-2 ">Adjunte 1 fotografía en cada sección.</h3>
 
