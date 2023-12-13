@@ -22,14 +22,13 @@ const useUserStore = create((set) => {
     _id: storedUser ? storedUser._id : null,
     geo: null,
 
-
-    
-    updateUser: (userData) =>
-      set((state) => ({
-        ...state,
-        ...userData,
-      })),
-      
+    updateUser: (userData) => {
+      set((state) => {
+        const updatedState = { ...state, ...userData };
+        Cookies.set("user", JSON.stringify(updatedState));
+        return updatedState;
+      });
+    },
     login: async (userid, password) => {
       try {
         const res = await axios.post("/api/auth/login", {
