@@ -3,21 +3,16 @@ import Link from "next/link";
 import logo from "../../../public/logomayaluna.jpg";
 import Image from "next/image";
 import useUserStore from "../stores/userStore";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 
 const MenuSuperior = () => {
   const router = useRouter();
 
-  const { nombre, updateGeo } = useUserStore((state) => ({
-    nombre: state.nombre,
-    updateGeo: state.updateGeo,
-  }));
-
-  const [nombreUser, setNombre] = useState("");
+  const { nombre, updateGeo } = useUserStore((state) => state);
 
   useEffect(() => {
-    setNombre(nombre);
     updateGeo();
   }, []);
 
@@ -28,7 +23,7 @@ const MenuSuperior = () => {
   return (
     <div className="flex justify-between mr-8 ml-8 mt-8">
       {usePathname() === "/home" ? (
-        <h3>¡Bienvenido {nombreUser} !</h3>
+        <h3>¡Bienvenido {nombre} !</h3>
       ) : (
         <div onClick={goBack} className="uppercase">
           Regresar
@@ -48,4 +43,4 @@ const MenuSuperior = () => {
   );
 };
 
-export default MenuSuperior;
+export default dynamic(() => Promise.resolve(MenuSuperior), { ssr: false });

@@ -21,6 +21,18 @@ const useUserStore = create((set) => {
     isActive: storedUser ? storedUser.isActive : null,
     _id: storedUser ? storedUser._id : null,
     geo: null,
+    seguros: [
+      {
+        id: 123,
+        seguro: "Todo Riesgo",
+        vencimiento: "27 Abr 2025",
+      },
+      {
+        id: 456,
+        seguro: "Exequias",
+        vencimiento: "30 Ene 2024",
+      },
+    ],
 
     updateUser: (userData) => {
       set((state) => {
@@ -49,6 +61,13 @@ const useUserStore = create((set) => {
           _id: res.data._id,
         });
         Cookies.set("user", JSON.stringify(res.data));
+
+        // // Ahora que el usuario ha iniciado sesión, obtén sus seguros
+        // const segurosRes = await axios.get(
+        //   `/api/seguros?userId=${res.data._id}`
+        // );
+        // set({ seguros: segurosRes.data });
+
         return res.data;
       } catch (error) {
         throw new Error(error.response.data.message);

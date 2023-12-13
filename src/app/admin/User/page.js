@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import axios from "axios";
 import useAdminStore from "../../stores/adminStore";
+import dynamic from "next/dynamic";
 
 function FormCrearUser() {
   const formRef = useRef();
@@ -199,4 +200,4 @@ function FormCrearUser() {
   );
 }
 
-export default FormCrearUser;
+export default dynamic(() => Promise.resolve(FormCrearUser), { ssr: false });
