@@ -2,7 +2,7 @@ import InsuranceList from "@/app/components/InsuranceList";
 
 const segurosPage = () => {
   return (
-    <div className="mx-8">
+    <div>
       <h2>MIS SEGUROS</h2>
       <InsuranceList />
     </div>

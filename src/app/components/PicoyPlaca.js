@@ -21,7 +21,7 @@ export default function PicoyPlaca() {
 
 
   return (
-    <section className="pt-6">
+    <section>
       <h2>PICO Y PLACA</h2>
       <div className="flex flex-col justify-between bg-primary h-32 p-6 rounded-2xl text-sm">
         <p>

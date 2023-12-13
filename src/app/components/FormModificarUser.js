@@ -115,7 +115,7 @@ function FormModificarUser() {
 
   return (
     <>
-      <form ref={formRef} onSubmit={handleSubmit} className="pb-20">
+      <form ref={formRef} onSubmit={handleSubmit} className="pb-28">
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Nombre Completo:
