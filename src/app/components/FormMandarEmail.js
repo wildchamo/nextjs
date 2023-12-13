@@ -169,13 +169,14 @@ function FormMandarEmail() {
     <>
       <form ref={formRef} onSubmit={handleSubmit}>
         <div>
-          <h1 className="text-center uppercase">Reporte {tipo}</h1>
+          <h1 className="text-center uppercase font-bold	">Reporte {tipo}</h1>
 
-          <h2>Información del accidente</h2>
+          <h2 className="py-2 font-semibold		">Información del accidente</h2>
 
           <div className="flex flex-col justify-between bg-primary p-6 rounded-2xl text-sm">
             <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-              ¿Cómo sucedió el accidente? *
+              ¿Cómo sucedió el accidente?{" "}
+              <span className="text-red-700">*</span>
             </label>
             <textarea
               type="text"
@@ -186,7 +187,7 @@ function FormMandarEmail() {
             />
           </div>
         </div>
-        <h2>Información de los testigos</h2>
+        <h2 className="py-2 font-semibold">Información de los testigos</h2>
 
         <div className="bg-primary p-6 rounded-2xl text-sm">
           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -210,14 +211,17 @@ function FormMandarEmail() {
           />
         </div>
 
-        <h2>Evidencias fotográficas:</h2>
+        <h2 className="py-2 font-semibold		">Evidencias fotográficas:</h2>
 
-        <h3>Adjunte 1 fotografía en cada sección.</h3>
+        <h3 className="pb-2 ">Adjunte 1 fotografía en cada sección.</h3>
 
         <div className="bg-primary p-6 rounded-2xl">
           <div>
-            <h4>Ángulos en donde se aprecie el accidente: *</h4>
-            <div onClick={handleLoadImage}>
+            <h4>
+              Ángulos en donde se aprecie el accidente:{" "}
+              <span className="text-red-700">*</span>
+            </h4>
+            <div className="py-1" onClick={handleLoadImage}>
               {images[0] ? (
                 <Image
                   className="cursor-pointer"
@@ -246,9 +250,12 @@ function FormMandarEmail() {
             </div>
           </div>
 
-          <div>
-            <h4>input2 *</h4>
-            <div onClick={handleLoadImage1}>
+          <div className="pt-2">
+            <h4>
+              Fotos panorámicas en donde se aprecie el accidente:{" "}
+              <span className="text-red-700">*</span>
+            </h4>
+            <div className="py-1" onClick={handleLoadImage1}>
               {images[1] ? (
                 <Image
                   className="cursor-pointer"
@@ -277,9 +284,12 @@ function FormMandarEmail() {
             </div>
           </div>
 
-          <div>
-            <h4>input3 *</h4>
-            <div onClick={handleLoadImage2}>
+          <div className="pt-2">
+            <h4>
+              Fotos de señales de tránsito, marcas de frenadas, etc.:
+              <span className="text-red-700">*</span>
+            </h4>
+            <div className="py-1" onClick={handleLoadImage2}>
               {images[2] ? (
                 <Image
                   className="cursor-pointer"
@@ -308,9 +318,12 @@ function FormMandarEmail() {
             </div>
           </div>
 
-          <div>
-            <h4>input4 *</h4>
-            <div onClick={handleLoadImage3}>
+          <div className="pt-2">
+            <h4>
+              Fotos de señales de tránsito, marcas de frenadas, etc.:
+              <span className="text-red-700">*</span>
+            </h4>
+            <div className="py-1" onClick={handleLoadImage3}>
               {images[3] ? (
                 <Image
                   className="cursor-pointer"
@@ -340,12 +353,14 @@ function FormMandarEmail() {
           </div>
         </div>
 
-        <button
-          className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
-          Reportar caso
-        </button>
+        <div className="mt-4 text-end">
+          <button
+            className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded "
+            type="submit"
+          >
+            Reportar caso
+          </button>
+        </div>
       </form>
 
       {/* {isOpen && <ModalTipo id={123123123} onClose={() => setIsOpen(false)} />} */}

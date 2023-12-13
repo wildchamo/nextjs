@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -12,7 +12,7 @@ module.exports = {
         ns: "300px",
       },
       fontFamily: {
-        sans: ['Josefin Sans', 'sans-serif'],
+        sans: ["Josefin Sans", "sans-serif"],
       },
       colors: {
         primary: "#ECFFE2",
@@ -20,6 +20,7 @@ module.exports = {
         tertiary: "#306B12",
         background: "#ffffff",
         button: "#248e46",
+        lighttext: "#666666",
         header: "#154734",
         foreground: "#000000",
         mutedForeground: "#7a7a7a",
@@ -27,10 +28,12 @@ module.exports = {
         yellowCall: "#EDC949",
       },
       backgroundImage: {
-        "hero-background": "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/familia2-asegurada-con-mayaluna-opt.jpg')",
-        "section-background": "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/fondo-verde-seguros-mayaluna-1.jpg')"
+        "hero-background":
+          "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/familia2-asegurada-con-mayaluna-opt.jpg')",
+        "section-background":
+          "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/fondo-verde-seguros-mayaluna-1.jpg')",
       },
     },
   },
   plugins: [],
-}
+};
