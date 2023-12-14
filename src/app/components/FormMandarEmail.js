@@ -62,7 +62,7 @@ function FormMandarEmail() {
 
       doc.text("Nombre: " + nombre, 10, 10);
       doc.text("Tipo: " + tipo, 10, 20);
-      doc.text("Identificación: " + identificacion, 10, 30);
+      doc.text("Identificación: " + identificacion, 50, 30);
       doc.text("Ciudad: " + ciudad, 10, 40);
       doc.text("Geo: " + `${geo.latitude},${geo.longitude}`, 10, 50);
       doc.text("Email: " + email, 10, 60);
