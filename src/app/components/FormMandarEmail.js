@@ -16,17 +16,30 @@ function FormMandarEmail() {
   const tipo = searchParams.get("tipo");
   const router = useRouter();
 
+  const [dataVaraible, setDataVariable] = useState({
+    comoOcurrio: "",
+    numeroHeridos: 1,
+    nombreTestigo: "",
+    numeroTestigo: "",
+  });
+
+  console.log(dataVaraible)
+
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [images, setImages] = useState([null, null, null, null]);
 
-  const { nombre, identificacion, ciudad, geo } = useUserStore((state) => ({
-    nombre: state.nombre,
-    identificacion: state.identificacion,
-    ciudad: state.ciudad,
-    geo: state.geo,
-  }));
+  const { nombre, identificacion, email, celular, direccion, ciudad, geo } =
+    useUserStore((state) => ({
+      nombre: state.nombre,
+      identificacion: state.identificacion,
+      email: state.email,
+      celular: state.celular,
+      direccion: state.direccion,
+      ciudad: state.ciudad,
+      geo: state.geo,
+    }));
 
   useEffect(() => {
     if (!tipo) {
@@ -35,11 +48,10 @@ function FormMandarEmail() {
   }),
     [];
 
-  const formRef = useRef();
-
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
+
     async function generatePDF() {
       const doc = new jsPDF();
 
@@ -53,6 +65,10 @@ function FormMandarEmail() {
       doc.text("Identificación: " + identificacion, 10, 30);
       doc.text("Ciudad: " + ciudad, 10, 40);
       doc.text("Geo: " + `${geo.latitude},${geo.longitude}`, 10, 50);
+      doc.text("Email: " + email, 10, 60);
+      doc.text("celular: " + celular, 10, 70);
+      doc.text("Dirección: " + direccion, 10, 80);
+
       doc.save("reporte.pdf");
 
       const blob = new Blob([doc.output("blob")], { type: "application/pdf" });
@@ -62,7 +78,6 @@ function FormMandarEmail() {
 
       // Envía el FormData al backend
       try {
-        // const res = await axios.post("/api/email", formData);
         const res = await axios.post("/api/email2", formData);
         console.log(res);
       } catch (error) {
@@ -165,9 +180,15 @@ function FormMandarEmail() {
     setImages(newImages);
   };
 
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setDataVariable(prevState => ({ ...prevState, [name]: value }));
+  };
+
   return (
     <>
-      <form ref={formRef} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <h1 className="text-center uppercase font-bold	">Reporte {tipo}</h1>
 
@@ -181,10 +202,33 @@ function FormMandarEmail() {
             <textarea
               type="text"
               name="comoOcurrio"
+              value={dataVaraible.comoOcurrio}
+              onChange={handleInputChange}
+
               className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="Descipción detallada "
               required
             />
+
+            {tipo == "Agravado" ? (
+              <>
+                <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Número de heridos: <span className="text-red-700">*</span>
+                </label>
+                <input
+                  type="number"
+                  name="numeroHeridos"
+                  onChange={handleInputChange}
+
+                  value={dataVaraible.numeroHeridos}
+                  className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  placeholder="1,2,3"
+                  required
+                />
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <h2 className="pb-2 pt-4 font-semibold">Información de los testigos</h2>
@@ -195,7 +239,11 @@ function FormMandarEmail() {
           </label>
           <input
             type="text"
-            name=""
+            name="nombreTestigo"
+            value={dataVaraible.nombreTestigo}
+            onChange={handleInputChange}
+
+
             className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="Descipción detallada "
           />
@@ -204,14 +252,18 @@ function FormMandarEmail() {
             Número de contacto (opcional)
           </label>
           <input
-            type="text"
-            name=""
+            type="number"
+            name="numeroTestigo"
+            value={dataVaraible.numeroTestigo}
+            onChange={handleInputChange}
+
+
             className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="Descipción detallada "
           />
         </div>
 
-        <h2 className="pb-2 pt-4 font-semibold		">Evidencias fotográficas:</h2>
+        <h2 className="pb-2 pt-4 font-semibold">Evidencias fotográficas:</h2>
 
         <h3 className="pb-2 ">Adjunte 1 fotografía en cada sección.</h3>
 

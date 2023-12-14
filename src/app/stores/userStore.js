@@ -9,11 +9,15 @@ const useUserStore = create((set) => {
   return {
     nombre: storedUser ? storedUser.nombre : null,
     identificacion: storedUser ? storedUser.identificacion : 0,
-    rol: storedUser ? storedUser.rol : null,
-    ciudad: storedUser ? storedUser.ciudad : null,
     email: storedUser ? storedUser.email : null,
-    direccion: storedUser ? storedUser.direccion : null,
     celular: storedUser ? storedUser.celular : null,
+    direccion: storedUser ? storedUser.direccion : null,
+    ciudad: storedUser ? storedUser.ciudad : null,
+    //fecha reporte
+    //número de heridos en el caspo que sea agrevado
+    //como ocurrió listo
+    //información testigos, Jalar de los inputs
+    rol: storedUser ? storedUser.rol : null,
     fechaNacimiento: storedUser ? storedUser.fechaNacimiento : null,
     fechaVencimientoLicencia: storedUser
       ? storedUser.fechaVencimientoLicencia
