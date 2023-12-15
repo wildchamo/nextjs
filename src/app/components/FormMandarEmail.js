@@ -23,7 +23,11 @@ function FormMandarEmail() {
   const [missingImage, setMissingImage] = useState(false);
 
   const [images, setImages] = useState([null, null, null, null]);
-  const inputRefs = Array.from({ length: 4 }, () => useRef());
+  const imgR1 = useRef()
+  const imgR2 = useRef()
+  const imgR3 = useRef()
+  const imgR4 = useRef()
+  const inputRefs = [imgR1, imgR2, imgR3, imgR4];
 
   const [dataVaraible, setDataVariable] = useState({
     comoOcurrio: "",

@@ -32,10 +32,10 @@ const MenuSuperior = () => {
 
       <Link href="/home">
         <Image
-          className=""
+          className="w-auto h-auto"
           src={logo}
           width={80}
-          height="auto"
+          height={80}
           alt="logoMayaluna"
         />
       </Link>
