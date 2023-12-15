@@ -20,6 +20,7 @@ function FormMandarEmail() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [missingImage, setMissingImage] = useState(false);
 
   const [images, setImages] = useState([null, null, null, null]);
   const inputRefs = Array.from({ length: 4 }, () => useRef());
@@ -242,21 +243,14 @@ function FormMandarEmail() {
   }
 
   const handleSubmit = async (e) => {
-    setIsLoading(true);
     e.preventDefault();
+    const isAnyImageNull = images.some((image) => image === null);
 
-    generatePDF().catch((error) => console.error(error));
-
-    try {
-      // const res = await axios.post("/api/email", formData);
-      const res = await axios.post("/api/email2", formData2);
-      setId(res.data.id);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-      setIsOpen(true);
+    if (isAnyImageNull) {
+      return setMissingImage(true);
     }
+    setIsLoading(true);
+    generatePDF().catch((error) => console.error(error));
   };
 
   const handleLoadImage = (index) => {
@@ -378,6 +372,9 @@ function FormMandarEmail() {
 
       {isOpen && <ModalTipo id={123123123} onClose={() => setIsOpen(false)} />}
       {isLoading && <ModalLoading />}
+      {missingImage && (
+        <ModalMissingImage onClose={() => setMissingImage(false)} />
+      )}
     </>
   );
 }
@@ -414,6 +411,25 @@ function ModalLoading() {
     <Modal>
       <h3 className="text-md text-left font-bold mb-4">Cargando</h3>A tu correo
       electronico llegara un mensaje con el reporte de tu caso.
+    </Modal>
+  );
+}
+
+function ModalMissingImage({ onClose }) {
+  return (
+    <Modal>
+      <h3 className="text-md text-left font-bold mb-4">
+        Es necesario que adjuntes todas las imagenes correspodientes
+      </h3>
+
+      <div className="flex justify-end">
+        <button
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
+          onClick={onClose}
+        >
+          Aceptar
+        </button>
+      </div>
     </Modal>
   );
 }
