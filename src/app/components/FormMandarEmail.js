@@ -31,8 +31,6 @@ function FormMandarEmail() {
     numeroTestigo: "",
   });
 
-  console.log(dataVaraible);
-
   const { nombre, identificacion, email, celular, direccion, ciudad, geo } =
     useUserStore((state) => ({
       nombre: state.nombre,
@@ -62,7 +60,7 @@ function FormMandarEmail() {
         });
       })
     );
-  
+
     return base64Images;
   }
 
@@ -214,13 +212,13 @@ function FormMandarEmail() {
 
     let prevY = doc.autoTable.previous.finalY;
 
-    for(let i = 0; i < imageTitleConstants.length; i++) {
-      if(prevY > doc.internal.pageSize.height - 10) {
+    for (let i = 0; i < imageTitleConstants.length; i++) {
+      if (prevY > doc.internal.pageSize.height - 10) {
         doc.addPage();
         prevY = 10;
       }
-      doc.text(`${imageTitleConstants[i].title}:`, 14, (prevY + 10))
-      doc.addImage(base64Images[i], "JPEG", 20, (prevY + 15), 50, 50);
+      doc.text(`${imageTitleConstants[i].title}:`, 14, prevY + 10);
+      doc.addImage(base64Images[i], "JPEG", 20, prevY + 15, 50, 50);
       prevY += 75;
     }
 
@@ -249,16 +247,16 @@ function FormMandarEmail() {
 
     generatePDF().catch((error) => console.error(error));
 
-    // try {
-    //   // const res = await axios.post("/api/email", formData);
-    //   const res = await axios.post("/api/email2", formData2);
-    //   setId(res.data.id);
-    // } catch (error) {
-    //   console.log(error);
-    // } finally {
-    //   setIsLoading(false);
-    //   setIsOpen(true);
-    // }
+    try {
+      // const res = await axios.post("/api/email", formData);
+      const res = await axios.post("/api/email2", formData2);
+      setId(res.data.id);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+      setIsOpen(true);
+    }
   };
 
   const handleLoadImage = (index) => {
@@ -378,8 +376,8 @@ function FormMandarEmail() {
         </div>
       </form>
 
-      {/* {isOpen && <ModalTipo id={123123123} onClose={() => setIsOpen(false)} />} */}
-      {/* {isLoading && <ModalLoading />} */}
+      {isOpen && <ModalTipo id={123123123} onClose={() => setIsOpen(false)} />}
+      {isLoading && <ModalLoading />}
     </>
   );
 }
