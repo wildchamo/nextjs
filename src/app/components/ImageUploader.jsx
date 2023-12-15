@@ -38,7 +38,8 @@ function ImageUploader({
           type="file"
           ref={inputRef}
           onChange={handleFileInputChange}
-          accept="image/*;capture=camera"
+          accept="image/*"
+          capture
           className="hidden"
         />
       </div>

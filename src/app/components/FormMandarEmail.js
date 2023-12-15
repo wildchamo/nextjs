@@ -27,7 +27,7 @@ function FormMandarEmail() {
 
   const [dataVaraible, setDataVariable] = useState({
     comoOcurrio: "",
-    numeroHeridos: 0,
+    numeroHeridos: 1,
     nombreTestigo: "",
     numeroTestigo: "",
   });
@@ -302,6 +302,7 @@ function FormMandarEmail() {
                   type="number"
                   name="numeroHeridos"
                   onChange={handleInputChange}
+                  min={1}
                   value={dataVaraible.numeroHeridos}
                   className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   placeholder="Cantidad de heridos"
@@ -332,7 +333,7 @@ function FormMandarEmail() {
             Número de contacto (opcional)
           </label>
           <input
-            type="number"
+            type="tel"
             name="numeroTestigo"
             value={dataVaraible.numeroTestigo}
             onChange={handleInputChange}

@@ -47,6 +47,7 @@ function FormModificarUser() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [errorOnInput, setErrorOnInput] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -69,7 +70,6 @@ function FormModificarUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     const formData = new FormData(formRef.current);
 
@@ -81,6 +81,22 @@ function FormModificarUser() {
     const fechaNacimiento = formData.get("fechaNacimiento");
     const direccion = formData.get("direccion");
     const email = formData.get("email");
+
+    if (
+      !nombre ||
+      !identificacion ||
+      !ciudad ||
+      !celular ||
+      !vencimientoLicencia ||
+      !fechaNacimiento ||
+      !direccion ||
+      !email
+    ) {
+      setErrorOnInput(true);
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const res = await axios.post("/api/auth/modifyUserF", {
@@ -115,6 +131,9 @@ function FormModificarUser() {
 
   return (
     <>
+      {isModalOpen && <ModalReady />}
+      {errorOnInput && <ModalError onClose={() => setErrorOnInput(false)} />}
+
       <form ref={formRef} onSubmit={handleSubmit} className="pb-28">
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -136,7 +155,7 @@ function FormModificarUser() {
           <div>
             <label>Número de Identificación:</label>
             <input
-              type="text"
+              type="number"
               name="identificacion"
               value={userData.identificacion}
               onChange={(e) => {
@@ -166,7 +185,7 @@ function FormModificarUser() {
         <div>
           <label>Número de Celular:</label>
           <input
-            type="text"
+            type="tel"
             name="celular"
             value={userData.celular}
             onChange={(e) => {
@@ -262,7 +281,6 @@ function FormModificarUser() {
           </button>
         </div>
       </form>
-      {isModalOpen && <ModalReady />}
     </>
   );
 }
@@ -284,6 +302,24 @@ function ModalReady() {
         <button
           className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
           onClick={sendBack}
+        >
+          Aceptar
+        </button>
+      </div>
+    </Modal>
+  );
+}
+
+function ModalError({ onClose }) {
+  return (
+    <Modal>
+      <h3 className="text-md text-left font-bold mb-4">
+        Es necesario que llenes todos los campos
+      </h3>
+      <div className="text-right mt-5">
+        <button
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
+          onClick={onClose}
         >
           Aceptar
         </button>
