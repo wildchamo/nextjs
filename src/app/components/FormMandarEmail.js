@@ -1,13 +1,15 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import Image from "next/image";
-import imageLoader from "../../../public/imageLoader.png";
 import axios from "axios";
 import { useSearchParams, useRouter } from "next/navigation";
 import useUserStore from "../stores/userStore";
 import Modal from "./Modal";
+import ImageUploader from "./ImageUploader";
+import { reportDateFormat } from "../utils/todayDay";
+import { imageTitleConstants } from "../constants";
 
 import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 function FormMandarEmail() {
   const doc = new jsPDF();
@@ -16,19 +18,20 @@ function FormMandarEmail() {
   const tipo = searchParams.get("tipo");
   const router = useRouter();
 
-  const [dataVaraible, setDataVariable] = useState({
-    comoOcurrio: "",
-    numeroHeridos: 1,
-    nombreTestigo: "",
-    numeroTestigo: "",
-  });
-
-  console.log(dataVaraible)
-
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [images, setImages] = useState([null, null, null, null]);
+  const inputRefs = Array.from({ length: 4 }, () => useRef());
+
+  const [dataVaraible, setDataVariable] = useState({
+    comoOcurrio: "",
+    numeroHeridos: 0,
+    nombreTestigo: "",
+    numeroTestigo: "",
+  });
+
+  console.log(dataVaraible);
 
   const { nombre, identificacion, email, celular, direccion, ciudad, geo } =
     useUserStore((state) => ({
@@ -45,69 +48,207 @@ function FormMandarEmail() {
     if (!tipo) {
       router.push("/home");
     }
-  }),
-    [];
+  }, []);
+
+  async function convertImagesToBase64() {
+    const base64Images = await Promise.all(
+      images.map(async (image) => {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            resolve(e.target.result);
+          };
+          reader.readAsDataURL(image);
+        });
+      })
+    );
+  
+    return base64Images;
+  }
+
+  async function generatePDF() {
+    // Convert all images
+    const base64Images = await convertImagesToBase64();
+
+    // Table printing
+    doc.text("REPORTE DE ACCIDENTALIDAD", 14, 20);
+    doc.autoTable({
+      startY: 25,
+      head: [
+        [
+          {
+            content: "INFORMACIÓN DEL USUARIO",
+            colSpan: 6,
+            rowSpan: 1,
+            styles: {
+              halign: "center",
+              fillColor: "#fee600",
+              textColor: "#000000",
+            },
+          },
+        ],
+      ],
+      body: [
+        [
+          "Nombre",
+          "Número de Identificación",
+          "Correo Electrónico",
+          "Número de Contacto",
+          "Dirección de Residencia",
+          "Ciudad",
+        ],
+        [
+          `${nombre}`,
+          `${identificacion}`,
+          `${email}`,
+          `${celular}`,
+          `${direccion}`,
+          `${ciudad}`,
+        ],
+      ],
+    });
+
+    // Accident Information
+    doc.autoTable({
+      startY: doc.autoTable.previous.finalY + 5,
+      head: [
+        [
+          {
+            content: "INFORMACIÓN DEL ACCIDENTE",
+            colSpan: 4,
+            rowSpan: 1,
+            styles: {
+              halign: "center",
+              fillColor: "#fee600",
+              textColor: "#000000",
+            },
+          },
+        ],
+      ],
+      body: [
+        [
+          "Fecha de Reporte",
+          "Tipo de Accidente",
+          "Ubicación",
+          "Número de Heridos",
+        ],
+        [
+          `${reportDateFormat()}`,
+          `${tipo}`,
+          `${geo.latitude}, ${geo.longitude}`,
+          `${
+            dataVaraible.numeroHeridos !== 0
+              ? dataVaraible.numeroHeridos
+              : "N/A"
+          }`,
+        ],
+        [
+          {
+            content: "¿Cómo ocurrió el Accidente?",
+            colSpan: 4,
+            rowSpan: 1,
+            styles: {
+              halign: "center",
+              fillColor: "#cee6fe",
+              fontStyle: "bold",
+              textColor: "#000000",
+            },
+          },
+        ],
+        [
+          {
+            content: `${
+              dataVaraible.comoOcurrio ? dataVaraible.comoOcurrio : "N/A"
+            }`,
+            colSpan: 4,
+            rowSpan: 1,
+          },
+        ],
+      ],
+    });
+
+    // Witnesses Information
+    doc.autoTable({
+      startY: doc.autoTable.previous.finalY + 5,
+      head: [
+        [
+          {
+            content: "INFORMACIÓN DE LOS TESTIGOS",
+            colSpan: 2,
+            rowSpan: 1,
+            styles: {
+              halign: "center",
+              fillColor: "#fee600",
+              textColor: "#000000",
+            },
+          },
+        ],
+      ],
+      body: [
+        ["Nombre", "Número de Contacto"],
+        [
+          `${dataVaraible.nombreTestigo ? dataVaraible.nombreTestigo : "N/A"}`,
+          `${dataVaraible.numeroTestigo ? dataVaraible.numeroTestigo : "N/A"}`,
+        ],
+      ],
+    });
+
+    // Photos Information
+    doc.autoTable({
+      startY: doc.autoTable.previous.finalY + 5,
+      head: [
+        [
+          {
+            content: "FOTOS DEL ACCIDENTE",
+            colSpan: 2,
+            rowSpan: 1,
+            styles: {
+              halign: "center",
+              fillColor: "#fee600",
+              textColor: "#000000",
+            },
+          },
+        ],
+      ],
+    });
+
+    let prevY = doc.autoTable.previous.finalY;
+
+    for(let i = 0; i < imageTitleConstants.length; i++) {
+      if(prevY > doc.internal.pageSize.height - 10) {
+        doc.addPage();
+        prevY = 10;
+      }
+      doc.text(`${imageTitleConstants[i].title}:`, 14, (prevY + 10))
+      doc.addImage(base64Images[i], "JPEG", 20, (prevY + 15), 50, 50);
+      prevY += 75;
+    }
+
+    doc.save("reporte.pdf");
+
+    const blob = new Blob([doc.output("blob")], { type: "application/pdf" });
+
+    const formData = new FormData();
+    formData.append("pdf", blob);
+
+    // Envía el FormData al backend
+    try {
+      const res = await axios.post("/api/email2", formData);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+      setIsOpen(true);
+    }
+  }
 
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
 
-    async function generatePDF() {
-      const doc = new jsPDF();
-
-      // Itera sobre las imágenes y las agrega al PDF
-      for (let i = 0; i < 2; i++) {
-        await addImageToPDF(doc, images[i], i);
-      }
-
-      doc.text("Nombre: " + nombre, 10, 10);
-      doc.text("Tipo: " + tipo, 10, 20);
-      doc.text("Identificación: " + identificacion, 50, 30);
-      doc.text("Ciudad: " + ciudad, 10, 40);
-      doc.text("Geo: " + `${geo.latitude},${geo.longitude}`, 10, 50);
-      doc.text("Email: " + email, 10, 60);
-      doc.text("celular: " + celular, 10, 70);
-      doc.text("Dirección: " + direccion, 10, 80);
-
-      doc.save("reporte.pdf");
-
-      const blob = new Blob([doc.output("blob")], { type: "application/pdf" });
-
-      const formData = new FormData();
-      formData.append("pdf", blob);
-
-      // Envía el FormData al backend
-      try {
-        const res = await axios.post("/api/email2", formData);
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-        setIsOpen(true);
-      }
-    }
-
     generatePDF().catch((error) => console.error(error));
 
-    async function addImageToPDF(doc, file, index) {
-      const base64String = await convertImageToBase64(file);
-      doc.addImage(base64String, "JPEG", 10, 60 + index * 50, 100, 100);
-    }
-
-    function convertImageToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-          const base64String = reader.result
-            .replace("data:", "")
-            .replace(/^.+,/, "");
-          resolve(base64String);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
     // try {
     //   // const res = await axios.post("/api/email", formData);
     //   const res = await axios.post("/api/email2", formData2);
@@ -120,70 +261,21 @@ function FormMandarEmail() {
     // }
   };
 
-  const inputRef = useRef(null);
-
-  const handleLoadImage = () => {
-    inputRef.current.click();
+  const handleLoadImage = (index) => {
+    inputRefs[index].current.click();
   };
 
-  const handleImageChange = (e) => {
-    const newImages = [...images];
-    const file = e.target.files[0];
-    console.log(file);
-
-    newImages[0] = file;
-    setImages(newImages);
+  const handleImageChange = (file, index) => {
+    setImages((prevImages) => {
+      const newImages = [...prevImages];
+      newImages[index] = file;
+      return newImages;
+    });
   };
-
-  const inputRef1 = useRef(null);
-
-  const handleLoadImage1 = () => {
-    inputRef1.current.click();
-  };
-
-  const handleImageChange1 = (e) => {
-    const newImages = [...images];
-    const file = e.target.files[0];
-    console.log(file);
-
-    newImages[1] = file;
-    setImages(newImages);
-  };
-
-  const inputRef2 = useRef(null);
-
-  const handleLoadImage2 = () => {
-    inputRef2.current.click();
-  };
-
-  const handleImageChange2 = (e) => {
-    const newImages = [...images];
-    const file = e.target.files[0];
-    console.log(file);
-
-    newImages[2] = file;
-    setImages(newImages);
-  };
-
-  const inputRef3 = useRef(null);
-
-  const handleLoadImage3 = () => {
-    inputRef3.current.click();
-  };
-
-  const handleImageChange3 = (e) => {
-    const newImages = [...images];
-    const file = e.target.files[0];
-    console.log(file);
-
-    newImages[3] = file;
-    setImages(newImages);
-  };
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setDataVariable(prevState => ({ ...prevState, [name]: value }));
+    setDataVariable((prevState) => ({ ...prevState, [name]: value }));
   };
 
   return (
@@ -204,9 +296,8 @@ function FormMandarEmail() {
               name="comoOcurrio"
               value={dataVaraible.comoOcurrio}
               onChange={handleInputChange}
-
               className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder="Descipción detallada "
+              placeholder="Descipción detallada"
               required
             />
 
@@ -219,10 +310,9 @@ function FormMandarEmail() {
                   type="number"
                   name="numeroHeridos"
                   onChange={handleInputChange}
-
                   value={dataVaraible.numeroHeridos}
                   className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                  placeholder="1,2,3"
+                  placeholder="Cantidad de heridos"
                   required
                 />
               </>
@@ -242,10 +332,8 @@ function FormMandarEmail() {
             name="nombreTestigo"
             value={dataVaraible.nombreTestigo}
             onChange={handleInputChange}
-
-
             className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            placeholder="Descipción detallada "
+            placeholder="Nombre del testigo"
           />
 
           <label className="block tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -256,153 +344,28 @@ function FormMandarEmail() {
             name="numeroTestigo"
             value={dataVaraible.numeroTestigo}
             onChange={handleInputChange}
-
-
             className="appearance-none block w-full bg-white text-gray-700 border rounded-xl py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            placeholder="Descipción detallada "
+            placeholder="Numero de contacto del testigo"
           />
         </div>
 
-        <h2 className="pb-2 pt-4 font-semibold">Evidencias fotográficas:</h2>
-
+        <h2 className="pb-2 pt-4 font-semibold">Evidencias fotográficas</h2>
         <h3 className="pb-2 ">Adjunte 1 fotografía en cada sección.</h3>
 
         <div className="bg-primary p-6 rounded-2xl">
-          <div>
-            <h4>
-              Ángulos en donde se aprecie el accidente:{" "}
-              <span className="text-red-700">*</span>
-            </h4>
-            <div className="py-1" onClick={handleLoadImage}>
-              {images[0] ? (
-                <Image
-                  className="cursor-pointer"
-                  src={URL.createObjectURL(images[0])}
-                  width={60}
-                  height={54}
-                  alt="imagen accidente"
-                />
-              ) : (
-                <Image
-                  className="cursor-pointer"
-                  src={imageLoader}
-                  width={60}
-                  height={54}
-                  alt="logoMayaluna"
-                />
-              )}
-
-              <input
-                type="file"
-                ref={inputRef}
-                onChange={handleImageChange}
-                accept="image/*;capture=camera"
-                className="hidden"
-              />
-            </div>
-          </div>
-
-          <div className="pt-2">
-            <h4>
-              Fotos panorámicas en donde se aprecie el accidente:{" "}
-              <span className="text-red-700">*</span>
-            </h4>
-            <div className="py-1" onClick={handleLoadImage1}>
-              {images[1] ? (
-                <Image
-                  className="cursor-pointer"
-                  src={URL.createObjectURL(images[1])}
-                  width={60}
-                  height={54}
-                  alt="imagen accidente"
-                />
-              ) : (
-                <Image
-                  className="cursor-pointer"
-                  src={imageLoader}
-                  width={60}
-                  height={54}
-                  alt="logoMayaluna"
-                />
-              )}
-
-              <input
-                type="file"
-                ref={inputRef1}
-                onChange={handleImageChange1}
-                accept="image/*;capture=camera"
-                className="hidden"
-              />
-            </div>
-          </div>
-
-          <div className="pt-2">
-            <h4>
-              Fotos de señales de tránsito, marcas de frenadas, etc.:
-              <span className="text-red-700">*</span>
-            </h4>
-            <div className="py-1" onClick={handleLoadImage2}>
-              {images[2] ? (
-                <Image
-                  className="cursor-pointer"
-                  src={URL.createObjectURL(images[2])}
-                  width={60}
-                  height={54}
-                  alt="imagen accidente"
-                />
-              ) : (
-                <Image
-                  className="cursor-pointer"
-                  src={imageLoader}
-                  width={60}
-                  height={54}
-                  alt="logoMayaluna"
-                />
-              )}
-
-              <input
-                type="file"
-                ref={inputRef2}
-                onChange={handleImageChange2}
-                accept="image/*;capture=camera"
-                className="hidden"
-              />
-            </div>
-          </div>
-
-          <div className="pt-2">
-            <h4>
-              Fotos de señales de tránsito, marcas de frenadas, etc.:
-              <span className="text-red-700">*</span>
-            </h4>
-            <div className="py-1" onClick={handleLoadImage3}>
-              {images[3] ? (
-                <Image
-                  className="cursor-pointer"
-                  src={URL.createObjectURL(images[3])}
-                  width={60}
-                  height={54}
-                  alt="imagen accidente"
-                />
-              ) : (
-                <Image
-                  className="cursor-pointer"
-                  src={imageLoader}
-                  width={60}
-                  height={54}
-                  alt="logoMayaluna"
-                />
-              )}
-
-              <input
-                type="file"
-                ref={inputRef3}
-                onChange={handleImageChange3}
-                accept="image/*;capture=camera"
-                className="hidden"
-              />
-            </div>
-          </div>
+          {imageTitleConstants.map((item, index) => (
+            <ImageUploader
+              key={item.id}
+              index={index}
+              images={images}
+              headerTitle={item.title}
+              handleLoadImage={() => handleLoadImage(index)}
+              handleImageChange={(file, index) =>
+                handleImageChange(file, index)
+              }
+              inputRef={inputRefs[index]}
+            />
+          ))}
         </div>
 
         <div className="mt-4 text-end">

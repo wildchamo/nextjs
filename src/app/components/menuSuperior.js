@@ -35,7 +35,7 @@ const MenuSuperior = () => {
           className=""
           src={logo}
           width={80}
-          height={80}
+          height="auto"
           alt="logoMayaluna"
         />
       </Link>
