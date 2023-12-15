@@ -22,7 +22,7 @@ function FormMandarEmail() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [images, setImages] = useState([null, null, null, null]);
-  const inputRefs = Array.from({ length: 4 }, () => useRef());
+  const inputRefs = [useRef(), useRef(), useRef(), useRef()];
 
   const [dataVaraible, setDataVariable] = useState({
     comoOcurrio: "",

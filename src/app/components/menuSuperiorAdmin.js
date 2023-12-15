@@ -7,7 +7,7 @@ const MenuSuperiorAdmin = () => {
     <div className="flex justify-between">
       <Link href="/admin">Panel Administrador MayaLuna</Link>
       <Image
-        className=""
+        className="w-auto h-auto"
         src={logo}
         width={80}
         height={80}
