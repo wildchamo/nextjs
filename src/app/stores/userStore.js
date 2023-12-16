@@ -25,6 +25,8 @@ const useUserStore = create((set) => {
     isActive: storedUser ? storedUser.isActive : null,
     _id: storedUser ? storedUser._id : null,
     geo: null,
+    error: null,
+
     seguros: [
       {
         id: 123,
@@ -80,16 +82,22 @@ const useUserStore = create((set) => {
 
     updateGeo: () => {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          set({
-            geo: {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            },
-          });
-        });
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            set({
+              geo: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              },
+              error: null,
+            });
+          },
+          (error) => {
+            set({ error: "Geolocation permission denied" });
+          }
+        );
       } else {
-        console.log("Geolocation is not supported by this browser.");
+        set({ error: "Geolocation is not supported by this browser." });
       }
     },
     logout: () => {
