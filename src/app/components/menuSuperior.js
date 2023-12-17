@@ -14,8 +14,12 @@ const MenuSuperior = () => {
   const { nombre, error, updateGeo } = useUserStore((state) => state);
 
   useEffect(() => {
+    if (!nombre) {
+      router.push("/");
+    }
     updateGeo();
   }, []);
+
 
   const goBack = () => {
     router.back();

@@ -11,12 +11,8 @@ export default function MenuInferior() {
   const pathname = usePathname();
 
   const { logout } = useUserStore();
-  
-  const [isActiveArray, setIsActiveArray] = useState([true, false, false]);
 
-  const { nombre } = useUserStore((state) => ({
-    nombre: state.nombre,
-  }));
+  const [isActiveArray, setIsActiveArray] = useState([true, false, false]);
 
   const cerrarSesion = (e) => {
     e.preventDefault();
@@ -24,11 +20,7 @@ export default function MenuInferior() {
     router.push("/login");
   };
 
-  useEffect(() => {
-    if (!nombre) {
-      router.push("/");
-    }
-  }, []);
+  
 
   useEffect(() => {
     console.log(pathname);
