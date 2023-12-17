@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import useUserStore from "../stores/userStore";
+import useUserStore from "../../stores/userStore";
 import { useRouter } from "next/navigation";
 
 export default function LoginBar() {

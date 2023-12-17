@@ -2,11 +2,11 @@
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import useUserStore from "../stores/userStore";
-import Modal from "./Modal";
-import ImageUploader from "./ImageUploader";
-import { reportDateFormat } from "../utils/todayDay";
-import { imageTitleConstants } from "../constants";
+import useUserStore from "../../stores/userStore";
+import Modal from "../shared/Modal";
+import ImageUploader from "../ImageUploader";
+import { reportDateFormat } from "../../utils/todayDay";
+import { imageTitleConstants } from "../../constants";
 
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";

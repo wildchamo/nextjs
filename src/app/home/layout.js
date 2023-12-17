@@ -1,5 +1,5 @@
-import MenuInferior from "../components/menuInferior";
-import MenuSuperior from "../components/menuSuperior";
+import MenuInferior from "../components/shared/menuInferior";
+import MenuSuperior from "../components/shared/menuSuperior";
 
 export default function LayoutHome({ children }) {
   return (

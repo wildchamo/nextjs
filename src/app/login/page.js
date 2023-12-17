@@ -1,4 +1,4 @@
-import LoginBar from "../components/LoginBar";
+import LoginBar from "../components/login/LoginBar";
 import Image from "next/image";
 import logo from "../../../public/logomayaluna.jpg";
 

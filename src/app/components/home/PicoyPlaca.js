@@ -1,8 +1,8 @@
 "use client";
-import Modal from "./Modal";
+import Modal from "../shared/Modal";
 import ScrollerPicoyPlaca from "./scrollerPicoyPlaca";
-import { aplicaONo } from "../utils/todayDay";
-import useUserStore from "../stores/userStore";
+import { aplicaONo } from "../../utils/todayDay";
+import useUserStore from "../../stores/userStore";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 

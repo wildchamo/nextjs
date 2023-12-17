@@ -2,7 +2,7 @@
 import Link from "next/link";
 import logo from "../../../public/logomayaluna.jpg";
 import Image from "next/image";
-import useUserStore from "../stores/userStore";
+import useUserStore from "../../stores/userStore";
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import Modal from "./Modal";

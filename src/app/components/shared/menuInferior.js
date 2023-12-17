@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import NavAction from "./navAction";
+import NavAction from "../navAction";
 import call from "../../../public/call.png";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import useUserStore from "../stores/userStore";
+import useUserStore from "../../stores/userStore";
 
 export default function MenuInferior() {
   const router = useRouter();

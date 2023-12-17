@@ -4,7 +4,7 @@ import useUserStore from "../stores/userStore";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Modal from "./Modal";
+import Modal from "./shared/Modal";
 
 function FormModificarUser() {
   const {

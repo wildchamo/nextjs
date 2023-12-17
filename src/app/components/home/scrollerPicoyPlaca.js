@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getDiaHoy, getPicoyPlaca } from "../utils/todayDay";
+import { getDiaHoy, getPicoyPlaca } from "../../utils/todayDay";
 
 export default function ScrollerPicoyPlaca({ ciudad }) {
   const [ciudadScroller, setCiudadScroller] = useState(ciudad);

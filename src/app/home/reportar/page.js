@@ -1,4 +1,4 @@
-import FormMandarEmail from "../../components/FormMandarEmail";
+import FormMandarEmail from "../../components/reportar/FormMandarEmail";
 
 const ReportarCaso = (props) => {
   return (

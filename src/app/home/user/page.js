@@ -1,4 +1,4 @@
-import FormModificarUser from "@/app/components/FormModificarUser";
+import FormModificarUser from "@/app/components/user/FormModificarUser";
 
 const UserPage = () => {
   return (
