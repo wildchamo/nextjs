@@ -1,9 +1,6 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-
 import Link from "next/link";
-import Image from "next/image";
-import logo from "../../../public/logomayaluna.jpg";
 import useUserStore from "../stores/userStore";
 import { useRouter } from "next/navigation";
 
@@ -51,18 +48,6 @@ export default function LoginBar() {
 
   return (
     <main className="">
-      <Image
-        className="mx-auto mb-14 mt-6 w-auto h-auto"
-        src={logo}
-        width={150}
-        height={150}
-        alt="logoMayaluna"
-      />
-
-      <h3 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        ¡Bienvenido de Nuevo!
-      </h3>
-
       <div className="mt-10	justify-center sm:mx-auto sm:w-full sm:max-w-sm">
         <form
           className="space-y-6 flex flex-col items-center"

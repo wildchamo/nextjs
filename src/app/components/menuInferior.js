@@ -11,6 +11,7 @@ export default function MenuInferior() {
   const pathname = usePathname();
 
   const { logout } = useUserStore();
+  
   const [isActiveArray, setIsActiveArray] = useState([true, false, false]);
 
   const { nombre } = useUserStore((state) => ({
