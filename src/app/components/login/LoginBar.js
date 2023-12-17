@@ -128,9 +128,9 @@ export default function LoginBar() {
             {error && <span className=" text-sm text-red-500"> {error}</span>}
             <br />
             ¿Olvidaste tu contraseña?{" "}
-            <a href="#" className="font-semibold leading-6 text-secondary">
+            <Link href="/forgotpass" className="font-semibold leading-6 text-secondary">
               Reestablecela aquí
-            </a>
+            </Link>
           </p>
         </form>
       </div>

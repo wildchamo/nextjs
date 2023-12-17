@@ -6,7 +6,7 @@ import useUserStore from "../../stores/userStore";
 import Modal from "../shared/Modal";
 import ImageUploader from "./ImageUploader";
 import { reportDateFormat } from "../../utils/todayDay";
-import { imageTitleConstants } from "../../constants";
+import { imageTitleConstants } from "./constants";
 
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
