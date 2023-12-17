@@ -1,7 +1,6 @@
-import React from "react";
 import SectionWrapper from "./hoc/SectionWrapper";
 import { servicesInfo } from "./constants";
-import Accordion from "../ui/Accordion";
+import Accordion from "./ui/Accordion";
 
 const Services = () => {
   return (

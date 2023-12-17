@@ -1,7 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import { navLinks } from "./constants";
-import { Divide as Hamburger } from "hamburger-react";
 
 const Navbar = () => {
   const [active, setActive] = useState("Inicio");

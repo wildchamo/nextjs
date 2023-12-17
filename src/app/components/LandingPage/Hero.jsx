@@ -1,5 +1,3 @@
-import React from "react";
-
 const Hero = () => {
   return (
     <section className="mt-[5rem] overflow-hidden relative w-full h-[50vh] md:h-screen mx-auto">

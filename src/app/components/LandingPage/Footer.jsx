@@ -1,5 +1,3 @@
-import React from "react";
-
 const Footer = () => {
   return (
     <footer className="bg-header">
@@ -87,8 +85,6 @@ const Footer = () => {
                   </svg>
                 </a>
               </li>
-
-              
             </ul>
           </div>
 
@@ -175,7 +171,10 @@ const Footer = () => {
               <p className="font-medium text-background">Portafolio</p>
 
               <ul className="mt-6 space-y-4 text-sm">
-                <img src="https://mayalunaseguros.com/wp-content/uploads/2021/06/Portafolio-de-servicios-maya-luna-1.png" alt="portfolio_image" />
+                <img
+                  src="https://mayalunaseguros.com/wp-content/uploads/2021/06/Portafolio-de-servicios-maya-luna-1.png"
+                  alt="portfolio_image"
+                />
               </ul>
             </div>
 
@@ -184,37 +183,24 @@ const Footer = () => {
 
               <ul className="mt-6 space-y-4 text-sm list-disc text-background pl-8">
                 <li>
-                  <span
-                    className="text-background"
-                  >
+                  <span className="text-background">
                     Cali – Valle del Cauca
                   </span>
                 </li>
 
                 <li>
-                  <span
-                    className="text-background"
-                  >
+                  <span className="text-background">
                     Av. Las Américas No. 23BN – 81 Oficina 217 Edificio España
                   </span>
                 </li>
 
                 <li>
-                  <span
-                    className="text-background"
-                  >
-                    324 4924827
-                  </span>
+                  <span className="text-background">324 4924827</span>
                 </li>
 
                 <li>
-                  <span
-                    className="text-background"
-                  >
-                    (2) 399 02 42
-                  </span>
+                  <span className="text-background">(2) 399 02 42</span>
                 </li>
-                
               </ul>
             </div>
           </div>

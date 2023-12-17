@@ -1,4 +1,3 @@
-import React from "react";
 import { cardInfo } from "./constants";
 
 const AboutCard = () => {
