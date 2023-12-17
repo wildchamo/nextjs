@@ -5,11 +5,7 @@ const Footer = () => {
         <div className="gap-8 grid lg:grid-cols-3">
           <div className="flex flex-col justify-center items-center mb-5 sm:mb-0 md:justify-normal md:items-baseline">
             <div className="text-background flex flex-row items-center">
-              <img
-                className="h-20"
-                src="https://mayalunaseguros.com/wp-content/uploads/2021/05/logoBlanco-2048x627.png"
-                alt="logo"
-              />
+              <img className="h-20" src="/logomayaluna.jpg" alt="logo" />
             </div>
 
             <p className="mt-4 max-w-xs text-background lg:w-[70%]">

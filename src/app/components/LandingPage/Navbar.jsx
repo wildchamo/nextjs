@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { navLinks } from "./constants";
 
@@ -25,11 +25,7 @@ const Navbar = () => {
               window.scrollTo(0, 0);
             }}
           >
-            <img
-              className="h-16"
-              src="https://mayalunaseguros.com/wp-content/uploads/elementor/thumbs/logo_maya_luna-p8dz8u7prx0b8aksycksr5bgaechi9cfd255srddds.jpg"
-              alt="mayaluna_logo"
-            />
+            <img className="h-16" src="/logomayaluna.jpg" alt="mayaluna_logo" />
           </a>
           <div className="hidden md:flex flex-row space-x-4">
             <ul className="flex flex-row lg:space-x-10 tracking-wide text-lg lg:mr-14">

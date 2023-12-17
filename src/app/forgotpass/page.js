@@ -1,6 +1,5 @@
 import { ForgotPasswordForm } from "../components/forgotPassword";
 import Image from "next/image";
-import logo from "../../../public/logomayaluna.jpg";
 import Link from "next/link";
 
 export default function ForgotPasswordPage() {
@@ -9,7 +8,7 @@ export default function ForgotPasswordPage() {
       <Link href="/login">
         <Image
           className="mx-auto mb-14 mt-6"
-          src={logo}
+          src="/logomayaluna.jpg"
           width={150}
           height={150}
           alt="logoMayaluna"

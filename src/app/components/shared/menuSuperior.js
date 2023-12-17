@@ -1,7 +1,5 @@
 "use client";
 import Link from "next/link";
-// import logo from "../../../../public/logomayaluna.png";
-import logo from "../../../../public/logomayaluna.jpg";
 import Image from "next/image";
 import useUserStore from "../../stores/userStore";
 import { useEffect } from "react";
@@ -39,7 +37,7 @@ const MenuSuperior = () => {
         <Link href="/home">
           <Image
             className="w-auto h-auto"
-            src={logo}
+            src="/logomayaluna.jpg"
             width={80}
             height={80}
             alt="logoMayaluna"
