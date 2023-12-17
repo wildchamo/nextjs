@@ -1,10 +1,9 @@
 import FormMandarEmail from "../../components/FormMandarEmail";
 
-
-const ReportarCaso = () => {
+const ReportarCaso = (props) => {
   return (
     <section className="pb-28">
-      <FormMandarEmail />
+      <FormMandarEmail params={props.searchParams} />
     </section>
   );
 };

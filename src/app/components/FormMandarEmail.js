@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useUserStore from "../stores/userStore";
 import Modal from "./Modal";
 import ImageUploader from "./ImageUploader";
@@ -11,11 +11,11 @@ import { imageTitleConstants } from "../constants";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 
-function FormMandarEmail() {
+function FormMandarEmail({ params }) {
   const doc = new jsPDF();
 
-  const searchParams = useSearchParams();
-  const tipo = searchParams.get("tipo");
+  const tipo = params.tipo;
+
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +23,10 @@ function FormMandarEmail() {
   const [missingImage, setMissingImage] = useState(false);
 
   const [images, setImages] = useState([null, null, null, null]);
-  const imgR1 = useRef()
-  const imgR2 = useRef()
-  const imgR3 = useRef()
-  const imgR4 = useRef()
+  const imgR1 = useRef();
+  const imgR2 = useRef();
+  const imgR3 = useRef();
+  const imgR4 = useRef();
   const inputRefs = [imgR1, imgR2, imgR3, imgR4];
 
   const [dataVaraible, setDataVariable] = useState({
