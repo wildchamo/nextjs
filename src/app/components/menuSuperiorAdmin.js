@@ -1,5 +1,5 @@
 import Link from "next/link";
-import logo from "../../../public/logomayaluna.jpg";
+import logo from "../../../../public/logomayaluna.png";
 import Image from "next/image";
 
 const MenuSuperiorAdmin = () => {

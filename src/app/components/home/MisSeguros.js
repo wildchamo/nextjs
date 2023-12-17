@@ -1,8 +1,9 @@
 "use client";
 import ActionSection from "./ActionSection";
-import todoriesgo from "../../../public/todoriesgo.png";
-import exequias from "../../../public/exequias.png";
-import soat from "../../../public/soat.png";
+import todoriesgo from "../../../../public/todoriesgo.png";
+
+import exequias from "../../../../public/exequias.png";
+import soat from "../../../../public/soat.png";
 import { useRouter } from "next/navigation";
 
 export default function MisSeguros() {

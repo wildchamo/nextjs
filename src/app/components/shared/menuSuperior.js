@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import logo from "../../../public/logomayaluna.jpg";
+// import logo from "../../../../public/logomayaluna.png";
+import logo from "../../../../public/logomayaluna.jpg";
 import Image from "next/image";
 import useUserStore from "../../stores/userStore";
 import { useEffect } from "react";
@@ -14,12 +15,11 @@ const MenuSuperior = () => {
   const { nombre, error, updateGeo } = useUserStore((state) => state);
 
   useEffect(() => {
-    if (!nombre) {
-      router.push("/");
-    }
+    // if (!nombre) {
+    //   router.push("/");
+    // }
     updateGeo();
   }, []);
-
 
   const goBack = () => {
     router.back();

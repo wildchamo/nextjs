@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import imageLoader from "../../../public/imageLoader.png";
+import imageLoader from "../../../../public/imageLoader.png";
 
 function ImageUploader({
   index,

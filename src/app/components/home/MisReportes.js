@@ -3,7 +3,8 @@ import ActionSection from "./ActionSection";
 import { useState } from "react";
 import Modal from "../shared/Modal";
 import { useRouter } from "next/navigation";
-import generarReporte from "../../../public/generarReporte.png";
+// import generarReporte from "../../../public/generarReporte.png";
+import generarReporte from "../../../../public/generarReporte.png";
 
 export default function MisReportes() {
   const [showModal, setShowModal] = useState(false);

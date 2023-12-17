@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import useUserStore from "../../stores/userStore";
 import Modal from "../shared/Modal";
-import ImageUploader from "../ImageUploader";
+import ImageUploader from "./ImageUploader";
 import { reportDateFormat } from "../../utils/todayDay";
 import { imageTitleConstants } from "../../constants";
 
