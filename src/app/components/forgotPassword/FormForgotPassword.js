@@ -8,9 +8,10 @@ import ChangePassword from "./ChangePassword/ChangePassword";
 export const ForgotPasswordForm = () => {
   const [state, send] = useMachine(forgotPassowrdMachine);
 
+
   const renderContent = () => {
     if (state.matches("idSend")) return <IdSend send={send} />;
-    if (state.matches("idVerification")) return <IdVerificaction send={send} />;
+    if (state.matches("idVerification")) return <IdVerificaction send={send} context={state.context}/>;
     if (state.matches("changePassword")) return <ChangePassword send={send} />;
     return null;
   };

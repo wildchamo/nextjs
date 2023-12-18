@@ -1,16 +1,19 @@
-import { createMachine } from "xstate";
+import { createMachine, assign } from "xstate";
 
 export const forgotPassowrdMachine = createMachine({
   id: "forgotPass",
   initial: "idSend",
   context: {
-    idChangePass: 0,
+    idChangePass: null,
   },
   states: {
     idSend: {
       on: {
         START: {
           target: "idVerification",
+          actions: assign({
+            idChangePass: ({ event }) => event.idChangePass,
+          }),
         },
       },
     },
