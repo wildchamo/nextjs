@@ -11,6 +11,7 @@ const MenuSuperiorAdmin = () => {
         src={logo}
         width={80}
         height={80}
+        priority={true}
         alt="logoMayaluna"
       />
     </div>

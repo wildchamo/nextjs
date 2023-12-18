@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -7,9 +8,11 @@ const Footer = () => {
         <div className="gap-8 grid lg:grid-cols-3">
           <div className="flex flex-col justify-center items-center mb-5 sm:mb-0 md:justify-normal md:items-baseline">
             <div className="text-background flex flex-row items-center">
-              <img
-                className="h-20"
-                src="https://mayalunaseguros.com/wp-content/uploads/2021/05/logoBlanco-2048x627.png"
+              <Image
+                className="h-auto w-auto"
+                height={80}
+                width={200}
+                src="/logoBlanco.png"
                 alt="logo"
               />
             </div>
@@ -87,8 +90,6 @@ const Footer = () => {
                   </svg>
                 </a>
               </li>
-
-              
             </ul>
           </div>
 
@@ -175,7 +176,14 @@ const Footer = () => {
               <p className="font-medium text-background">Portafolio</p>
 
               <ul className="mt-6 space-y-4 text-sm">
-                <img src="https://mayalunaseguros.com/wp-content/uploads/2021/06/Portafolio-de-servicios-maya-luna-1.png" alt="portfolio_image" />
+                <Image
+                  className="h-auto w-auto"
+                  height={500}
+                  width={500}
+                  priority={true}
+                  src="/portafolio.png"
+                  alt="portfolio_image"
+                />
               </ul>
             </div>
 
@@ -184,37 +192,24 @@ const Footer = () => {
 
               <ul className="mt-6 space-y-4 text-sm list-disc text-background pl-8">
                 <li>
-                  <span
-                    className="text-background"
-                  >
+                  <span className="text-background">
                     Cali – Valle del Cauca
                   </span>
                 </li>
 
                 <li>
-                  <span
-                    className="text-background"
-                  >
+                  <span className="text-background">
                     Av. Las Américas No. 23BN – 81 Oficina 217 Edificio España
                   </span>
                 </li>
 
                 <li>
-                  <span
-                    className="text-background"
-                  >
-                    324 4924827
-                  </span>
+                  <span className="text-background">324 4924827</span>
                 </li>
 
                 <li>
-                  <span
-                    className="text-background"
-                  >
-                    (2) 399 02 42
-                  </span>
+                  <span className="text-background">(2) 399 02 42</span>
                 </li>
-                
               </ul>
             </div>
           </div>

@@ -50,12 +50,13 @@ export default function LoginBar() {
   };
 
   return (
-    <main className="">
+    <main>
       <Image
         className="mx-auto mb-14 mt-6 w-auto h-auto"
         src={logo}
         width={150}
         height={150}
+        priority={true}
         alt="logoMayaluna"
       />
 

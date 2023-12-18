@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { carouselImages } from "./constants";
 
 const CarouselSection = () => {
@@ -15,9 +16,11 @@ const CarouselSection = () => {
             desarrollado un programa de servicios y beneficios.
           </p>
           <div className="lg:my-10">
-            <img
-              className="lg:h-[300px] lg:w-full rounded-tl-xl rounded-tr-xl rounded-bl-xl rounded-br-[20%] object-cover"
-              src="https://mayalunaseguros.com/wp-content/uploads/2023/07/gente-negocios-dandose-mano-1024x683.jpg"
+            <Image
+              className="h-auto w-auto rounded-tl-xl rounded-tr-xl rounded-bl-xl rounded-br-[20%] object-cover"
+              height={300}
+              width={300}
+              src="/genteNegocios.jpg"
               alt="section_image"
             />
           </div>
@@ -76,9 +79,13 @@ const Carousel = () => {
           className="w-full flex transition-transform duration-00 ease-in-out transform p-5"
         >
           {carouselImages.map((image, index) => (
-            <img
+            <Image
               key={index}
-              className="h-24 sm:h-[12rem] rounded-lg mx-4"
+              className="h-auto w-auto sm:h-[12rem] rounded-lg mx-4"
+              height={96}
+              width={100}
+              quality={100}
+              priority={true}
               src={image}
               alt={`carousel-${index}`}
             />

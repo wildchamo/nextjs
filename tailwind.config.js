@@ -29,9 +29,9 @@ module.exports = {
       },
       backgroundImage: {
         "hero-background":
-          "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/familia2-asegurada-con-mayaluna-opt.jpg')",
+          "url('/familia2.jpg')",
         "section-background":
-          "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/fondo-verde-seguros-mayaluna-1.jpg')",
+          "url('/fondoVerde.jpg')",
       },
     },
   },

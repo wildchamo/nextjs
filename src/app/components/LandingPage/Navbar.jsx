@@ -1,7 +1,8 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import { navLinks } from "./constants";
-import { Divide as Hamburger } from "hamburger-react";
+import Image from "next/image";
+import logo from "../../../../public/logomayaluna.jpg";
 
 const Navbar = () => {
   const [active, setActive] = useState("Inicio");
@@ -26,10 +27,13 @@ const Navbar = () => {
               window.scrollTo(0, 0);
             }}
           >
-            <img
-              className="h-16"
-              src="https://mayalunaseguros.com/wp-content/uploads/elementor/thumbs/logo_maya_luna-p8dz8u7prx0b8aksycksr5bgaechi9cfd255srddds.jpg"
-              alt="mayaluna_logo"
+            <Image
+              className="h-14 w-36 sm:h-14 sm:w-auto"
+              src="/logomayaluna.jpg"
+              width={120}
+              height={130}
+              priority={true}
+              alt="logoMayaluna"
             />
           </a>
           <div className="hidden md:flex flex-row space-x-4">
