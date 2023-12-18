@@ -80,6 +80,19 @@ const useUserStore = create((set) => {
       }
     },
 
+    sendEmailForgotPass: async (email, code) => {
+      try {
+        const res = await axios.post("/api/auth/forgotpass", {
+          email: email,
+          code: code,
+        });
+
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+
     updateGeo: () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

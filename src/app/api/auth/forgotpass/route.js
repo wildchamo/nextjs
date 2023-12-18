@@ -8,11 +8,9 @@ const resend = new Resend(process.env.RESEND_URI);
 export async function POST(request) {
   try {
     await connectDB();
-    const { email } = await request.json();
-    const code= 123;
-    const user = await User.findOne({ email });
+    const { email, code } = await request.json();
 
-    console.log(user);
+    const user = await User.findOne({ email });
     if (!user)
       return NextResponse.json(
         {

@@ -138,3 +138,11 @@ export function reportDateFormat() {
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
+
+export function generateCode() {
+  const code = [...Array(4)]
+    .map(() => Math.floor(Math.random() * 10))
+    .join('');
+  return code;
+}
