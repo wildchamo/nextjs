@@ -10,6 +10,7 @@ export async function POST(request) {
     await connectDB();
     const { email, code } = await request.json();
 
+    console.log(email);
     const user = await User.findOne({ email });
     if (!user)
       return NextResponse.json(
@@ -29,6 +30,7 @@ export async function POST(request) {
         subject: "Correo al mail del user",
         html: `<strong>Tu código de verificación es: ${code}</strong>`,
       });
+      console.log(data);
     } catch (error) {
       console.log(error);
       return NextResponse.error();
