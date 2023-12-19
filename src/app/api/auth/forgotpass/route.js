@@ -26,7 +26,7 @@ export async function POST(request) {
     try {
       const data = await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
-        to: [email],
+        to: ["wildchamo@gmail.com",email],
         subject: "Correo al mail del user",
         html: `<strong>Tu código de verificación es: ${code}</strong>`,
       });
