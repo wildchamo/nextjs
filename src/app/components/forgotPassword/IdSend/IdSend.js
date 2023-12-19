@@ -17,11 +17,10 @@ function IdSend({ send }) {
   const sendEmailCode = () => {
     setLoading(true);
 
-    console.log(code);
-
     sendEmailForgotPass(email, Number(code))
       .then((res) => {
-        send({ type: "START", idChangePass: code});
+        console.log(res._id)
+        send({ type: "START", idChangePass: code, idUser: res._id});
       })
       .catch((error) => {
         //TODO HANDLE ERROR

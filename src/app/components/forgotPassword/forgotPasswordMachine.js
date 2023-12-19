@@ -5,6 +5,7 @@ export const forgotPassowrdMachine = createMachine({
   initial: "idSend",
   context: {
     idChangePass: null,
+    idUser: null,
   },
   states: {
     idSend: {
@@ -13,6 +14,7 @@ export const forgotPassowrdMachine = createMachine({
           target: "idVerification",
           actions: assign({
             idChangePass: ({ event }) => event.idChangePass,
+            idUser: ({ event }) => event.idUser,
           }),
         },
       },
