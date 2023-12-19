@@ -93,6 +93,20 @@ const useUserStore = create((set) => {
       }
     },
 
+    changePassword: async (newPassword, idUser, email) => {
+      try {
+        const res = await axios.post("/api/auth/updatepass", {
+          newPassword: newPassword,
+          idUser: idUser,
+          email: email,
+        });
+
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+
     updateGeo: () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

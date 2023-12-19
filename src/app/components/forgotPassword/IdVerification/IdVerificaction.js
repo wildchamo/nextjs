@@ -3,14 +3,19 @@ import { useState } from "react";
 function IdVerificaction({ send, context }) {
   const [verificationCode, setVerificationCode] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (event) => {
     setVerificationCode(event.target.value);
   };
 
   const handleSend = () => {
-    if (verificationCode !== context.idChangePass) return setError(true);
-    send({ type: "CONTINUE" });
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      if (verificationCode !== context.idChangePass) return setError(true);
+      send({ type: "CONTINUE" });
+    }, 1000);
   };
 
   return (
@@ -31,7 +36,26 @@ function IdVerificaction({ send, context }) {
           className="flex w-80 justify-center rounded-2xl bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           type="submit"
         >
-          Ingresar
+          {loading ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="animate-spin"
+            >
+              <path
+                fill="none"
+                stroke="#ffffff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 3a9 9 0 1 0 9 9"
+              />
+            </svg>
+          ) : (
+            "Ingresar"
+          )}
         </button>
       </div>
       {error ? <p>El código ingresado no es correcto</p> : null}
