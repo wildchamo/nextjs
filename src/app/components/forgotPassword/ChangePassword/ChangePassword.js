@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import useUserStore from "../../../stores/userStore";
 import Modal from "../../shared/Modal";
 
-function changePassword({ context }) {
+function ChangePassword({ context }) {
   const { changePassword } = useUserStore();
 
   const router = useRouter();
@@ -117,4 +117,4 @@ const ModalChangePassword = ({ onClose }) => {
   );
 };
 
-export default changePassword;
+export default ChangePassword;
