@@ -1,21 +1,27 @@
-export default function NavAction({ type, isActive, onButtonClick }) {
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export default function NavAction({ href, route }) {
+  const pathname = usePathname();
+
+  let isActive = pathname === href;
+
   return (
-    <>
-      <div
-        onClick={onButtonClick}
-        className={` "w-20 h-20 rounded-full flex items-center justify-center" ${
-          isActive ? "bg-tertiary" : ""
-        }`}
-      >
-        <Icon type={type} />
-      </div>
-    </>
+    <Link
+      href={href}
+      className={`w-16 h-16 rounded-full flex items-center justify-center ${
+        isActive ? "bg-tertiary" : ""
+      }`}
+    >
+      <Icon type={href} />
+    </Link>
   );
 }
 
 function Icon({ type }) {
   switch (type) {
-    case "home":
+    case "/home":
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +32,7 @@ function Icon({ type }) {
           <path fill="#ffffff" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8h5Z" />
         </svg>
       );
-    case "user":
+    case "/home/user":
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,24 +46,7 @@ function Icon({ type }) {
           />
         </svg>
       );
-    case "logout":
-      return (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          viewBox="0 0 24 24"
-        >
-          <g fill="#ffffff">
-            <path
-              fillRule="evenodd"
-              d="M16.125 12a.75.75 0 0 0-.75-.75H4.402l1.961-1.68a.75.75 0 1 0-.976-1.14l-3.5 3a.75.75 0 0 0 0 1.14l3.5 3a.75.75 0 1 0 .976-1.14l-1.96-1.68h10.972a.75.75 0 0 0 .75-.75Z"
-              clipRule="evenodd"
-            />
-            <path d="M9.375 8c0 .702 0 1.053.169 1.306a1 1 0 0 0 .275.275c.253.169.604.169 1.306.169h4.25a2.25 2.25 0 0 1 0 4.5h-4.25c-.702 0-1.053 0-1.306.168a1 1 0 0 0-.275.276c-.169.253-.169.604-.169 1.306c0 2.828 0 4.243.879 5.121c.878.879 2.292.879 5.12.879h1c2.83 0 4.243 0 5.122-.879c.879-.878.879-2.293.879-5.121V8c0-2.828 0-4.243-.879-5.121C20.617 2 19.203 2 16.375 2h-1c-2.829 0-4.243 0-5.121.879c-.879.878-.879 2.293-.879 5.121Z" />
-          </g>
-        </svg>
-      );
+
     default:
       return null;
   }
