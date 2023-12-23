@@ -47,6 +47,8 @@ function FormModificarUser() {
     _id: "",
   });
 
+  console.log(userData);
+
   const [loading, setLoading] = useState(false);
   const [errorOnInput, setErrorOnInput] = useState(false);
 
@@ -64,6 +66,7 @@ function FormModificarUser() {
       email,
       rol,
       _id,
+      isActive,
     });
   }, []);
 
@@ -82,6 +85,8 @@ function FormModificarUser() {
     const fechaNacimiento = formData.get("fechaNacimiento");
     const direccion = formData.get("direccion");
     const email = formData.get("email");
+    const isActive = formData.get("isActive") === "true";
+    const rol = formData.get("rol");
 
     if (
       !nombre ||
@@ -99,7 +104,7 @@ function FormModificarUser() {
     setLoading(true);
 
     try {
-      const res = await axios.post("/api/auth/modifyUserF", {
+      const res = await axios.post("/api/auth/modify-user-admin", {
         _id,
         nombre,
         identificacion,
@@ -109,18 +114,10 @@ function FormModificarUser() {
         fechaNacimiento,
         direccion,
         email,
+        isActive,
+        rol,
       });
       console.log(res);
-      updateUser({
-        nombre,
-        identificacion,
-        ciudad,
-        celular,
-        vencimientoLicencia,
-        fechaNacimiento,
-        direccion,
-        email,
-      });
     } catch (error) {
       console.log(error);
     } finally {
@@ -323,14 +320,13 @@ function ModalReady() {
   const router = useRouter();
 
   const sendBack = () => {
-    router.push("/home");
+    router.push("/admin");
   };
 
   return (
     <Modal>
       <h3 className="text-md text-left font-bold mb-4">
-        Has modificado tu usuario exitosamente! Gracias por confiar en seguros
-        Mayaluna
+        Has modificado este usuario exitosamente!
       </h3>
       <div className="text-right mt-5">
         <button
