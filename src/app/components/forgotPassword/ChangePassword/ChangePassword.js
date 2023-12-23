@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useUserStore from "../../../stores/userStore";
 import Modal from "../../shared/Modal";
@@ -111,7 +111,12 @@ const ModalChangePassword = ({ onClose }) => {
     <Modal>
       <h2 className="text-xl">Contraseña modificada con éxito!</h2>
       <div className="text-end">
-        <button className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" onClick={onClose}>Aceptar</button>
+        <button
+          className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+          onClick={onClose}
+        >
+          Aceptar
+        </button>
       </div>
     </Modal>
   );

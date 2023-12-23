@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function NavAction({ href, route }) {
+export default function NavAction({ href }) {
   const pathname = usePathname();
 
   let isActive = pathname === href;

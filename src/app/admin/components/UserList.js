@@ -1,20 +1,24 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import useAdminStore from "../stores/adminStore";
+import useAdminStore from "../../stores/adminStore";
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const router = useRouter();
 
-  const setAdminUser = useAdminStore((state) => state.setAdminUser);
+  const { setAdminUser } = useAdminStore((state) => state.setAdminUser);
+  const { setUsers, users } = useAdminStore((state) => ({
+    setUsers: state.setUsers,
+    users: state.users,
+  }));
 
   useEffect(() => {
     fetch("/api/getusers")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setUsers(data);
       });
   }, []);
@@ -58,7 +62,7 @@ const UserList = () => {
                   className="shadow bg-secondary px-1 py-1 focus:shadow-outline focus:outline-none text-white rounded"
                   onClick={() => {
                     setAdminUser(user);
-                    router.push("/admin/User");
+                    router.push("/admin/user");
                   }}
                 >
                   ????

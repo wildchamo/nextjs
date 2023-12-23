@@ -1,4 +1,4 @@
-import MenuSuperiorAdmin from "../components/menuSuperiorAdmin";
+import MenuSuperiorAdmin from "./components/MenuSuperiorAdmin";
 
 export default function LayoutAdmin({ children }) {
   return (

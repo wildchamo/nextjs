@@ -13,6 +13,10 @@ const useAdminStore = create((set) => {
     fechaVencimientoLicencia: null,
     isActive: null,
     _id: null,
+    users: [],
+    setUsers: (users) => {
+      set({ users });
+    },
     setAdminUser: (user) => {
       set(user);
     },

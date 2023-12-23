@@ -193,7 +193,7 @@ function FormCrearUser() {
           className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
           type="submit"
         >
-          Crear usuario
+          Modificar usuario
         </button>
       </div>
     </form>
