@@ -8,8 +8,8 @@ const UserList = () => {
 
   const router = useRouter();
 
-  const { setAdminUser } = useAdminStore((state) => state.setAdminUser);
-  const { setUsers, users } = useAdminStore((state) => ({
+  const { setAdminUser, setUsers, users } = useAdminStore((state) => ({
+    setAdminUser: state.setAdminUser,
     setUsers: state.setUsers,
     users: state.users,
   }));
@@ -39,7 +39,7 @@ const UserList = () => {
 
       <button
         className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-        onClick={() => router.push("/admin/crearUser")}
+        onClick={() => router.push("/admin/new-user")}
       >
         Crear un nuevo usuario
       </button>
