@@ -1,9 +1,13 @@
-
+import Link from "next/link";
 
 function SegurosList() {
   return (
-    <div>SegurosList</div>
-  )
+    <section>
+      <h2>Seguros</h2>
+
+      <Link href="user/seguro">Agregar seguro</Link>
+    </section>
+  );
 }
 
-export default SegurosList
+export default SegurosList;

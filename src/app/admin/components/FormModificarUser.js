@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Modal from "./Modal";
-import Link from "next/link";
+import SegurosList from "./SegurosList";
 
 function FormModificarUser() {
   const {
@@ -132,7 +132,8 @@ function FormModificarUser() {
       {isModalOpen && <ModalReady />}
       {errorOnInput && <ModalError onClose={() => setErrorOnInput(false)} />}
 
-      <form ref={formRef} onSubmit={handleSubmit} className="pb-28">
+      <form ref={formRef} onSubmit={handleSubmit} className="pb-6">
+        <h2>Información personal</h2>
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Nombre Completo:
@@ -195,7 +196,7 @@ function FormModificarUser() {
             />
           </div>
 
-          <div >
+          <div>
             <label>Está activo?</label>
             <div className="relative">
               <select
@@ -291,15 +292,6 @@ function FormModificarUser() {
           </div>
         </div>
 
-        <div className="flex mt-4">
-          <Link
-            href="user/seguros"
-            className="shadow w-60 bg-secondary flex justify-center items-center focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded"
-          >
-            Ver Seguros
-          </Link>
-        </div>
-
         <div className="flex justify-end mt-4">
           <button
             className="shadow w-60 bg-secondary flex justify-center items-center focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded"
@@ -328,6 +320,8 @@ function FormModificarUser() {
           </button>
         </div>
       </form>
+
+      <SegurosList />
     </>
   );
 }
