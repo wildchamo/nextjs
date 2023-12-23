@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Modal from "./Modal";
+import Link from "next/link";
 
 function FormModificarUser() {
   const {
@@ -179,18 +180,39 @@ function FormModificarUser() {
             </select>
           </div>
         </div>
-        <div>
-          <label>Número de Celular:</label>
-          <input
-            type="tel"
-            name="celular"
-            value={userData.celular}
-            onChange={(e) => {
-              setUserData({ ...userData, celular: e.target.value });
-            }}
-            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
-            placeholder="123456789"
-          />
+        <div className="flex w-full gap-4">
+          <div>
+            <label>Número de Celular:</label>
+            <input
+              type="tel"
+              name="celular"
+              value={userData.celular}
+              onChange={(e) => {
+                setUserData({ ...userData, celular: e.target.value });
+              }}
+              className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+              placeholder="123456789"
+            />
+          </div>
+
+          <div >
+            <label>Está activo?</label>
+            <div className="relative">
+              <select
+                required
+                className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                name="isActive"
+                value={userData.isActive}
+                onChange={(e) => {
+                  setUserData({ ...userData, isActive: e.target.value });
+                }}
+              >
+                <option>Seleccione</option>
+                <option value={true}>Si</option>
+                <option value={false}>No</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div>
           <div className="flex">
@@ -252,21 +274,6 @@ function FormModificarUser() {
 
         <div className="flex gap-10">
           <div>
-            <label>Está activo?</label>
-
-            <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              name="isActive"
-              value={userData.isActive}
-              onChange={(e) => {
-                setUserData({ ...userData, isActive: e.target.value });
-              }}
-            >
-              <option value={true}>Si</option>
-              <option value={false}>No</option>
-            </select>
-          </div>
-          <div>
             <label>Rol:</label>
             <div className="relative">
               <select
@@ -282,6 +289,15 @@ function FormModificarUser() {
               </select>
             </div>
           </div>
+        </div>
+
+        <div className="flex mt-4">
+          <Link
+            href="user/seguros"
+            className="shadow w-60 bg-secondary flex justify-center items-center focus:shadow-outline focus:outline-none text-white font-bold py-2 px-2 rounded"
+          >
+            Ver Seguros
+          </Link>
         </div>
 
         <div className="flex justify-end mt-4">

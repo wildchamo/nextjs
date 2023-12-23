@@ -65,7 +65,7 @@ const UserList = () => {
                     router.push("/admin/user");
                   }}
                 >
-                  ????
+                  Ver más
                 </button>
               </td>
             </tr>

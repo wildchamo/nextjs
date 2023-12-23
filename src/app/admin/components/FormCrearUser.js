@@ -81,13 +81,13 @@ function FormCrearUser() {
           </select>
         </div>
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full gap-1">
         <div>
           <label>Número de Celular:</label>
           <input
             type="text"
             name="celular"
-            className="appearance-none bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none max-w-64 bg-gray-200 text-gray-700  rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
           />
         </div>
@@ -100,12 +100,13 @@ function FormCrearUser() {
               className="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               name="isActive"
             >
-              <option>Seleccione</option>
-              <option value="true">Sí</option>
-              <option value="false">No</option>
+              <option>Selecccione</option>
+              <option value={true}>Sí</option>
+              <option value={false}>No</option>
             </select>
           </div>
         </div>
+
       </div>
       <div>
 
