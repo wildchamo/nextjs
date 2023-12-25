@@ -1,5 +1,5 @@
 import FormCrearUser from "../components/new-user/FormCrearUser";
-export default function Admin() {
+export default function NewUser() {
   return (
     <main>
       <FormCrearUser />
