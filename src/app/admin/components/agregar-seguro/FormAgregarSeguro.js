@@ -46,6 +46,7 @@ function FormAgregarSeguro() {
             Nombre de la póliza:
           </label>
           <input
+            required
             type="text"
             value={formData.nombrePoliza}
             onChange={(e) => {
@@ -61,6 +62,7 @@ function FormAgregarSeguro() {
           </label>
 
           <select
+            required
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             value={formData.tipoPoliza}
             onChange={(e) => {
@@ -78,6 +80,7 @@ function FormAgregarSeguro() {
           </label>
 
           <select
+            required
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             value={formData.companiaAseguradora}
             onChange={(e) => {
@@ -93,6 +96,7 @@ function FormAgregarSeguro() {
             Fecha de Vencimiento:{" "}
           </label>
           <input
+            required
             type="date"
             value={formData.fechaVencimiento}
             onChange={(e) => {
