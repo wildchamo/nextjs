@@ -1,11 +1,14 @@
 "use client";
 import { useRef, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+import Modal from "../shared/Modal";
 
 function FormCrearUser() {
   const formRef = useRef();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,16 +42,17 @@ function FormCrearUser() {
       });
 
       console.log(res);
-    } catch (error) {
-      console.log(error);
-    } finally {
       setIsModalOpen(true);
+    } catch (error) {
+      setError(true);
+      console.log(error);
     }
   };
 
   return (
     <>
       {isModalOpen && <ModalReady />}
+      {error && <ModalError closeModal={() => setError(false)} />}
       <form ref={formRef} onSubmit={handleSubmit}>
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -200,7 +204,7 @@ function ModalReady() {
   return (
     <Modal>
       <h3 className="text-md text-left font-bold mb-4">
-        Has modificado este usuario exitosamente!
+        Usuario creado correctamente
       </h3>
       <div className="text-right mt-5">
         <Link href="/admin">
@@ -208,6 +212,24 @@ function ModalReady() {
             Aceptar
           </button>
         </Link>
+      </div>
+    </Modal>
+  );
+}
+
+function ModalError({ closeModal }) {
+  return (
+    <Modal>
+      <h3 className="text-md text-left font-bold mb-4">
+        Ya existe un usuario con este número de idetificación
+      </h3>
+      <div className="text-right mt-5">
+        <button
+          onClick={closeModal}
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
+        >
+          Aceptar
+        </button>
       </div>
     </Modal>
   );
