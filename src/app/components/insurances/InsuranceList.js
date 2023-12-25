@@ -1,14 +1,17 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useUserStore from "../../stores/userStore";
 import { useRouter } from "next/navigation";
 
 const InsuranceList = () => {
-  const { seguros } = useUserStore((state) => state);
+  const { seguros, getSeguros, _id } = useUserStore((state) => state);
   const router = useRouter();
 
-  console.log(seguros);
+  useEffect(() => {
+    getSeguros(_id);
+  }),
+    [];
 
   const seeIndiviudalSeguro = (id) => {
     router.push(`/home/seguros/${id}`);
