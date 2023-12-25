@@ -1,4 +1,4 @@
-import FormAgregarSeguro from "../../components/FormAgregarSeguro";
+import FormAgregarSeguro from "../../components/agregar-seguro/FormAgregarSeguro";
 
 function AgregarSeguro() {
   return (

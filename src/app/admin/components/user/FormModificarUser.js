@@ -1,11 +1,10 @@
 "use client";
 import useAdminStore from "@/app/stores/adminStore";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import dynamic from "next/dynamic";
-import Modal from "./Modal";
-import SegurosList from "./SegurosList";
+import Modal from "../shared/Modal";
 
 function FormModificarUser() {
   const {
@@ -35,17 +34,17 @@ function FormModificarUser() {
   }));
 
   const [userData, setUserData] = useState({
-    nombre: "",
-    identificacion: "",
-    ciudad: "",
-    celular: "",
-    fechaVencimientoLicencia: "",
-    fechaNacimiento: "",
-    direccion: "",
-    email: "",
-    rol: "",
-    isActive: "",
-    _id: "",
+    nombre: nombre,
+    identificacion: identificacion,
+    ciudad: ciudad,
+    celular: celular,
+    fechaVencimientoLicencia: fechaVencimientoLicencia,
+    fechaNacimiento: fechaNacimiento,
+    direccion: direccion,
+    email: email,
+    rol: rol,
+    isActive: isActive,
+    _id: _id,
   });
 
   const [loading, setLoading] = useState(false);
@@ -53,46 +52,14 @@ function FormModificarUser() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    setUserData({
-      nombre,
-      identificacion,
-      ciudad,
-      celular,
-      fechaVencimientoLicencia,
-      fechaNacimiento,
-      direccion,
-      email,
-      rol,
-      _id,
-      isActive,
-    });
-  }, []);
-
-  const formRef = useRef();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData(formRef.current);
-
-    const nombre = formData.get("nombre");
-    const identificacion = formData.get("identificacion");
-    const ciudad = formData.get("ciudad");
-    const celular = formData.get("celular");
-    const vencimientoLicencia = formData.get("vencimientoLicencia");
-    const fechaNacimiento = formData.get("fechaNacimiento");
-    const direccion = formData.get("direccion");
-    const email = formData.get("email");
-    const isActive = formData.get("isActive") === "true";
-    const rol = formData.get("rol");
-
     if (
       !nombre ||
       !identificacion ||
       !ciudad ||
       !celular ||
-      !vencimientoLicencia ||
+      !fechaVencimientoLicencia ||
       !fechaNacimiento ||
       !direccion ||
       !email
@@ -113,8 +80,8 @@ function FormModificarUser() {
         fechaNacimiento,
         direccion,
         email,
-        isActive,
         rol,
+        isActive,
       });
       console.log(res);
     } catch (error) {
@@ -130,7 +97,7 @@ function FormModificarUser() {
       {isModalOpen && <ModalReady />}
       {errorOnInput && <ModalError onClose={() => setErrorOnInput(false)} />}
 
-      <form ref={formRef} onSubmit={handleSubmit} className="pb-6">
+      <form onSubmit={handleSubmit} className="">
         <h2 className="text-md uppercase">Información personal</h2>
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -245,17 +212,37 @@ function FormModificarUser() {
               />
             </div>
           </div>
-          <label>Dirección de Residencia:</label>
-          <input
-            type="text"
-            name="direccion"
-            value={userData.direccion}
-            onChange={(e) => {
-              setUserData({ ...userData, direccion: e.target.value });
-            }}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
-            placeholder="Calle 5 N° 38 - 25 "
-          />
+          <div className="flex gap-4">
+            <div>
+              <label>Dirección de Residencia:</label>
+              <input
+                type="text"
+                name="direccion"
+                value={userData.direccion}
+                onChange={(e) => {
+                  setUserData({ ...userData, direccion: e.target.value });
+                }}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
+                placeholder="Calle 5 N° 38 - 25 "
+              />
+            </div>
+            <div>
+              <label>Rol:</label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  name="rol"
+                  value={userData.rol}
+                  onChange={(e) => {
+                    setUserData({ ...userData, rol: e.target.value });
+                  }}
+                >
+                  <option value="Usuario">Usuario</option>
+                  <option value="Colectivo">Colectivo</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
         <div>
           <label>Correo Electrónico:</label>
@@ -269,25 +256,6 @@ function FormModificarUser() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="emaya@mayalunaseguros.com"
           />
-        </div>
-
-        <div className="flex gap-10">
-          <div>
-            <label>Rol:</label>
-            <div className="relative">
-              <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="rol"
-                value={userData.rol}
-                onChange={(e) => {
-                  setUserData({ ...userData, rol: e.target.value });
-                }}
-              >
-                <option value="Usuario">Usuario</option>
-                <option value="Colectivo">Colectivo</option>
-              </select>
-            </div>
-          </div>
         </div>
 
         <div className="flex justify-end mt-4">
@@ -318,31 +286,25 @@ function FormModificarUser() {
           </button>
         </div>
       </form>
-
-      <SegurosList />
     </>
   );
 }
 
 function ModalReady() {
-  const router = useRouter();
-
-  const sendBack = () => {
-    router.push("/admin");
-  };
-
   return (
     <Modal>
       <h3 className="text-md text-left font-bold mb-4">
         Has modificado este usuario exitosamente!
       </h3>
       <div className="text-right mt-5">
-        <button
-          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
-          onClick={sendBack}
-        >
-          Aceptar
-        </button>
+        <Link href="/admin">
+          <button
+            className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
+            onClick={sendBack}
+          >
+            Aceptar
+          </button>
+        </Link>
       </div>
     </Modal>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import useAdminStore from "../../stores/adminStore";
+import useAdminStore from "../../../stores/adminStore";
 
 const UserList = () => {
   const [searchTerm, setSearchTerm] = useState("");

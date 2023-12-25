@@ -1,4 +1,4 @@
-import FormCrearUser from "../components/FormCrearUser";
+import FormCrearUser from "../components/new-user/FormCrearUser";
 export default function Admin() {
   return (
     <main>

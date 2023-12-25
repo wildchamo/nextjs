@@ -1,4 +1,4 @@
-import UserList from "./components/UserList";
+import UserList from "./components/home/UserList";
 export default function Admin() {
   return (
     <main>
