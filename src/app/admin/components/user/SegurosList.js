@@ -1,25 +1,28 @@
 "use client";
 import Link from "next/link";
+import axios from "axios";
+import useAdminStore from "@/app/stores/adminStore";
 import { useEffect, useState } from "react";
 
 function SegurosList() {
   const [seguros, setSeguros] = useState([]);
+  const { _id } = useAdminStore((state) => ({
+    _id: state._id,
+  }));
 
   useEffect(() => {
-    setSeguros([
-      {
-        id: 123,
-        seguro: "Todo Riesgo",
-        vencimiento: "27 Abr 2025",
-      },
-      {
-        id: 456,
-        seguro: "Exequias",
-        vencimiento: "30 Ene 2024",
-      },
-    ]);
-  }, []);
+    const fetchSeguros = async () => {
+      try {
+        const response = await axios.post("/api/get-seguros", { idUser: _id });
+        console.log(response.data);
+        setSeguros(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
+    fetchSeguros();
+  }, []);
 
   return (
     <section className="py-5">
@@ -39,8 +42,14 @@ function SegurosList() {
                   key={seguro.id}
                   // onClick={() => seeIndiviudalSeguro(seguro.id)}
                 >
-                  <div>{seguro.seguro}</div>
-                  <div>{seguro.vencimiento}</div>
+                  <div>{seguro.tipoPoliza}</div>
+                  <div>
+                    {
+                      new Date(seguro.fechaVencimiento)
+                        .toISOString()
+                        .split("T")[0]
+                    }
+                  </div>
                   <div className="flex justify-center items-center">
                     <div className="flex justify-center items-center bg-secondary rounded-full h-5 w-5">
                       <svg
