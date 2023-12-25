@@ -25,11 +25,13 @@ const InsuranceList = () => {
         {seguros.map((seguro) => (
           <div
             className="grid grid-cols-[2fr,2fr,1fr] pt-3 text-left"
-            key={seguro.id}
-            onClick={() => seeIndiviudalSeguro(seguro.id)}
+            key={seguro._id}
+            onClick={() => seeIndiviudalSeguro(seguro._id)}
           >
-            <div>{seguro.seguro}</div>
-            <div>{seguro.vencimiento}</div>
+            <div>{seguro.tipoPoliza}</div>
+            <div>
+              {new Date(seguro.fechaVencimiento).toISOString().split("T")[0]}
+            </div>
             <div className="flex justify-center items-center">
               <div className="flex justify-center items-center bg-secondary rounded-full h-5 w-5">
                 <svg

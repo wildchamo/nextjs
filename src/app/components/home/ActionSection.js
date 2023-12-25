@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function ActionSection({ src, text, onClick }) {
   return (
     <div

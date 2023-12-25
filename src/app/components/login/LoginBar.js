@@ -5,7 +5,7 @@ import useUserStore from "../../stores/userStore";
 import { useRouter } from "next/navigation";
 
 export default function LoginBar() {
-  const { login, getSeguros } = useUserStore();
+  const { login } = useUserStore();
   const { nombre } = useUserStore((state) => ({
     nombre: state.nombre,
   }));
@@ -36,9 +36,6 @@ export default function LoginBar() {
         if (res != undefined) {
           router.push("/home");
         }
-        getSeguros(res._id).then((res) => {
-          console.log(res);
-        });
       })
       .catch((error) => {
         //TODO HANDLE ERROR
