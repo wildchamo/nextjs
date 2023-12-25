@@ -48,8 +48,6 @@ function FormModificarUser() {
     _id: "",
   });
 
-  console.log(userData);
-
   const [loading, setLoading] = useState(false);
   const [errorOnInput, setErrorOnInput] = useState(false);
 
@@ -133,7 +131,7 @@ function FormModificarUser() {
       {errorOnInput && <ModalError onClose={() => setErrorOnInput(false)} />}
 
       <form ref={formRef} onSubmit={handleSubmit} className="pb-6">
-        <h2>Información personal</h2>
+        <h2 className="text-md uppercase">Información personal</h2>
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Nombre Completo:

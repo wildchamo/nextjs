@@ -60,7 +60,7 @@ function ModalError() {
   return (
     <Modal>
       <h3 className="text-md text-left font-bold mb-4">
-        Es que actives la ubicación para poder continuar
+        Es necsario que actives la ubicación para poder continuar
       </h3>
       <p>
         Si has denegado el acceso a la ubicación, por favor ve a la
