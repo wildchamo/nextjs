@@ -27,18 +27,7 @@ const useUserStore = create((set) => {
     geo: null,
     error: null,
 
-    seguros: [
-      {
-        id: 123,
-        seguro: "Todo Riesgo",
-        vencimiento: "27 Abr 2025",
-      },
-      {
-        id: 456,
-        seguro: "Exequias",
-        vencimiento: "30 Ene 2024",
-      },
-    ],
+    seguros: [],
 
     updateUser: (userData) => {
       set((state) => {
@@ -74,6 +63,18 @@ const useUserStore = create((set) => {
         // );
         // set({ seguros: segurosRes.data });
 
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+
+    getSeguros: async (idUser) => {
+      try {
+        const res = await axios.post("/api/get-seguros", {
+          idUser: idUser,
+        });
+        set({ seguros: res.data });
         return res.data;
       } catch (error) {
         throw new Error(error.response.data.message);

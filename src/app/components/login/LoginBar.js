@@ -5,7 +5,7 @@ import useUserStore from "../../stores/userStore";
 import { useRouter } from "next/navigation";
 
 export default function LoginBar() {
-  const { login } = useUserStore();
+  const { login, getSeguros } = useUserStore();
   const { nombre } = useUserStore((state) => ({
     nombre: state.nombre,
   }));
@@ -36,6 +36,9 @@ export default function LoginBar() {
         if (res != undefined) {
           router.push("/home");
         }
+        getSeguros(res._id).then((res) => {
+          console.log(res);
+        });
       })
       .catch((error) => {
         //TODO HANDLE ERROR
@@ -128,7 +131,10 @@ export default function LoginBar() {
             {error && <span className=" text-sm text-red-500"> {error}</span>}
             <br />
             ¿Olvidaste tu contraseña?{" "}
-            <Link href="/forgotpass" className="font-semibold leading-6 text-secondary">
+            <Link
+              href="/forgotpass"
+              className="font-semibold leading-6 text-secondary"
+            >
               Reestablecela aquí
             </Link>
           </p>
