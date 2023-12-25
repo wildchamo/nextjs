@@ -84,7 +84,7 @@ function FormModificarUser() {
 
   return (
     <>
-      {/* {isModalOpen && <ModalReady />} */}
+      {isModalOpen && <ModalReady />}
       {errorOnInput && <ModalError onClose={() => setErrorOnInput(false)} />}
 
       <form onSubmit={handleSubmit} className="">
