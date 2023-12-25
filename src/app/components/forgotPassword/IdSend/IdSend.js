@@ -38,12 +38,12 @@ function IdSend({ send }) {
 
   return (
     <section className="mx-5">
-      <h3 className="text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
+      <h3 className="text-xl text-center font-bold mb-10 leading-9 tracking-tight text-gray-900">
         Ingresa el correo electronico registrado en tu cuenta{" "}
       </h3>
 
-      <div className="">
-        Correo de recuperación
+      <p className="text-left">Correo de recuperación</p>
+      <div className="flex flex-col	items-center">
         <input
           type="email"
           onChange={handleInputChange}
