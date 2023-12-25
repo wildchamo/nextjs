@@ -13,7 +13,7 @@ function PicoyPlaca() {
 
   return (
     <section>
-      <h2>PICO Y PLACA</h2>
+      <h2 className="mb-1">PICO Y PLACA</h2>
       <div className="flex flex-col justify-between bg-primary h-32 p-6 rounded-2xl text-sm">
         <p>
           {" "}
