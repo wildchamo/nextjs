@@ -38,7 +38,7 @@ function FormModificarUser() {
     identificacion: identificacion,
     ciudad: ciudad,
     celular: celular,
-    fechaVencimientoLicencia: fechaVencimientoLicencia,
+    vencimientoLicencia: fechaVencimientoLicencia,
     fechaNacimiento: fechaNacimiento,
     direccion: direccion,
     email: email,
@@ -69,20 +69,10 @@ function FormModificarUser() {
     }
     setLoading(true);
 
+    console.log(userData);
+
     try {
-      const res = await axios.post("/api/auth/modify-user-admin", {
-        _id,
-        nombre,
-        identificacion,
-        ciudad,
-        celular,
-        vencimientoLicencia,
-        fechaNacimiento,
-        direccion,
-        email,
-        rol,
-        isActive,
-      });
+      const res = await axios.post("/api/auth/modify-user-admin", userData);
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -94,7 +84,7 @@ function FormModificarUser() {
 
   return (
     <>
-      {isModalOpen && <ModalReady />}
+      {/* {isModalOpen && <ModalReady />} */}
       {errorOnInput && <ModalError onClose={() => setErrorOnInput(false)} />}
 
       <form onSubmit={handleSubmit} className="">
@@ -187,11 +177,11 @@ function FormModificarUser() {
               <input
                 type="date"
                 name="vencimientoLicencia"
-                value={userData.fechaVencimientoLicencia?.split("T")[0] || ""}
+                value={userData.vencimientoLicencia?.split("T")[0] || ""}
                 onChange={(e) => {
                   setUserData({
                     ...userData,
-                    fechaVencimientoLicencia: e.target.value,
+                    vencimientoLicencia: e.target.value,
                   });
                 }}
                 className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -298,10 +288,7 @@ function ModalReady() {
       </h3>
       <div className="text-right mt-5">
         <Link href="/admin">
-          <button
-            className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
-            onClick={sendBack}
-          >
+          <button className="bg-secondary w-24 text-white px-4 py-2 rounded-lg">
             Aceptar
           </button>
         </Link>

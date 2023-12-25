@@ -19,6 +19,8 @@ export async function POST(request) {
       rol,
     } = await request.json();
 
+    console.log(vencimientoLicencia,fechaNacimiento, direccion, email, isActive, rol)
+
 
     const updatedUser = await User.updateOne(
       { _id },
