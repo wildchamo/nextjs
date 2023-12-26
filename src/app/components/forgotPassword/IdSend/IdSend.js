@@ -19,7 +19,6 @@ function IdSend({ send }) {
 
     sendEmailForgotPass(email, Number(code))
       .then((res) => {
-        console.log(res._id);
         send({
           type: "START",
           idChangePass: code,

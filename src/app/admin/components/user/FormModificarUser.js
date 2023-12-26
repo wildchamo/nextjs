@@ -69,7 +69,6 @@ function FormModificarUser() {
     }
     setLoading(true);
 
-    console.log(userData);
 
     try {
       const res = await axios.post("/api/auth/modify-user-admin", userData);

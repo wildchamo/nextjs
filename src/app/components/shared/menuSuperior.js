@@ -53,7 +53,6 @@ function ModalError() {
   const { updateGeo } = useUserStore();
 
   useEffect(() => {
-    console.log("HOLAA");
     updateGeo();
   }, []);
 

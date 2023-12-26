@@ -26,7 +26,7 @@ export default function MisSeguros() {
       <h2 className="mb-1">MIS SEGUROS</h2>
 
       <div className="flex justify-between bg-primary p-6 rounded-2xl text-sm">
-        {seguros ? (
+        {seguros.length > 0 ? (
           <>
             {seguros.slice(0, 2).map((seguro) => (
               <InsuranceButton

@@ -10,7 +10,6 @@ export async function POST(request) {
     await connectDB();
     const { email, code } = await request.json();
 
-    console.log(email);
     const user = await User.findOne({ email });
     if (!user)
       return NextResponse.json(
