@@ -14,7 +14,7 @@ export default function MenuInferior() {
 
       <div className="circulo rounded-full flex flex-col items-center justify-center">
         <a
-          href="tel:123"
+          href="tel:#123"
           className="bg-yellowCall w-20 h-20 rounded-full flex items-center justify-center"
         >
           <Image
