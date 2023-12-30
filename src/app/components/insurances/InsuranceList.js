@@ -10,8 +10,7 @@ const InsuranceList = () => {
 
   useEffect(() => {
     getSeguros(_id);
-  }),
-    [];
+  }, [_id]);
 
   const seeIndiviudalSeguro = (id) => {
     router.push(`/home/seguros/${id}`);

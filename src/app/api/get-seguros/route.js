@@ -7,7 +7,6 @@ export async function POST(request) {
         await connectDB();
 
         const { idUser } = await request.json();
-        console.log(idUser);
         const insurances = await Insurance.find({ idUser });
 
         return NextResponse.json(insurances);
