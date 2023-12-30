@@ -1,7 +1,7 @@
 "use client";
 import useUserStore from "../../stores/userStore";
-import { useEffect } from "react";
-import axios from "axios";
+import dynamic from "next/dynamic";
+
 
 function FormModificarUser() {
   const {
@@ -14,8 +14,6 @@ function FormModificarUser() {
     direccion,
     email,
     rol,
-    _id,
-    updateUser,
   } = useUserStore((state) => ({
     nombre: state.nombre,
     identificacion: state.identificacion,
@@ -27,7 +25,6 @@ function FormModificarUser() {
     email: state.email,
     rol: state.rol,
     _id: state._id,
-    updateUser: state.updateUser,
   }));
 
   return (
@@ -40,6 +37,7 @@ function FormModificarUser() {
           <input
             type="text"
             name="nombre"
+            readOnly
             value={nombre}
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="Jose Luis "
@@ -52,6 +50,7 @@ function FormModificarUser() {
             <input
               type="number"
               name="identificacion"
+              readOnly
               value={identificacion}
               className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
               placeholder="123456789"
@@ -75,6 +74,7 @@ function FormModificarUser() {
           <input
             type="tel"
             name="celular"
+            readOnly
             value={celular}
             className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="123456789"
@@ -87,6 +87,7 @@ function FormModificarUser() {
               <input
                 type="date"
                 name="vencimientoLicencia"
+                readOnly
                 value={fechaVencimientoLicencia?.split("T")[0] || ""}
                 className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
                 placeholder="123456789"
@@ -97,6 +98,7 @@ function FormModificarUser() {
               <input
                 type="date"
                 name="fechaNacimiento"
+                readOnly
                 value={fechaNacimiento?.split("T")[0] || ""}
                 className="appearance-none bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
                 placeholder="123456789"
@@ -107,6 +109,7 @@ function FormModificarUser() {
           <input
             type="text"
             name="direccion"
+            readOnly
             value={direccion}
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="Calle 5 N° 38 - 25 "
@@ -117,6 +120,7 @@ function FormModificarUser() {
           <input
             type="email"
             name="email"
+            readOnly
             value={email}
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-2 mb-3 leading-tight focus:outline-none focus:bg-white"
             placeholder="emaya@mayalunaseguros.com"
@@ -132,4 +136,4 @@ function FormModificarUser() {
   );
 }
 
-export default FormModificarUser;
+export default dynamic(() => Promise.resolve(FormModificarUser), { ssr: false });
