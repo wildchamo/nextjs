@@ -60,8 +60,8 @@ const SeguroIndividual = ({ params }) => {
       <div className="bg-primary py-4 px-4 mt-4 rounded-2xl">
         <h2 className="font-bold pb-4 text-xl">Documentos</h2>
         <section className="grid grid-cols-2">
-          <p className="text-left">Documento</p>
-          <p className="text-right">{seguro.nombrePoliza}</p>
+          <p className="text-left">Poliza</p>
+          <a href={seguro?.documentos?.[0]} target="_blank" className="text-right underline">Visualizar</a>
         </section>{" "}
       </div>
     </>

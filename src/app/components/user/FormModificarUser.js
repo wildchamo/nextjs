@@ -2,7 +2,6 @@
 import useUserStore from "../../stores/userStore";
 import dynamic from "next/dynamic";
 
-
 function FormModificarUser() {
   const {
     nombre,
@@ -127,13 +126,33 @@ function FormModificarUser() {
           />
         </div>
 
-        <article>
-          Si deseas cambiar algún dato personal, por favor comunícate con la
-          administración
+        <hr />
+
+        <div className="py-4 px-4 mt-4  mb-4">
+          <h2 className="font-bold pb-4 text-xl">Documentos</h2>
+          <section className="grid grid-cols-2">
+            <p className="text-left">Licencia</p>
+            <a
+              // href={seguro.documentos[0]}
+              target="_blank"
+              className="text-right underline"
+            >
+              Visualizar
+            </a>
+          </section>{" "}
+        </div>
+
+        <hr />
+
+        <article className="bg-primary py-4 px-4 mt-4 rounded-2xl mb-4">
+          Si deseas cambiar algún dato personal o actualizar un documento, por
+          favor comunícate con la administración
         </article>
       </section>
     </>
   );
 }
 
-export default dynamic(() => Promise.resolve(FormModificarUser), { ssr: false });
+export default dynamic(() => Promise.resolve(FormModificarUser), {
+  ssr: false,
+});
