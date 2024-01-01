@@ -24,6 +24,7 @@ const SeguroIndividual = ({ params }) => {
     }
   }, [seguros, params.id]);
 
+  console.log(seguro);
   return (
     <>
       <div className="bg-primary py-4 px-4 rounded-2xl">
@@ -61,7 +62,36 @@ const SeguroIndividual = ({ params }) => {
         <h2 className="font-bold pb-4 text-xl">Documentos</h2>
         <section className="grid grid-cols-2">
           <p className="text-left">Poliza</p>
-          <a href={seguro?.documentos?.[0]} target="_blank" className="text-right underline">Visualizar</a>
+          <a
+            href={seguro?.documentos?.[0]}
+            target="_blank"
+            className="text-right underline"
+          >
+            Visualizar
+          </a>{" "}
+          {seguro.tipoPoliza === "Autos Livianos" ||
+          seguro.tipoPoliza === "Autos Pesados" ? (
+            <>
+              <p className="text-left">Licencia transito</p>
+              <a
+                href={seguro?.documentos?.[1]}
+                target="_blank"
+                className="text-right underline"
+              >
+                Visualizar
+              </a>
+              <p className="text-left">Extintor</p>
+              <a
+                href={seguro?.documentos?.[2]}
+                target="_blank"
+                className="text-right underline"
+              >
+                Visualizar
+              </a>
+            </>
+          ) : (
+            ""
+          )}
         </section>{" "}
       </div>
     </>

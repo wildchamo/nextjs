@@ -12,6 +12,7 @@ function FormModificarUser() {
     fechaNacimiento,
     direccion,
     email,
+    documentos,
     rol,
   } = useUserStore((state) => ({
     nombre: state.nombre,
@@ -23,8 +24,11 @@ function FormModificarUser() {
     direccion: state.direccion,
     email: state.email,
     rol: state.rol,
+    documentos: state.documentos,
     _id: state._id,
   }));
+
+  console.log(documentos)
 
   return (
     <>
@@ -133,7 +137,7 @@ function FormModificarUser() {
           <section className="grid grid-cols-2">
             <p className="text-left">Licencia</p>
             <a
-              // href={seguro.documentos[0]}
+              href={documentos?.[0]}
               target="_blank"
               className="text-right underline"
             >

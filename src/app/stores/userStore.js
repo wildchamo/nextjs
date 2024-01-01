@@ -13,10 +13,6 @@ const useUserStore = create((set) => {
     celular: storedUser ? storedUser.celular : null,
     direccion: storedUser ? storedUser.direccion : null,
     ciudad: storedUser ? storedUser.ciudad : null,
-    //fecha reporte
-    //número de heridos en el caspo que sea agrevado
-    //como ocurrió listo
-    //información testigos, Jalar de los inputs
     rol: storedUser ? storedUser.rol : null,
     fechaNacimiento: storedUser ? storedUser.fechaNacimiento : null,
     fechaVencimientoLicencia: storedUser
@@ -26,8 +22,10 @@ const useUserStore = create((set) => {
     _id: storedUser ? storedUser._id : null,
     geo: null,
     error: null,
+    documentos: storedUser ? storedUser.documentos : [],
 
     seguros: [],
+
 
     updateUser: (userData) => {
       set((state) => {
@@ -54,6 +52,7 @@ const useUserStore = create((set) => {
           fechaVencimientoLicencia: res.data.fechaVencimientoLicencia,
           isActive: res.data.isActive,
           _id: res.data._id,
+          documentos: res.data.documentos,
         });
         Cookies.set("user", JSON.stringify(res.data));
 
