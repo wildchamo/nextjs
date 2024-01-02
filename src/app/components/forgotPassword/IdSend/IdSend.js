@@ -41,14 +41,16 @@ function IdSend({ send }) {
         Ingresa el correo electronico registrado en tu cuenta{" "}
       </h3>
 
-      <p className="text-left">Correo de recuperación</p>
       <div className="flex flex-col	items-center">
-        <input
-          type="email"
-          onChange={handleInputChange}
-          value={email}
-          className="block my-2 w-80 rounded-md border-0 pt-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        />
+        <div>
+          <p className="text-left">Correo de recuperación</p>
+          <input
+            type="email"
+            onChange={handleInputChange}
+            value={email}
+            className="block my-2 w-80 rounded-md border-0 pt-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
         <button
           onClick={sendEmailCode}
           className="flex w-80 justify-center rounded-2xl bg-secondary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"

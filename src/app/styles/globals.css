@@ -30,6 +30,9 @@
     --yellowCall: "#EDC949";
   }
 }
+body {
+  overflow-x: hidden;
+}
 
 .circulo {
   width: 100px;

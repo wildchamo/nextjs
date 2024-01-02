@@ -28,7 +28,6 @@ function FormModificarUser() {
     _id: state._id,
   }));
 
-  console.log(documentos)
 
   return (
     <>
