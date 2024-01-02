@@ -1,4 +1,3 @@
-import React from "react";
 import SectionWrapper from "./hoc/SectionWrapper";
 
 const FormSection = () => {

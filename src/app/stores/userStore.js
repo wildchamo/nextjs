@@ -13,10 +13,6 @@ const useUserStore = create((set) => {
     celular: storedUser ? storedUser.celular : null,
     direccion: storedUser ? storedUser.direccion : null,
     ciudad: storedUser ? storedUser.ciudad : null,
-    //fecha reporte
-    //número de heridos en el caspo que sea agrevado
-    //como ocurrió listo
-    //información testigos, Jalar de los inputs
     rol: storedUser ? storedUser.rol : null,
     fechaNacimiento: storedUser ? storedUser.fechaNacimiento : null,
     fechaVencimientoLicencia: storedUser
@@ -25,18 +21,11 @@ const useUserStore = create((set) => {
     isActive: storedUser ? storedUser.isActive : null,
     _id: storedUser ? storedUser._id : null,
     geo: null,
-    seguros: [
-      {
-        id: 123,
-        seguro: "Todo Riesgo",
-        vencimiento: "27 Abr 2025",
-      },
-      {
-        id: 456,
-        seguro: "Exequias",
-        vencimiento: "30 Ene 2024",
-      },
-    ],
+    error: null,
+    documentos: storedUser ? storedUser.documentos : [],
+
+    seguros: [],
+
 
     updateUser: (userData) => {
       set((state) => {
@@ -63,6 +52,7 @@ const useUserStore = create((set) => {
           fechaVencimientoLicencia: res.data.fechaVencimientoLicencia,
           isActive: res.data.isActive,
           _id: res.data._id,
+          documentos: res.data.documentos,
         });
         Cookies.set("user", JSON.stringify(res.data));
 
@@ -78,18 +68,63 @@ const useUserStore = create((set) => {
       }
     },
 
+    getSeguros: async (idUser) => {
+      try {
+        const res = await axios.post("/api/get-seguros", {
+          idUser: idUser,
+        });
+        set({ seguros: res.data });
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+
+    sendEmailForgotPass: async (email, code) => {
+      try {
+        const res = await axios.post("/api/auth/forgotpass", {
+          email: email,
+          code: code,
+        });
+
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+
+    changePassword: async (newPassword, idUser, email) => {
+      try {
+        const res = await axios.post("/api/auth/updatepass", {
+          newPassword: newPassword,
+          idUser: idUser,
+          email: email,
+        });
+
+        return res.data;
+      } catch (error) {
+        throw new Error(error.response.data.message);
+      }
+    },
+
     updateGeo: () => {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          set({
-            geo: {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            },
-          });
-        });
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            set({
+              geo: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              },
+              error: null,
+            });
+          },
+          (error) => {
+            set({ error: "Geolocation permission denied" });
+          }
+        );
       } else {
-        console.log("Geolocation is not supported by this browser.");
+        set({ error: "Geolocation is not supported by this browser." });
       }
     },
     logout: () => {

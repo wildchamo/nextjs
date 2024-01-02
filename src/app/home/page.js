@@ -1,6 +1,6 @@
-import PicoyPlaca from "../components/PicoyPlaca.js";
-import MisSeguros from "../components/MisSeguros";
-import MisReportes from "../components/MisReportes";
+import PicoyPlaca from "../components/home/PicoyPlaca.js";
+import MisSeguros from "../components/home/MisSeguros.js";
+import MisReportes from "../components/home/MisReportes.js";
 
 export default function Home() {
   return (

@@ -30,6 +30,9 @@
     --yellowCall: "#EDC949";
   }
 }
+body {
+  overflow-x: hidden;
+}
 
 .circulo {
   width: 100px;
@@ -37,10 +40,14 @@
   background: white;
   position: absolute;
   top: 50%;
-  left: 90%;
+  left: 87%;
   transform: translate(-50%, -50%);
 }
-
+@media screen and (min-width: 768px) {
+  .circulo {
+    display: none;
+  }
+}
 .hash-span {
   margin-top: -100px;
   padding-bottom: 100px;
