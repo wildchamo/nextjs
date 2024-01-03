@@ -2,6 +2,7 @@ import { connectDB } from "@/app/utils/mongoose";
 import User from "@/models/users";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { ForgotPasswordTemplate } from "@/app/components/email-templates/ForgotPasswordTemplate";
 
 const resend = new Resend(process.env.RESEND_URI);
 
@@ -9,9 +10,9 @@ export async function POST(request) {
   try {
     await connectDB();
     const { email, code } = await request.json();
-
     const user = await User.findOne({ email });
-    if (!user)
+
+    if (!user) {
       return NextResponse.json(
         {
           message:
@@ -21,23 +22,25 @@ export async function POST(request) {
           status: 400,
         }
       );
+    }
 
     try {
-      const data = await resend.emails.send({
+      const data= await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
-        to: ["wildchamo@gmail.com",email],
+        to: [email],
         subject: "Correo al mail del user",
-        html: `<strong>Tu código de verificación es: ${code}</strong>`,
+        react: ForgotPasswordTemplate({ code: code }),
       });
-      console.log(data);
+      
+      console.log("Resend API Response:", data);
     } catch (error) {
-      console.log(error);
+      console.log("Error sending email: ", error);
       return NextResponse.error();
     }
 
     return NextResponse.json(user);
   } catch (error) {
-    console.log(error);
+    console.log("General error: ", error);
     return NextResponse.error();
   }
 }

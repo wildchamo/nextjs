@@ -144,5 +144,5 @@ export function generateCode() {
   const code = [...Array(4)]
     .map(() => Math.floor(Math.random() * 10))
     .join('');
-  return code;
+  return Number(code);
 }
