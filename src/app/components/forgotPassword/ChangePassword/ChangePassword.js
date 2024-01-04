@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import useUserStore from "../../../stores/userStore";
 import Modal from "../../shared/Modal";
 
 function ChangePassword({ context }) {
   const { changePassword } = useUserStore();
 
-  const router = useRouter();
   const { idUser, email } = context;
 
   const [error, setError] = useState(false);
@@ -108,21 +107,20 @@ function ChangePassword({ context }) {
         </div>
       </div>
 
-      {success ? <ModalChangePassword onClose={nextScreen} /> : ""}
+      {success ? <ModalChangePassword /> : ""}
     </>
   );
 }
-const ModalChangePassword = ({ onClose }) => {
+const ModalChangePassword = () => {
   return (
     <Modal>
       <h2 className="text-xl">Contraseña modificada con éxito!</h2>
       <div className="text-end">
-        <button
-          className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-          onClick={onClose}
-        >
-          Aceptar
-        </button>
+        <Link href="/login">
+          <button className="shadow bg-secondary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+            Aceptar
+          </button>
+        </Link>
       </div>
     </Modal>
   );
