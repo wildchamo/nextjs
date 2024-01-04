@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { cardInfo } from "./constants";
 
 const AboutCard = () => {
@@ -10,7 +11,13 @@ const AboutCard = () => {
             className="rounded-xl p-0.5 bg-gradient-to-b from-gradientGreen to-background transition-all duration-250 hover:bg-gradient-to-t hover:from-secondary hover:to-primary hover:scale-105 hover:cursor-pointer"
           >
             <div className="flex flex-col space-y-2 rounded-xl shadow-lg p-6 sm:h-[300px] bg-background">
-              <img className="h-10 w-10" src={card.icon} alt={card.title} />
+              <Image
+                className="h-10 w-10"
+                height={40}
+                width={40}
+                src={card.icon}
+                alt={card.title}
+              />
               <span className="text-xl text-header font-bold">
                 {card.title}
               </span>
@@ -31,9 +38,11 @@ const AboutCard = () => {
             </p>
             <div className="w-full rounded-xl bg-background flex flex-col items-center sm:flex-row p-5 space-x-3 md:items-center mb-10">
               <div className="flex items-center justify-center rounded-full bg-secondary p-4 mb-2 sm:mb-0">
-                <img
-                className="object-cover w-16 sm:w-24 items-center"
-                  src="https://mayalunaseguros.com/wp-content/uploads/2021/06/escudo-proteccion.png"
+                <Image
+                  className="object-cover h-auto w-16 sm:w-24 items-center"
+                  height={64}
+                  width={64}
+                  src="/escudo.png"
                   alt="check_icon"
                 />
               </div>
@@ -49,9 +58,11 @@ const AboutCard = () => {
             </div>
             <div className="w-full rounded-xl bg-background flex flex-col items-center sm:flex-row p-5 space-x-3 md:items-center">
               <div className="flex items-center justify-center rounded-full bg-secondary w-fit h-fit p-4 mb-2 sm:mb-0">
-                <img
-                  className="object-cover w-16 sm:w-24 items-center"
-                  src="https://mayalunaseguros.com/wp-content/uploads/2021/06/ahorrando-dinero.png"
+                <Image
+                  className="object-cover h-auto w-16 sm:w-24 items-center"
+                  height={64}
+                  width={64}
+                  src="/ahorrandoDinero.png"
                   alt="flower_icon"
                 />
               </div>
@@ -67,9 +78,11 @@ const AboutCard = () => {
             </div>
           </div>
           <div className="px-10 lg:my-20 flex justify-center">
-            <img
-              className="lg:h-[520px] lg:w-[520px] rounded-tl-xl rounded-tr-xl rounded-bl-xl rounded-br-[20%]"
-              src="https://mayalunaseguros.com/wp-content/uploads/elementor/thumbs/pexels-cottonbro-studio-4569307-scaled-qc6hqrjplbesehne1eva0grshrz5ncwhvj7svijdky.jpg"
+            <Image
+              className="h-auto w-auto rounded-tl-xl rounded-tr-xl rounded-bl-xl rounded-br-[20%]"
+              height={520}
+              width={520}
+              src="/familia3.jpg"
               alt="section_image"
             />
           </div>

@@ -1,21 +1,22 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { navLinks } from "./constants";
+import Image from "next/image";
 
 const Navbar = () => {
   const [active, setActive] = useState("Inicio");
-  const [toggle, setToggle] = useState(false);
-  const [animate, setAnimate] = useState(false);
+  // const [toggle, setToggle] = useState(false);
+  // const [animate, setAnimate] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAnimate(toggle);
-    }, 0);
-  }, [toggle]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setAnimate(toggle);
+  //   }, 0);
+  // }, [toggle]);
 
   return (
     <>
-      <header className="bg-background p-2 fixed top-0 w-full h-20 z-40 border-b-2 border-muted-foreground">
+      <header className="bg-background pt-2 lg:pt-1.5 fixed top-0 w-full h-20 z-40 border-b-2 border-muted-foreground">
         <nav className="flex flex-row items-center justify-between mx-4 sm:mx-20">
           <a
             href="#"
@@ -25,10 +26,17 @@ const Navbar = () => {
               window.scrollTo(0, 0);
             }}
           >
-            <img className="h-16" src="/logomayaluna.jpg" alt="mayaluna_logo" />
+            <Image
+              className="h-14 w-36 sm:h-14 sm:w-auto"
+              src="/logomayaluna.jpg"
+              width={120}
+              height={130}
+              priority={true}
+              alt="logoMayaluna"
+            />
           </a>
           <div className="hidden md:flex flex-row space-x-4">
-            <ul className="flex flex-row lg:space-x-10 tracking-wide text-lg lg:mr-14">
+            <ul className="flex flex-row lg:space-x-10 tracking-wide text-lg lg:mr-5">
               {navLinks.map((link, index) => (
                 <li
                   key={index}
@@ -51,6 +59,15 @@ const Navbar = () => {
               ))}
             </ul>
 
+            <div className="flex justify-center items-center">
+              <a
+                href="/login"
+                className="bg-button text-white py-2 px-4 rounded-2xl h-fit hover:bg-button/80 transition-all duration-150"
+              >
+                Iniciar Sesión
+              </a>
+            </div>
+
             <div className="hidden xl:flex flex-col justify-center items-center">
               <a
                 className="text-header text-xl font-bold"
@@ -63,9 +80,14 @@ const Navbar = () => {
             </div>
           </div>
           <div className="sm:hidden flex flex-1 justify-end items-center">
-            <a href="/login">Iniciar sesión</a>
+            <a
+              href="/login"
+              className="bg-button text-white py-2 px-4 rounded-2xl"
+            >
+              Iniciar Sesión
+            </a>
 
-            <div
+            {/* <div
               className={`${!toggle ? "hidden" : "flex"} ${
                 !animate ? "opacity-0" : "opacity-100"
               } flex-col transition-all ease-in-out duration-250 y p-6 bg-background border-2 border-tertiary absolute top-20 right-0 mx-2 my-2 min-w-[140px] z-10 rounded-xl`}
@@ -88,7 +110,7 @@ const Navbar = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </nav>
       </header>

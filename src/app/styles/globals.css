@@ -30,6 +30,20 @@
     --yellowCall: "#EDC949";
   }
 }
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #7FBF5F;
+  ;
+}
+
 body {
   overflow-x: hidden;
 }

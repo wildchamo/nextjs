@@ -28,10 +28,8 @@ module.exports = {
         yellowCall: "#EDC949",
       },
       backgroundImage: {
-        "hero-background":
-          "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/familia2-asegurada-con-mayaluna-opt.jpg')",
-        "section-background":
-          "url('https://mayalunaseguros.com/wp-content/uploads/2021/06/fondo-verde-seguros-mayaluna-1.jpg')",
+        "hero-background": "url('/familia2.webp')",
+        "section-background": "url('/fondoVerde.jpg')",
       },
     },
   },

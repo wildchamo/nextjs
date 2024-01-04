@@ -1,11 +1,20 @@
+import React from "react";
+import Image from "next/image";
+
 const Footer = () => {
   return (
-    <footer className="bg-header">
+    <footer className="bg-gradient-to-b from-[#0d5928]  to-header to-80%">
       <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
         <div className="gap-8 grid lg:grid-cols-3">
           <div className="flex flex-col justify-center items-center mb-5 sm:mb-0 md:justify-normal md:items-baseline">
             <div className="text-background flex flex-row items-center">
-              <img className="h-20" src="/logomayaluna.jpg" alt="logo" />
+              <Image
+                className="h-auto w-auto"
+                height={80}
+                width={200}
+                src="/logoBlanco.png"
+                alt="logo"
+              />
             </div>
 
             <p className="mt-4 max-w-xs text-background lg:w-[70%]">
@@ -167,8 +176,12 @@ const Footer = () => {
               <p className="font-medium text-background">Portafolio</p>
 
               <ul className="mt-6 space-y-4 text-sm">
-                <img
-                  src="https://mayalunaseguros.com/wp-content/uploads/2021/06/Portafolio-de-servicios-maya-luna-1.png"
+                <Image
+                  className="h-auto w-auto"
+                  height={500}
+                  width={500}
+                  priority={true}
+                  src="/portafolio.png"
                   alt="portfolio_image"
                 />
               </ul>
