@@ -28,7 +28,6 @@ function FormModificarUser() {
     _id: state._id,
   }));
 
-
   return (
     <>
       <section className="pb-28">
@@ -133,16 +132,21 @@ function FormModificarUser() {
 
         <div className="py-4 px-4 mt-4  mb-4">
           <h2 className="font-bold pb-4 text-xl">Documentos</h2>
-          <section className="grid grid-cols-2">
-            <p className="text-left">Licencia</p>
-            <a
-              href={documentos?.[0]}
-              target="_blank"
-              className="text-right underline"
-            >
-              Visualizar
-            </a>
-          </section>{" "}
+
+          {rol === "Individual" ? (
+            <section className="grid grid-cols-2">
+              <p className="text-left">Licencia</p>
+              <a
+                href={documentos?.[0]}
+                target="_blank"
+                className="text-right underline"
+              >
+                Visualizar
+              </a>
+            </section>
+          ) : (
+            <p>No tienes documentos registrados</p>
+          )}
         </div>
 
         <hr />

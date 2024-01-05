@@ -10,46 +10,42 @@ export const navLinks = [
   {
     title: "Cotizador",
     ref: "#calculator",
-  },
-  {
-    title: "Iniciar Sesión",
-    ref: "/login",
-  },
+  }
 ];
 
 export const cardInfo = [
   {
-    icon: "https://mayalunaseguros.com/wp-content/uploads/2021/06/risk.png",
+    icon: "/risk.png",
     title: "Evaluación de Riesgos",
     description:
       "Le ayudamos a identificar peligros potenciales y factores de riesgo que pueden causar daño. Analizamos y evaluamos el riesgo asociado con ese peligro.",
   },
   {
-    icon: "https://mayalunaseguros.com/wp-content/uploads/2021/06/strategia-proyectos.png",
+    icon: "/strategia-proyectos.png",
     title: "Seguros Para Proyectos",
     description:
       "Un proyecto es una entidad independiente de tiempo limitado que normalmente incluye maquinaria, edificios e infraestructura.",
   },
   {
-    icon: "https://mayalunaseguros.com/wp-content/uploads/2021/06/Riesgos-ambientales.png",
+    icon: "/Riesgos-ambientales.png",
     title: "Seguros Para Propiedades",
     description:
       "Proteja sus propiedades contra la mayoría de los riesgos que puedan ocurrir, como incendios, robos y algunos daños causados ​​por el clima.",
   },
   {
-    icon: "https://mayalunaseguros.com/wp-content/uploads/2021/06/seguros-carros.png",
+    icon: "/seguros-carros.png",
     title: "Automóviles",
     description:
       "Poliza que cubre los siniestros que pueda sufrir su vehiculo tales como: Hurto y/o daños del vehículo, Responsabilidad Civil extra contractual, Gastos de Transporte/Asistencia al vehículo y más.",
   },
   {
-    icon: "https://mayalunaseguros.com/wp-content/uploads/2021/06/seguro-de-vida-mayaluna.png",
+    icon: "/seguro-de-vida-mayaluna.png",
     title: "Seguro de vida",
     description:
       "Todos merecen un futuro financiero seguro, y es por eso que los seguros de vida son tan importantes. Podemos ayudarlo a brindar tranquilidad financiera a su familia.",
   },
   {
-    icon: "https://mayalunaseguros.com/wp-content/uploads/2021/06/seguro-de-identidad.png",
+    icon: "/seguro-de-identidad.png",
     title: "Protección contra robo de identidad",
     description:
       "Mantenga sus datos e identidad seguros. Sus datos son un activo valioso y nos aseguraremos de que estén protegidos.",
@@ -107,7 +103,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/moto.png",
+        "/moto.png",
     },
     cilindraje: [
       "CICLOMOTOR",
@@ -129,7 +125,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/camioneta.png",
+        "/camioneta.png",
     },
     cilindraje: ["Menos de 1.500", "1.500 A 2.500", "Mas de 2.500"],
     modelosDesde2014Hasta2023: ["$ 730.300", "$ 871.900", "$ 1.022.700"],
@@ -146,7 +142,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/camioneta.png",
+        "/camioneta.png",
     },
     cilindraje: ["Menos de 1.500", "1.500 A 2.500", "Mas de 2.500"],
     modelosDesde2011Hasta2022: ["$ 653.500", "$ 780.400", "$ 915.200"],
@@ -162,7 +158,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/carga.png",
+        "/carga.png",
     },
     cilindraje: ["Menos de 5 TON", "DE 5 A 15 TON", "Mas de 15 TON"],
     valor: ["$ 818.300", "$ 1.181.600", "$ 1.493.900"],
@@ -177,7 +173,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/oficial.png",
+        "/oficial.png",
     },
     cilindraje: ["Menos de 1.500", "1.500 A 2.500", "Mas de 2.500"],
     valor: ["$ 920.700", "$ 1.160.700", "$ 1.391.500"],
@@ -193,7 +189,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/familiar.png",
+        "/familiar.png",
     },
     cilindraje: ["Menos de 1.500", "1.500 A 2.500", "Mas de 2.500"],
     modelosDesde2014Hasta2023: ["$ 412.000", "$ 501.700", "$ 585.900"],
@@ -210,7 +206,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/6pasajeros.png",
+        "/6pasajeros.png",
     },
     cilindraje: ["Menos de 2.500", "2.500 o más"],
     modelosDesde2014Hasta2023: ["$ 734.500", "$ 983.100"],
@@ -227,7 +223,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/negocios.png",
+        "/negocios.png",
     },
     cilindraje: ["Menos de 1.500", "1.500 A 2.500", "Mas de 2.500"],
     modelosDesde2014Hasta2023: ["$ 228.500", "$ 283.700", "$ 365.800"],
@@ -243,7 +239,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/bus.png",
+        "/bus.png",
     },
     cilindraje: ["Tarifa Única"],
     valor: ["$ 545.300"],
@@ -258,7 +254,7 @@ export const soatTableInfo = [
     },
     tipoVehiculo: {
       imageSrc:
-        "https://mayalunaseguros.com/wp-content/uploads/2021/06/bus.png",
+        "/bus.png",
     },
     cilindraje: ["Menos de 10 Pasajeros", "10 o más Pasajeros"],
     valor: ["$ 539.400", "$ 782.100"],
@@ -266,12 +262,12 @@ export const soatTableInfo = [
 ];
 
 export const carouselImages = [
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-1.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-2.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-3.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-4.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-5.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-6.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-7.png",
-  "https://mayalunaseguros.com/wp-content/uploads/2021/06/Aliado-8.png",
+  "/Aliado-1.png",
+  "/Aliado-2.png",
+  "/Aliado-3.png",
+  "/Aliado-4.png",
+  "/Aliado-5.png",
+  "/Aliado-6.png",
+  "/Aliado-7.png",
+  "/Aliado-8.png",
 ];

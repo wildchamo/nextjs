@@ -1,15 +1,24 @@
-"use client";
 import ActionSection from "./ActionSection";
 import { useState } from "react";
 import Modal from "../shared/Modal";
 import Link from "next/link";
 
-export default function MisReportes() {
+export default function MisReportes({ seguros }) {
   const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+
+  const hasAutoInsurance = seguros.some((seguro) =>
+    seguro.tipoPoliza.includes("Autos")
+  );
 
   const handleModalClick = () => {
-    setShowModal(true);
+    if (hasAutoInsurance) {
+      setShowModal(true);
+    } else {
+      setShowModal2(true);
+    }
   };
+
   return (
     <section className="py-6">
       <h2 className="mb-1">MIS REPORTES</h2>
@@ -22,6 +31,9 @@ export default function MisReportes() {
       </div>
 
       {showModal && <ModalTipo onClose={() => setShowModal(false)} />}
+      {showModal2 && (
+        <ModalNoAutoInsurance onClose={() => setShowModal2(false)} />
+      )}
     </section>
   );
 }
@@ -41,16 +53,37 @@ function ModalTipo({ onClose }) {
       </p>
 
       <div className="flex justify-around">
-        <Link href="/home/reportar?tipo=Agravado">
-          <button className="bg-secondary w-24 text-white px-4 py-2 rounded-lg">
-            Agravado
-          </button>
+        <Link
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+          href={`/home/reportar?tipo=Agravado`}
+        >
+          Agravado
         </Link>
-        <Link href={"/home/reportar?tipo=Simple"}>
-          <button className="bg-secondary w-24 text-white px-4 py-2 rounded-lg">
-            Simple
-          </button>
+        <Link
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+          href={`/home/reportar?tipo=Simple`}
+        >
+          Simple
         </Link>
+      </div>
+    </Modal>
+  );
+}
+
+function ModalNoAutoInsurance({ onClose }) {
+  return (
+    <Modal>
+      <div className="modal-content">
+        <h2>No tienes seguros de vehículo, contacta con nuestros asesores</h2>
+        <div className="text-end mt-4">
+
+        <button
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+          onClick={onClose}
+          >
+          Cerrar
+        </button>
+          </div>
       </div>
     </Modal>
   );

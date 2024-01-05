@@ -16,8 +16,8 @@ function IdSend({ send }) {
 
   const sendEmailCode = () => {
     setLoading(true);
-
-    sendEmailForgotPass(email, Number(code))
+    
+    sendEmailForgotPass(email, code)
       .then((res) => {
         send({
           type: "START",

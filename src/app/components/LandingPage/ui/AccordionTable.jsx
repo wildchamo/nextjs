@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import Image from "next/image";
 import { useState } from "react";
 
 const AccordionTableItem = ({ section, isOpen, onToggle }) => {
@@ -36,12 +37,12 @@ const AccordionTableItem = ({ section, isOpen, onToggle }) => {
       {isOpen && (
         <div className="bg-background p-4 rounded-xl text-mutedForeground">
           <div className="flex justify-center items-center mb-4">
-            <img
-              height="150"
-              width="150"
+            <Image
+              className="object-cover h-auto w-auto"
+              height={150}
+              width={150}
               src={section.tipoVehiculo.imageSrc}
               alt="vehicle_image"
-              className="object-cover"
             />
           </div>
           <table className="w-full border border-mutedForeground/50">
