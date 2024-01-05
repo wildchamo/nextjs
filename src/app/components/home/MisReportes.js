@@ -4,16 +4,20 @@ import Modal from "../shared/Modal";
 import Link from "next/link";
 
 export default function MisReportes({ seguros }) {
-  const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
+  const [showVehiculoModal, setShowVehiculoModal] = useState(false);
 
   const hasAutoInsurance = seguros.some((seguro) =>
     seguro.tipoPoliza.includes("Autos")
   );
 
+  const autoInsurances = seguros.filter((seguro) =>
+    seguro.tipoPoliza.includes("Autos")
+  );
+
   const handleModalClick = () => {
     if (hasAutoInsurance) {
-      setShowModal(true);
+      setShowVehiculoModal(true);
     } else {
       setShowModal2(true);
     }
@@ -30,44 +34,80 @@ export default function MisReportes({ seguros }) {
         />
       </div>
 
-      {showModal && <ModalTipo onClose={() => setShowModal(false)} />}
-      {showModal2 && (<ModalNoAutoInsurance onClose={() => setShowModal2(false)} />
+      {showVehiculoModal && (
+        <ModalVehiculoTipo
+          seguros={autoInsurances}
+          onClose={() => setShowVehiculoModal(false)}
+        />
+      )}
+
+
+      {showModal2 && (
+        <ModalNoAutoInsurance onClose={() => setShowModal2(false)} />
       )}
     </section>
   );
 }
 
-function ModalTipo({ onClose }) {
+function ModalVehiculoTipo({ seguros, onClose }) {
+  const [selectedVehiculo, setSelectedVehiculo] = useState(null);
+
+  const handleVehiculoClick = (id) => {
+    setSelectedVehiculo(id);
+  };
+
   return (
     <Modal>
       <div className="flex justify-end">
         <p onClick={onClose}>X</p>
       </div>
-      <h2 className="text-md text-center font-bold mb-2">
-        ¿Qué tipo de reporte desea generar?
-      </h2>
-      <p className="text-sm text-center mb-2 text-lighttext">
-        Los accidentes gravados tienen lesionados implicados, los simples son
-        solo daños materiales.
-      </p>
+      {!selectedVehiculo ? (
+        <>
+          <h2 className="text-md text-center font-bold mb-2">
+            Selecciona el vehículo
+          </h2>
+          <div className="flex overflow-x-auto gap-5 pb-4">
+            {seguros.map((seguro) => (
+              <div
+                className="flex flex-shrink-0 flex-col justify-center items-center bg-secondary w-20 h-20 p-1 text-white rounded-2xl text-sm"
+                key={seguro._id}
+                onClick={() => handleVehiculoClick(seguro._id)}
+              >
+                {seguro.nombrePoliza}
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 className="text-md text-center font-bold mb-2">
+            ¿Qué tipo de reporte desea generar?
+          </h2>
+          <p className="text-sm text-center mb-2 text-lighttext">
+            Los accidentes gravados tienen lesionados implicados, los simples son
+            solo daños materiales.
+          </p>
 
-      <div className="flex justify-around">
-        <Link
-          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
-          href={`/home/reportar?tipo=Agravado`}
-        >
-          Agravado
-        </Link>
-        <Link
-          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
-          href={`/home/reportar?tipo=Simple`}
-        >
-          Simple
-        </Link>
-      </div>
+          <div className="flex justify-around">
+            <Link
+              className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+              href={`/home/reportar?tipo=Agravado`}
+            >
+              Agravado
+            </Link>
+            <Link
+              className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+              href={`/home/reportar?tipo=Simple`}
+            >
+              Simple
+            </Link>
+          </div>
+        </>
+      )}
     </Modal>
   );
 }
+
 
 function ModalNoAutoInsurance({ onClose }) {
   return (
@@ -75,14 +115,13 @@ function ModalNoAutoInsurance({ onClose }) {
       <div className="modal-content">
         <h2>No tienes seguros de vehículo, contacta con nuestros asesores</h2>
         <div className="text-end mt-4">
-
-        <button
-          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
-          onClick={onClose}
+          <button
+            className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+            onClick={onClose}
           >
-          Cerrar
-        </button>
-          </div>
+            Cerrar
+          </button>
+        </div>
       </div>
     </Modal>
   );
