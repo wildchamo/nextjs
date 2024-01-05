@@ -31,8 +31,7 @@ export default function MisReportes({ seguros }) {
       </div>
 
       {showModal && <ModalTipo onClose={() => setShowModal(false)} />}
-      {showModal2 && (
-        <ModalNoAutoInsurance onClose={() => setShowModal2(false)} />
+      {showModal2 && (<ModalNoAutoInsurance onClose={() => setShowModal2(false)} />
       )}
     </section>
   );
