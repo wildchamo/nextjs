@@ -29,7 +29,6 @@ function FormModificarUser() {
   }));
 
   return (
-    <>
       <section className="pb-28">
         <div>
           <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -157,7 +156,6 @@ function FormModificarUser() {
           favor comunícate con la administración
         </article>
       </section>
-    </>
   );
 }
 

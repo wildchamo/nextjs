@@ -20,7 +20,7 @@ const InsuranceList = () => {
       </div>
       <div>
         {seguros.map((seguro) => (
-          <Link href={`/home/seguros/${seguro._id}`}>
+          <Link href={`/home/seguros/${seguro._id}`} key={seguro._id}>
             <div
               className="grid grid-cols-[2fr,2fr,1fr] pt-3 text-left"
               key={seguro._id}

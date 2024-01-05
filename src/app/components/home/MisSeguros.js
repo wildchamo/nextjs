@@ -11,7 +11,7 @@ export default function MisSeguros() {
 
   useEffect(() => {
     getSeguros(_id);
-  }, []);
+  }, [_id]);
 
   return (
     <>
