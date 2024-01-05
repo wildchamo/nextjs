@@ -2,8 +2,7 @@
 import ActionSection from "./ActionSection";
 import { useState } from "react";
 import Modal from "../shared/Modal";
-import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 export default function MisReportes() {
   const [showModal, setShowModal] = useState(false);
 
@@ -27,16 +26,6 @@ export default function MisReportes() {
 }
 
 function ModalTipo({ onClose }) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push("/home/reportar?tipo=Simple");
-  };
-
-  const handleClick2 = () => {
-    router.push("/home/reportar?tipo=Agravado");
-  };
-
   return (
     <Modal>
       <div className="flex justify-end">
@@ -51,18 +40,18 @@ function ModalTipo({ onClose }) {
       </p>
 
       <div className="flex justify-around">
-        <button
-          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
-          onClick={handleClick2}
+        <Link
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+          href={`/home/reportar?tipo=Agravado`}
         >
           Agravado
-        </button>
-        <button
-          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg"
-          onClick={handleClick}
+        </Link>
+        <Link
+          className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
+          href={`/home/reportar?tipo=Simple`}
         >
           Simple
-        </button>
+        </Link>
       </div>
     </Modal>
   );
