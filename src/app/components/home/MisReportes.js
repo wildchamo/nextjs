@@ -1,4 +1,3 @@
-"use client";
 import ActionSection from "./ActionSection";
 import { useState } from "react";
 import Modal from "../shared/Modal";
