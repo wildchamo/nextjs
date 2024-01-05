@@ -3,6 +3,8 @@ import ActionSection from "./ActionSection";
 import { useState } from "react";
 import Modal from "../shared/Modal";
 import Link from "next/link";
+
+
 export default function MisReportes() {
   const [showModal, setShowModal] = useState(false);
 
