@@ -10,7 +10,7 @@ export default function MisSeguros() {
 
   useEffect(() => {
     getSeguros(_id);
-  }, [seguros]);
+  }, []);
 
   return (
     <section className="pt-6">
