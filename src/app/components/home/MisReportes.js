@@ -71,7 +71,7 @@ function ModalVehiculoTipo({ seguros, onClose }) {
               <div
                 className="flex flex-shrink-0 flex-col justify-center items-center bg-secondary w-20 h-20 p-1 text-white rounded-2xl text-sm"
                 key={seguro._id}
-                onClick={() => handleVehiculoClick(seguro._id)}
+                onClick={() => handleVehiculoClick(seguro.nombrePoliza)}
               >
                 {seguro.nombrePoliza}
               </div>
@@ -91,13 +91,13 @@ function ModalVehiculoTipo({ seguros, onClose }) {
           <div className="flex justify-around">
             <Link
               className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
-              href={`/home/reportar?tipo=Agravado`}
+              href={`/home/reportar?tipo=Agravado&placa=${selectedVehiculo}`}
             >
               Agravado
             </Link>
             <Link
               className="bg-secondary w-24 text-white px-4 py-2 rounded-lg text-center"
-              href={`/home/reportar?tipo=Simple`}
+              href={`/home/reportar?tipo=Simple&placa=${selectedVehiculo}`}
             >
               Simple
             </Link>

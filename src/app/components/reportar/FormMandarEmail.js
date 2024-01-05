@@ -14,7 +14,8 @@ import "jspdf-autotable";
 function FormMandarEmail({ params }) {
   const doc = new jsPDF();
 
-  const tipo = params.tipo;
+  const {tipo,placa} = params;
+
 
   const router = useRouter();
 
